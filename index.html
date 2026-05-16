@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Coming Soon</title>
+	<style>
+		:root {
+			--bg-1: #f9f7f1;
+			--bg-2: #e6eef8;
+			--card-bg: rgba(255, 255, 255, 0.8);
+			--text: #1d2433;
+			--muted: #51607a;
+			--accent: #ca7a3e;
+			--shadow: 0 16px 42px rgba(28, 38, 59, 0.12);
+			--radius: 18px;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			min-height: 100vh;
+			display: grid;
+			place-items: center;
+			padding: 24px;
+			font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+			color: var(--text);
+			background:
+				radial-gradient(circle at 15% 15%, #fff7cf 0%, transparent 40%),
+				radial-gradient(circle at 85% 85%, #d6f0ff 0%, transparent 38%),
+				linear-gradient(140deg, var(--bg-1), var(--bg-2));
+			overflow-x: hidden;
+		}
+
+		.panel {
+			width: min(680px, 100%);
+			border-radius: var(--radius);
+			background: var(--card-bg);
+			backdrop-filter: blur(8px);
+			box-shadow: var(--shadow);
+			padding: clamp(28px, 4vw, 42px);
+			text-align: center;
+			border: 1px solid rgba(255, 255, 255, 0.65);
+			animation: fadeUp 700ms ease-out both;
+		}
+
+		.badge {
+			display: inline-block;
+			margin-bottom: 16px;
+			padding: 6px 12px;
+			border-radius: 999px;
+			background: rgba(202, 122, 62, 0.12);
+			color: #9f5723;
+			font-size: 0.8rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			font-weight: 700;
+		}
+
+		h1 {
+			margin: 0;
+			font-size: clamp(2rem, 6vw, 3.4rem);
+			line-height: 1.08;
+			letter-spacing: 0.02em;
+		}
+
+		p {
+			margin: 14px auto 0;
+			max-width: 52ch;
+			color: var(--muted);
+			line-height: 1.6;
+			font-size: clamp(1rem, 2.3vw, 1.08rem);
+		}
+
+		.accent {
+			color: var(--accent);
+			font-weight: 700;
+		}
+
+		@keyframes fadeUp {
+			from {
+				opacity: 0;
+				transform: translateY(16px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@media (max-width: 480px) {
+			.panel {
+				padding: 24px 20px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="panel" role="main" aria-label="Coming Soon message">
+		<h1>A Canadian growth and marketing agency for solopreneurs and lean startups.</h1>
+	</main>
+</body>
+</html>
