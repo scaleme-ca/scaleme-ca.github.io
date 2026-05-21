@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ScaleMe — Marketing that moves the needle</title>
+<meta name="description" content="A small marketing team for early-stage founders. Affiliate programs, strategy, web, content, and SEO — handled.">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -150,6 +151,8 @@ button { cursor: none; font-family: inherit; }
 .svc-row:hover .svc-desc { color: var(--mid); }
 .svc-arrow-icon { font-size: 1.1rem; color: var(--dim); transition: color 0.3s, transform 0.5s cubic-bezier(0.22,1,0.36,1); }
 .svc-row:hover .svc-arrow-icon { color: var(--amber); transform: rotate(-45deg); }
+a.svc-row, a.portfolio-item { color: inherit; text-decoration: none; display: block; }
+a.svc-row { display: grid; }
 
 /* SECTION LABELS */
 .s-label { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 2px; color: var(--amber); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
@@ -252,7 +255,7 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
 <div class="cursor-ring" id="cursorRing"></div>
 
 <nav class="nav">
-  <a href="#" class="nav-logo">scale<span>me</span></a>
+  <a href="index.html" class="nav-logo">scale<span>me</span></a>
   <div class="nav-right">
     <a href="#services">Services</a>
     <a href="#work">Work</a>
@@ -334,12 +337,12 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
     <div class="count">05 capabilities</div>
   </div>
   <div class="services-accordion">
-    <div class="svc-row" data-svc>
+    <a href="scaleme-affiliate.html" class="svc-row" data-svc>
       <div class="svc-num">01</div>
       <div class="svc-name">Affiliate programs</div>
       <div class="svc-desc">We design, launch, and run affiliate programs end to end. Recruit creators, set commissions, manage payouts.</div>
       <div class="svc-arrow-icon">↗</div>
-    </div>
+    </a>
     <div class="svc-row" data-svc>
       <div class="svc-num">02</div>
       <div class="svc-name">Marketing strategy</div>
@@ -376,7 +379,7 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
     </div>
     <div class="portfolio-grid">
 
-      <div class="portfolio-item">
+      <a href="scaleme-affiliate.html" class="portfolio-item">
         <div class="portfolio-visual">
           <svg viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
             <rect width="1200" height="500" fill="#1c1814"/>
@@ -392,7 +395,7 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
           <h3>Cybersecurity SaaS</h3>
           <p>Affiliate Program — Strategy — Content</p>
         </div>
-      </div>
+      </a>
 
       <div class="portfolio-item">
         <div class="portfolio-visual">
@@ -534,7 +537,7 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
   </div>
   <div class="f-col">
     <h4>Services</h4>
-    <a href="#services">Affiliate Programs</a>
+    <a href="scaleme-affiliate.html">Affiliate Programs</a>
     <a href="#services">Marketing Strategy</a>
     <a href="#services">Web Design</a>
     <a href="#services">Content Production</a>
