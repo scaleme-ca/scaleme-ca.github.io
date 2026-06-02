@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScaleMe — Affiliate program management, end to end</title>
+<meta name="description" content="Full-service affiliate program management for early-stage SaaS, courses, and digital products. Recruitment, media kits, program design, tracking, payouts. We handle it.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0f0d0a;
+  --bg-alt: #161310;
+  --bg-elev: #1c1814;
+  --border: #2a251f;
+  --border-strong: #3a3329;
+  --dim: #5a554d;
+  --mid: #a8a094;
+  --cream: #f5efe0;
+  --cream-bright: #fdf8ec;
+  --amber: #d4a843;
+  --amber-bright: #e8c269;
+  --amber-dim: rgba(212,168,67,0.08);
+  --amber-dim-strong: rgba(212,168,67,0.18);
+  --display: 'Geist', sans-serif;
+  --body: 'Geist', sans-serif;
+  --italic: 'Cormorant Garamond', serif;
+  --mono: 'Geist Mono', monospace;
+}
+
+html { scroll-behavior: auto; }
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--body);
+  font-weight: 400;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 0.9 0 0 0 0 0.7 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+a { color: inherit; text-decoration: none; cursor: none; }
+button { cursor: none; font-family: inherit; }
+
+/* PRELOADER */
+.preloader { position: fixed; inset: 0; z-index: 10000; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 24px; }
+.preloader-text { font-family: var(--display); font-size: 1rem; font-weight: 700; letter-spacing: 8px; color: var(--amber); }
+.preloader-bar { width: 200px; height: 2px; background: var(--border); overflow: hidden; }
+.preloader-fill { width: 0%; height: 100%; background: var(--amber); }
+
+/* CURSOR */
+.cursor-dot { width: 6px; height: 6px; background: var(--amber); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; mix-blend-mode: difference; }
+.cursor-ring { width: 36px; height: 36px; border: 1px solid var(--amber); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; opacity: 0.5; transition: width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s; }
+.cursor-ring.expand { width: 72px; height: 72px; opacity: 0.25; border-color: var(--cream); }
+
+/* NAV */
+.nav { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 24px 56px; z-index: 1000; mix-blend-mode: difference; }
+.nav-logo { font-family: var(--display); font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; color: var(--cream); }
+.nav-logo span { color: var(--amber); }
+.nav-right { display: flex; align-items: center; gap: 36px; }
+.nav-right a { font-family: var(--display); font-size: 0.88rem; font-weight: 500; color: var(--mid); transition: color 0.3s; position: relative; }
+.nav-right a:hover { color: var(--cream); }
+.nav-right a:not(.nav-contact-btn)::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: var(--amber); transition: width 0.3s ease; }
+.nav-right a:not(.nav-contact-btn):hover::after { width: 100%; }
+.nav-right a.current { color: var(--amber); }
+.nav-right a.current::after { width: 100%; }
+.nav-contact-btn { font-family: var(--display); font-size: 0.85rem; font-weight: 600; color: var(--bg); background: var(--amber); border: none; padding: 10px 22px; border-radius: 6px; transition: transform 0.3s, background 0.3s; box-shadow: 0 4px 16px rgba(212,168,67,0.15); }
+.nav-contact-btn:hover { transform: translateY(-1px); background: var(--amber-bright); }
+
+/* HERO (smaller than homepage) */
+.hero { min-height: 80vh; position: relative; display: flex; align-items: center; overflow: hidden; padding-top: 100px; }
+#hero-canvas { position: absolute; inset: 0; z-index: 0; }
+.hero-content { position: relative; z-index: 2; padding: 0 56px; width: 100%; max-width: 1280px; margin: 0 auto; }
+.hero-breadcrumb { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 2px; color: var(--mid); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+.hero-breadcrumb a { color: var(--mid); transition: color 0.3s; }
+.hero-breadcrumb a:hover { color: var(--amber); }
+.hero-breadcrumb .sep { color: var(--dim); }
+.hero-breadcrumb .current { color: var(--amber); }
+.hero-eyebrow { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 2px; color: var(--amber); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; overflow: hidden; }
+.hero-eyebrow span { display: inline-block; }
+.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--amber); display: inline-block; }
+.hero-title { font-family: var(--display); font-size: clamp(2.2rem, 5.5vw, 5rem); font-weight: 700; line-height: 1.04; letter-spacing: -0.04em; max-width: 18ch; color: var(--cream); }
+.hero-title .word { display: inline-block; overflow: hidden; margin-right: 0.18em; vertical-align: top; }
+.hero-title .word-inner { display: inline-block; transform: translateY(110%); }
+.hero-title .italic { font-family: var(--italic); font-style: italic; font-weight: 400; letter-spacing: 0; color: var(--amber); }
+.hero-sub { max-width: 620px; margin-top: 32px; font-size: 1.08rem; font-weight: 400; color: var(--mid); line-height: 1.65; opacity: 0; }
+.hero-sub .em { color: var(--cream); font-weight: 500; }
+.hero-ctas { display: flex; gap: 14px; margin-top: 36px; opacity: 0; }
+.mag-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--display); font-size: 0.92rem; font-weight: 600; border-radius: 6px; border: none; transition: transform 0.25s ease, background 0.25s ease; position: relative; }
+.mag-btn.primary { background: var(--amber); color: var(--bg); box-shadow: 0 4px 24px rgba(212,168,67,0.18); }
+.mag-btn.primary:hover { background: var(--amber-bright); }
+.mag-btn.outline { background: transparent; color: var(--cream); border: 1px solid var(--border-strong); }
+.mag-btn.outline:hover { border-color: var(--mid); }
+
+/* GENERIC SECTION HEADERS */
+.s-label { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 2px; color: var(--amber); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.s-label::before { content: ''; width: 28px; height: 1px; background: var(--amber); }
+.section-number { font-family: var(--italic); font-style: italic; font-size: 0.95rem; color: var(--dim); margin-bottom: 24px; }
+
+/* PROBLEM SECTION */
+.problem-section { padding: 140px 56px; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.problem-inner { max-width: 1280px; margin: 0 auto; }
+.problem-header { margin-bottom: 64px; max-width: 800px; }
+.problem-header h2 { font-family: var(--display); font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; color: var(--cream); margin-bottom: 24px; }
+.problem-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
+.problem-header p { font-size: 1.05rem; color: var(--mid); line-height: 1.7; max-width: 640px; }
+.problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.problem-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 12px; padding: 36px; transition: border-color 0.3s, transform 0.3s; box-shadow: 0 1px 0 rgba(245,239,224,0.04) inset; }
+.problem-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.problem-card .pc-num { font-family: var(--italic); font-style: italic; font-size: 1.4rem; color: var(--amber); margin-bottom: 16px; opacity: 0.7; }
+.problem-card h3 { font-family: var(--display); font-size: 1.25rem; font-weight: 600; color: var(--cream); margin-bottom: 12px; letter-spacing: -0.02em; }
+.problem-card p { font-size: 0.95rem; color: var(--mid); line-height: 1.65; }
+
+/* SCOPE SECTION - the big credibility block */
+.scope-section { padding: 160px 56px; background: var(--bg); }
+.scope-inner { max-width: 1280px; margin: 0 auto; }
+.scope-header { margin-bottom: 80px; max-width: 800px; }
+.scope-header h2 { font-family: var(--display); font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.035em; color: var(--cream); margin-bottom: 24px; }
+.scope-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
+.scope-header p { font-size: 1.05rem; color: var(--mid); line-height: 1.7; max-width: 640px; }
+.scope-list { display: flex; flex-direction: column; border-top: 1px solid var(--border); }
+.scope-row { display: grid; grid-template-columns: 80px 220px 1fr; gap: 48px; padding: 40px 0; border-bottom: 1px solid var(--border); align-items: flex-start; cursor: pointer; transition: padding-left 0.4s ease, background 0.3s ease; position: relative; }
+.scope-row::before { content: ''; position: absolute; left: 0; top: 0; width: 2px; height: 0; background: var(--amber); transition: height 0.4s ease; }
+.scope-row:hover { padding-left: 20px; }
+.scope-row:hover::before { height: 100%; }
+.scope-num { font-family: var(--mono); font-size: 0.85rem; font-weight: 500; color: var(--dim); padding-top: 4px; transition: color 0.3s; }
+.scope-row:hover .scope-num { color: var(--amber); }
+.scope-name { font-family: var(--display); font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; color: var(--cream); transition: color 0.3s; }
+.scope-row:hover .scope-name { color: var(--amber); }
+.scope-detail { font-size: 0.98rem; color: var(--mid); line-height: 1.7; }
+.scope-detail strong { color: var(--cream); font-weight: 500; }
+
+/* AUDIENCE SECTION */
+.audience-section { padding: 140px 56px; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.audience-inner { max-width: 1280px; margin: 0 auto; }
+.audience-header { margin-bottom: 64px; max-width: 800px; }
+.audience-header h2 { font-family: var(--display); font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; color: var(--cream); margin-bottom: 24px; }
+.audience-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
+.audience-header p { font-size: 1.05rem; color: var(--mid); line-height: 1.7; max-width: 640px; }
+.audience-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.audience-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 12px; padding: 36px; transition: border-color 0.3s, transform 0.3s; box-shadow: 0 1px 0 rgba(245,239,224,0.04) inset; }
+.audience-card:hover { border-color: var(--amber); transform: translateY(-2px); }
+.audience-tag { display: inline-block; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 1.5px; padding: 4px 10px; background: var(--amber-dim); color: var(--amber); border-radius: 4px; margin-bottom: 18px; border: 1px solid var(--amber-dim-strong); }
+.audience-card h3 { font-family: var(--display); font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; color: var(--cream); margin-bottom: 12px; }
+.audience-card p { font-size: 0.95rem; color: var(--mid); line-height: 1.7; }
+
+/* TIMELINE SECTION */
+.timeline-section { padding: 160px 56px; background: var(--bg); }
+.timeline-inner { max-width: 1280px; margin: 0 auto; }
+.timeline-header { margin-bottom: 80px; max-width: 800px; }
+.timeline-header h2 { font-family: var(--display); font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.035em; color: var(--cream); margin-bottom: 24px; }
+.timeline-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
+.timeline-header p { font-size: 1.05rem; color: var(--mid); line-height: 1.7; max-width: 640px; }
+.timeline-list { display: flex; flex-direction: column; gap: 0; max-width: 1000px; }
+.timeline-item { display: grid; grid-template-columns: 200px 1fr; gap: 40px; padding: 36px 0; border-bottom: 1px solid var(--border); align-items: flex-start; position: relative; }
+.timeline-item:last-child { border-bottom: 1px solid var(--border); }
+.timeline-when { font-family: var(--mono); font-size: 0.78rem; font-weight: 500; letter-spacing: 1.5px; color: var(--amber); padding-top: 4px; }
+.timeline-content h3 { font-family: var(--display); font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; color: var(--cream); margin-bottom: 10px; }
+.timeline-content p { font-size: 0.95rem; color: var(--mid); line-height: 1.7; }
+
+/* CASE STUDY SECTION */
+.case-section { padding: 140px 56px; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.case-inner { max-width: 1100px; margin: 0 auto; }
+.case-header { margin-bottom: 48px; }
+.case-header h2 { font-family: var(--display); font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; color: var(--cream); }
+.case-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
+.case-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 14px; padding: 56px; box-shadow: 0 1px 0 rgba(245,239,224,0.04) inset; }
+.case-meta { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 32px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 1.5px; color: var(--dim); }
+.case-meta span { display: flex; align-items: center; gap: 8px; }
+.case-meta span::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); display: inline-block; }
+.case-title { font-family: var(--display); font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; letter-spacing: -0.025em; color: var(--cream); margin-bottom: 24px; }
+.case-body { font-size: 1.02rem; color: var(--mid); line-height: 1.75; margin-bottom: 36px; max-width: 800px; }
+.case-body strong { color: var(--cream); font-weight: 500; }
+.case-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-top: 36px; border-top: 1px solid var(--border); }
+.case-stat-num { font-family: var(--display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; color: var(--amber); line-height: 1; margin-bottom: 8px; }
+.case-stat-label { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 1.5px; color: var(--mid); }
+.case-disclaimer { font-family: var(--mono); font-size: 0.72rem; color: var(--dim); margin-top: 24px; line-height: 1.6; font-style: normal; }
+
+/* PRICING APPROACH SECTION */
+.pricing-section { padding: 160px 56px; background: var(--bg); }
+.pricing-inner { max-width: 1280px; margin: 0 auto; }
+.pricing-header { margin-bottom: 64px; max-width: 800px; }
+.pricing-header h2 { font-family: var(--display); font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; color: var(--cream); margin-bottom: 24px; }
+.pricing-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
+.pricing-header p { font-size: 1.05rem; color: var(--mid); line-height: 1.7; max-width: 640px; }
+.pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.pricing-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 12px; padding: 40px; transition: border-color 0.3s; box-shadow: 0 1px 0 rgba(245,239,224,0.04) inset; }
+.pricing-card:hover { border-color: var(--border-strong); }
+.pricing-card .pc-label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 1.5px; color: var(--amber); margin-bottom: 16px; }
+.pricing-card h3 { font-family: var(--display); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.025em; color: var(--cream); margin-bottom: 16px; }
+.pricing-card .pc-desc { font-size: 0.98rem; color: var(--mid); line-height: 1.7; margin-bottom: 24px; }
+.pricing-card .pc-fit { font-family: var(--mono); font-size: 0.78rem; color: var(--dim); padding-top: 20px; border-top: 1px solid var(--border); }
+.pricing-card .pc-fit strong { color: var(--cream); font-weight: 500; }
+.pricing-note { margin-top: 40px; padding: 24px 28px; background: var(--amber-dim); border-left: 2px solid var(--amber); border-radius: 4px; font-size: 0.95rem; color: var(--cream); line-height: 1.65; max-width: 800px; }
+.pricing-note strong { color: var(--amber); font-weight: 500; }
+
+/* FAQ SECTION */
+.faq-section { padding: 160px 56px; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.faq-inner { max-width: 900px; margin: 0 auto; }
+.faq-header { margin-bottom: 60px; }
+.faq-header h2 { font-family: var(--display); font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.035em; color: var(--cream); }
+.faq-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
+.faq-list { display: flex; flex-direction: column; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 28px 0; cursor: pointer; }
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+.faq-q h3 { font-family: var(--display); font-size: 1.1rem; font-weight: 500; letter-spacing: -0.015em; color: var(--cream); line-height: 1.4; flex: 1; transition: color 0.3s; }
+.faq-item:hover .faq-q h3 { color: var(--amber); }
+.faq-toggle { font-family: var(--italic); font-style: italic; font-size: 1.4rem; color: var(--amber); line-height: 1; flex-shrink: 0; transition: transform 0.4s ease; }
+.faq-item.open .faq-toggle { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1); }
+.faq-item.open .faq-a { max-height: 400px; }
+.faq-a-inner { padding-top: 20px; font-size: 0.98rem; color: var(--mid); line-height: 1.75; max-width: 720px; }
+
+/* CTA */
+.cta-section { text-align: center; padding: 180px 56px; position: relative; background: var(--bg); }
+.cta-section h2 { font-family: var(--display); font-size: clamp(2.5rem, 6vw, 5.5rem); font-weight: 700; line-height: 1.02; letter-spacing: -0.04em; margin-bottom: 32px; color: var(--cream); }
+.cta-section h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
+.cta-sub { font-size: 1.05rem; color: var(--mid); margin-bottom: 40px; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.65; }
+
+/* FOOTER */
+footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 56px; background: var(--bg-alt); }
+.f-brand .nav-logo { display: inline-block; margin-bottom: 18px; }
+.f-brand p { color: var(--mid); font-size: 0.88rem; line-height: 1.65; font-weight: 400; max-width: 280px; }
+.f-col h4 { font-family: var(--mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 1.5px; color: var(--amber); margin-bottom: 22px; }
+.f-col a, .f-col p { display: block; font-size: 0.88rem; color: var(--mid); margin-bottom: 10px; font-weight: 400; transition: color 0.3s; }
+.f-col a:hover { color: var(--cream); }
+.f-bottom { grid-column: 1 / -1; display: flex; justify-content: space-between; padding-top: 32px; margin-top: 24px; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 0.7rem; letter-spacing: 1px; color: var(--dim); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .scope-row { grid-template-columns: 60px 180px 1fr; gap: 24px; }
+  .case-stats { grid-template-columns: 1fr 1fr; }
+  footer { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav { padding: 18px 24px; }
+  .nav-right a:not(.nav-contact-btn) { display: none; }
+  .hero { padding-top: 120px; min-height: auto; padding-bottom: 80px; }
+  .hero-content { padding: 0 24px; }
+  .problem-section, .scope-section, .audience-section, .timeline-section, .case-section, .pricing-section, .faq-section { padding: 80px 24px; }
+  .problem-grid, .audience-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .scope-row { grid-template-columns: 1fr; gap: 8px; padding: 28px 0; }
+  .scope-num { font-size: 0.75rem; }
+  .timeline-item { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+  .case-card { padding: 32px 24px; }
+  .case-stats { grid-template-columns: 1fr; gap: 24px; }
+  .cta-section { padding: 100px 24px; }
+  footer { grid-template-columns: 1fr; padding: 48px 24px 24px; }
+  .cursor-dot, .cursor-ring { display: none; }
+  body { cursor: auto; }
+  a, button { cursor: auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="preloader" id="preloader">
+  <div class="preloader-text">SCALEME</div>
+  <div class="preloader-bar"><div class="preloader-fill" id="preloaderFill"></div></div>
+</div>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">scale<span>me</span></a>
+  <div class="nav-right">
+    <a href="scaleme-affiliate.html" class="current">Affiliate</a>
+    <a href="scaleme-web-design.html">Web Design</a>
+    <a href="scaleme-content.html">Content</a>
+    <button class="nav-contact-btn" onclick="window.location.href='https://calendly.com/smahnoorhashmi/30min'">Book a call</button>
+  </div>
+</nav>
+
+<section class="hero" id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-breadcrumb">
+      <a href="index.html">Services</a>
+      <span class="sep">/</span>
+      <span class="current">Affiliate program management</span>
+    </div>
+    <div class="hero-eyebrow"><span>Service — Affiliate program management</span></div>
+    <h1 class="hero-title">
+      <span class="word"><span class="word-inner">Affiliate</span></span>
+      <span class="word"><span class="word-inner">program</span></span>
+      <span class="word"><span class="word-inner">management,</span></span>
+      <span class="word"><span class="word-inner italic">end to end.</span></span>
+    </h1>
+    <p class="hero-sub">For early-stage founders who want an affiliate channel, but not a second full-time job. We handle <span class="em">recruitment, media kits, program design, tracking, payouts</span> — the whole operational stack.</p>
+    <div class="hero-ctas">
+      <button class="mag-btn primary" onclick="window.location.href='https://calendly.com/smahnoorhashmi/30min'">Book a call</button>
+      <button class="mag-btn outline" onclick="document.getElementById('scope').scrollIntoView({behavior:'smooth'})">See what we do</button>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM SECTION -->
+<section class="problem-section">
+  <div class="problem-inner">
+    <div class="problem-header">
+      <div class="s-label">The problem</div>
+      <h2>Most affiliate programs <span class="em">never get off the ground.</span></h2>
+      <p>Setting up software isn't the hard part. Running an affiliate program that actually drives revenue is operational work — the kind founders don't have time for and don't want to learn.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="pc-num">01</div>
+        <h3>Programs that launch and stall</h3>
+        <p>You set up the software, send a launch email, and then... nothing. No affiliates apply. The few who do never drive traffic. The program sits dormant.</p>
+      </div>
+      <div class="problem-card">
+        <div class="pc-num">02</div>
+        <h3>Recruitment that goes nowhere</h3>
+        <p>You DM ten creators in your niche. Two reply. One ghosts. The other says "send me a media kit." You don't have one. You build one badly. Nothing happens.</p>
+      </div>
+      <div class="problem-card">
+        <div class="pc-num">03</div>
+        <h3>Tracking that no one trusts</h3>
+        <p>Cookie attribution, refund clawbacks, subscription edge cases. When affiliates can't see how their commissions are calculated, they stop promoting and find a brand that has its act together.</p>
+      </div>
+      <div class="problem-card">
+        <div class="pc-num">04</div>
+        <h3>Payouts that become a part-time job</h3>
+        <p>Every month: pull the report, calculate commissions, handle disputes, run mass-pay, reconcile refunds. By month three you're spending more time on payouts than building product.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCOPE SECTION - the credibility block -->
+<section class="scope-section" id="scope">
+  <div class="scope-inner">
+    <div class="scope-header">
+      <div class="s-label">What we do</div>
+      <div class="section-number">01</div>
+      <h2>The whole operational <span class="em">stack.</span></h2>
+      <p>This is what running an affiliate program actually looks like. You hand us the product and the goals. We handle everything below.</p>
+    </div>
+    <div class="scope-list">
+      <div class="scope-row">
+        <div class="scope-num">01</div>
+        <div class="scope-name">Program design</div>
+        <div class="scope-detail">Commission structures (flat, percentage, recurring), cookie windows, refund policies, terms and conditions. <strong>We design the program around your unit economics</strong> so you're never paying out more than the channel is worth.</div>
+      </div>
+      <div class="scope-row">
+        <div class="scope-num">02</div>
+        <div class="scope-name">Creator recruitment</div>
+        <div class="scope-detail">Identifying affiliates in your niche, cold outreach, application review, onboarding. <strong>We bring our own network and build out a new one specific to your product.</strong> Outreach is personal, not blast.</div>
+      </div>
+      <div class="scope-row">
+        <div class="scope-num">03</div>
+        <div class="scope-name">Media kit production</div>
+        <div class="scope-detail">Branded one-pagers, swipe copy, banner assets, email templates, screenshots, talking points. <strong>Everything an affiliate needs to actually promote you</strong> — written and designed so they don't have to start from scratch.</div>
+      </div>
+      <div class="scope-row">
+        <div class="scope-num">04</div>
+        <div class="scope-name">Technical setup</div>
+        <div class="scope-detail">Platform setup, payment processor integration (Stripe, PayPal, etc.), tracking links and promo codes, attribution rules, webhook configuration. <strong>Done right the first time</strong> so commissions are accurate from day one.</div>
+      </div>
+      <div class="scope-row">
+        <div class="scope-num">05</div>
+        <div class="scope-name">Creator relationships</div>
+        <div class="scope-detail">Ongoing communication, performance reviews with top affiliates, exclusive offers, custom commission tiers, onboarding new affiliates as they come in. <strong>We're the affiliates' point of contact</strong> — not you.</div>
+      </div>
+      <div class="scope-row">
+        <div class="scope-num">06</div>
+        <div class="scope-name">Performance optimization</div>
+        <div class="scope-detail">Weekly performance monitoring, identifying top channels and top creators, testing commission structures, A/B testing landing pages affiliates drive traffic to. <strong>The program gets sharper every month.</strong></div>
+      </div>
+      <div class="scope-row">
+        <div class="scope-num">07</div>
+        <div class="scope-name">Payout management</div>
+        <div class="scope-detail">Monthly commission approval, refund reconciliation, dispute handling, mass-pay execution, 1099 preparation for US affiliates. <strong>You sign off; we handle the rest.</strong></div>
+      </div>
+      <div class="scope-row">
+        <div class="scope-num">08</div>
+        <div class="scope-name">Reporting &amp; strategy</div>
+        <div class="scope-detail">Monthly performance reports, quarterly strategy reviews, channel attribution analysis, roadmap recommendations. <strong>You always know where the channel stands</strong> and what's working.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE SECTION -->
+<section class="audience-section">
+  <div class="audience-inner">
+    <div class="audience-header">
+      <div class="s-label">Who we work with</div>
+      <h2>Built for early-stage <span class="em">online products.</span></h2>
+      <p>Affiliate marketing works best for products with clear value, repeat customers, and creators who'd actually want to recommend them. Here's where we focus.</p>
+    </div>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <span class="audience-tag">SaaS</span>
+        <h3>Subscription products</h3>
+        <p>Recurring commissions are what makes affiliate programs work for SaaS. We design programs around your LTV, set up subscription-aware tracking, and recruit creators who promote tools their audience would actually use.</p>
+      </div>
+      <div class="audience-card">
+        <span class="audience-tag">Courses</span>
+        <h3>Online courses and cohorts</h3>
+        <p>High-ticket sales and launch windows reward affiliate channels that can drive concentrated traffic. We design commission structures for both evergreen and launch-cycle programs.</p>
+      </div>
+      <div class="audience-card">
+        <span class="audience-tag">Digital products</span>
+        <h3>Templates, ebooks, downloads</h3>
+        <p>Volume products work well with affiliate programs when the operational cost per sale stays low. We design lightweight programs that scale across many small sales without becoming admin-heavy.</p>
+      </div>
+      <div class="audience-card">
+        <span class="audience-tag">Newsletters</span>
+        <h3>Paid newsletters and memberships</h3>
+        <p>Audience-first products are a natural fit for affiliate channels — other creators with engaged lists can drive paid subscribers efficiently. We recruit from inside your niche.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE SECTION -->
+<section class="timeline-section">
+  <div class="timeline-inner">
+    <div class="timeline-header">
+      <div class="s-label">Engagement timeline</div>
+      <div class="section-number">02</div>
+      <h2>What the first ninety days <span class="em">look like.</span></h2>
+      <p>Most engagements follow a similar arc. Discovery and design in the first weeks, recruitment ramping in month one, optimization from month two onward.</p>
+    </div>
+    <div class="timeline-list">
+      <div class="timeline-item">
+        <div class="timeline-when">WEEK 1</div>
+        <div class="timeline-content">
+          <h3>Discovery and program design</h3>
+          <p>We learn your product, audience, and unit economics. Together we agree on commission structure, refund policy, target creator profiles, and program goals. Output: a written program design doc.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-when">WEEK 2</div>
+        <div class="timeline-content">
+          <h3>Technical setup and assets</h3>
+          <p>Platform configuration, payment integration, tracking links, attribution testing. In parallel, we build the media kit — landing pages, swipe copy, banners, talking points. By end of week, everything's ready to launch.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-when">WEEK 3–4</div>
+        <div class="timeline-content">
+          <h3>Soft launch and first recruits</h3>
+          <p>We onboard your existing creator relationships (BYOI — bring your own influencers) and start active recruitment in your niche. First commissions usually land within the first three weeks after launch.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-when">MONTH 2</div>
+        <div class="timeline-content">
+          <h3>Recruitment scale-up</h3>
+          <p>The bulk of new creator onboarding happens here. We're typically running 10–30 outreach conversations per week, with weekly performance reports flowing back to you. First proper payout cycle runs at end of month.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-when">MONTH 3+</div>
+        <div class="timeline-content">
+          <h3>Optimization and compounding</h3>
+          <p>Top creators identified and given dedicated attention. Commission structures tested and refined. Landing pages optimized for affiliate traffic. By month three, the program should be generating revenue you can plan around.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY SECTION -->
+<section class="case-section">
+  <div class="case-inner">
+    <div class="case-header">
+      <h2>One we're <span class="em">currently working on.</span></h2>
+    </div>
+    <div class="case-card">
+      <div class="case-meta">
+        <span>Cybersecurity SaaS</span>
+        <span>B2B subscription</span>
+        <span>2026 — ongoing</span>
+      </div>
+      <h3 class="case-title">From zero affiliates to a working channel in six months.</h3>
+      <p class="case-body">A founder running a cybersecurity SaaS came to us with a working product, paying customers, and zero affiliate channel. We designed the commission structure, built the media kit, and ran <strong>hand-curated recruitment</strong> in security communities, podcasts, and creator networks. Six months in, the program is generating consistent monthly affiliate revenue and the founder hasn't touched program operations since week three.</p>
+      <div class="case-stats">
+        <div>
+          <div class="case-stat-num">~4x</div>
+          <div class="case-stat-label">Increase in affiliate revenue</div>
+        </div>
+        <div>
+          <div class="case-stat-num">28</div>
+          <div class="case-stat-label">Active affiliates recruited</div>
+        </div>
+        <div>
+          <div class="case-stat-num">0 hrs</div>
+          <div class="case-stat-label">Founder spends on program weekly</div>
+        </div>
+      </div>
+      <p class="case-disclaimer">Single-client case study. Results vary based on niche, product, and audience. We're happy to discuss whether your situation is comparable on a call.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING APPROACH SECTION -->
+<section class="pricing-section">
+  <div class="pricing-inner">
+    <div class="pricing-header">
+      <div class="s-label">How we charge</div>
+      <div class="section-number">03</div>
+      <h2>Two engagement models. <span class="em">No surprises.</span></h2>
+      <p>Most affiliate engagements work as either a one-time launch project or an ongoing retainer. We'll recommend what fits your stage on the discovery call.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pc-label">Engagement type 01</div>
+        <h3>Launch project</h3>
+        <p class="pc-desc">Fixed-scope, fixed-fee engagement to design, build, and launch your affiliate program from scratch. Includes program design, media kit, technical setup, initial recruitment push, and a thirty-day handoff period.</p>
+        <div class="pc-fit"><strong>Best fit:</strong> You want to run the program yourself eventually but need it built right the first time.</div>
+      </div>
+      <div class="pricing-card">
+        <div class="pc-label">Engagement type 02</div>
+        <h3>Monthly retainer</h3>
+        <p class="pc-desc">Ongoing management of every operational layer — recruitment, creator relationships, payouts, reporting, optimization. Usually starts with a launch project, then transitions to a retainer once the program is live.</p>
+        <div class="pc-fit"><strong>Best fit:</strong> You want affiliate revenue as a real channel but not as your job. Most clients.</div>
+      </div>
+    </div>
+    <div class="pricing-note">
+      <strong>Pricing depends on scope.</strong> A solo founder selling a $40/month SaaS has different needs than a course creator running quarterly launches. We'll walk through pricing on the discovery call once we understand what you're building and what success looks like.
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <div class="s-label">Common questions</div>
+      <h2>Things founders ask <span class="em">first.</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">
+          <h3>How long until we see real revenue from the program?</h3>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">First commissions usually land within three weeks of launch from existing relationships you bring in. Meaningful monthly revenue takes two to three months once recruitment scales and top affiliates start consistently driving traffic. Programs in well-defined niches ramp faster.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <h3>What if we already have an affiliate program running?</h3>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">We audit what you have, identify what's working and what isn't, and either optimize the existing program or rebuild it. Most of the time the program structure is fine but recruitment has stalled and operations have piled up — both fixable.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <h3>What if we have our own creators already?</h3>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Even better. Bringing your own creators (we call this BYOI — bring your own influencers) gives the program an immediate head start. We onboard them, handle their experience going forward, and recruit additional creators alongside them.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <h3>Do we have to use a specific tracking platform?</h3>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">No. We work with whatever platform fits your stack and budget. We'll recommend options on the discovery call based on your payment processor, audience size, and program complexity.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <h3>How do you find affiliates in our specific niche?</h3>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">A mix of our existing network, deep research into your niche (newsletters, podcasts, YouTube channels, communities), and direct outreach. We don't do mass DMs or blast emails. Every outreach is personal and targeted.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <h3>What if a campaign or relationship doesn't work out?</h3>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Some affiliates won't perform. Some campaigns won't land. We monitor performance weekly and prune what isn't working — both creators who aren't driving traffic and program structures that aren't converting. Affiliate marketing is iterative; we treat it that way.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <h3>Can we start with just a strategy engagement?</h3>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Yes. If you want a written program design and recruitment plan to execute yourself, we can do that as a standalone project. Most founders end up wanting us to handle execution too once they see what the operational work looks like.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2>Let's talk about your <span class="em">program.</span></h2>
+  <p class="cta-sub">Tell us about your product and what you're trying to grow. We'll walk you through what an engagement would look like — no pitch decks, no pressure.</p>
+  <button class="mag-btn primary" onclick="window.location.href='https://calendly.com/smahnoorhashmi/30min'">Book a call →</button>
+</section>
+
+<footer>
+  <div class="f-brand">
+    <a href="index.html" class="nav-logo">scale<span>me</span></a>
+    <p>A marketing team for early-stage founders. Affiliate programs, strategy, web, content, and SEO — handled.</p>
+  </div>
+  <div class="f-col">
+    <h4>Navigate</h4>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#work">Work</a>
+    <a href="index.html#process">Process</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="f-col">
+    <h4>Services</h4>
+    <a href="scaleme-affiliate.html">Affiliate Programs</a>
+    <a href="#">Marketing Strategy</a>
+    <a href="scaleme-web-design.html">Web Design</a>
+    <a href="scaleme-content.html">Content Production</a>
+    <a href="#">SEO</a>
+  </div>
+  <div class="f-col">
+    <h4>Get in touch</h4>
+    <p>hello@scaleme.ca</p>
+    <p>Remote, building with founders.</p>
+    <p style="margin-top:12px;">
+      <a href="#" style="color:var(--amber);">LinkedIn</a> · 
+      <a href="#" style="color:var(--amber);">Twitter</a>
+    </p>
+  </div>
+  <div class="f-bottom">
+    <span>© 2026 ScaleMe</span>
+    <span>Marketing that moves the needle</span>
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* THREE.JS — Wave mesh (less prominent for service page) */
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const planeGeo = new THREE.PlaneGeometry(36, 20, 70, 40);
+  const planeMat = new THREE.MeshBasicMaterial({
+    color: 0xd4a843,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.18
+  });
+  const plane = new THREE.Mesh(planeGeo, planeMat);
+  plane.rotation.x = -Math.PI / 2.4;
+  plane.position.y = -3.5;
+  plane.position.z = -2;
+  scene.add(plane);
+
+  const originalPositions = planeGeo.attributes.position.array.slice();
+
+  const glowGeo = new THREE.PlaneGeometry(20, 12);
+  const glowMat = new THREE.MeshBasicMaterial({ color: 0xd4a843, transparent: true, opacity: 0.035 });
+  const glow = new THREE.Mesh(glowGeo, glowMat);
+  glow.position.set(2, 0, -8);
+  scene.add(glow);
+
+  camera.position.set(0, 1, 9);
+  camera.lookAt(0, -2, 0);
+
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', e => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 0.4;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 0.2;
+  });
+
+  const startTime = Date.now();
+  function animate() {
+    requestAnimationFrame(animate);
+    const t = (Date.now() - startTime) * 0.0008;
+    const positions = planeGeo.attributes.position.array;
+    for (let i = 0; i < positions.length; i += 3) {
+      const x = originalPositions[i];
+      const y = originalPositions[i + 1];
+      positions[i + 2] = Math.sin(x * 0.4 + t) * 0.5 +
+                         Math.sin(y * 0.5 + t * 1.3) * 0.4 +
+                         Math.sin((x + y) * 0.3 + t * 0.8) * 0.25;
+    }
+    planeGeo.attributes.position.needsUpdate = true;
+
+    camera.position.x += (mouseX - camera.position.x) * 0.02;
+    camera.position.y += (1 - mouseY - camera.position.y) * 0.02;
+    camera.lookAt(0, -2, 0);
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+})();
+
+/* Preloader */
+const preloader = document.getElementById('preloader');
+const preloaderFill = document.getElementById('preloaderFill');
+gsap.timeline({
+  onComplete: () => {
+    gsap.to(preloader, { yPercent: -100, duration: 0.8, ease: 'power4.inOut', onComplete: () => preloader.style.display = 'none' });
+    heroReveal();
+  }
+}).to(preloaderFill, { width: '100%', duration: 1.2, ease: 'power2.inOut' });
+
+/* Custom cursor */
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  gsap.to(dot, { x: e.clientX - 3, y: e.clientY - 3, duration: 0.1, ease: 'power2.out' });
+  gsap.to(ring, { x: e.clientX - 18, y: e.clientY - 18, duration: 0.25, ease: 'power2.out' });
+});
+document.querySelectorAll('a, button, .scope-row, .problem-card, .audience-card, .pricing-card, .faq-item').forEach(el => {
+  el.addEventListener('mouseenter', () => ring.classList.add('expand'));
+  el.addEventListener('mouseleave', () => ring.classList.remove('expand'));
+});
+
+/* Hero reveal */
+function heroReveal() {
+  const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+  tl.to('.word-inner', { y: 0, duration: 1, stagger: 0.07 })
+    .to('.hero-sub', { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
+    .to('.hero-ctas', { opacity: 1, y: 0, duration: 0.5 }, '-=0.3');
+}
+
+/* Magnetic buttons */
+document.querySelectorAll('.mag-btn, .nav-contact-btn').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    gsap.to(btn, { x: x * 0.25, y: y * 0.25, duration: 0.3, ease: 'power2.out' });
+  });
+  btn.addEventListener('mouseleave', () => {
+    gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
+  });
+});
+
+/* FAQ accordion */
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('open');
+  });
+});
+
+/* Section reveals */
+gsap.utils.toArray('.s-label, .section-number').forEach(el => {
+  gsap.from(el, { opacity: 0, x: -20, duration: 0.6, scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' } });
+});
+gsap.utils.toArray('.problem-header h2, .scope-header h2, .audience-header h2, .timeline-header h2, .case-header h2, .pricing-header h2, .faq-header h2, .cta-section h2').forEach(el => {
+  gsap.from(el, { opacity: 0, y: 40, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' } });
+});
+gsap.utils.toArray('.problem-card').forEach((card, i) => {
+  gsap.from(card, { opacity: 0, y: 30, duration: 0.7, delay: i * 0.08, ease: 'power3.out', scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none reverse' } });
+});
+gsap.utils.toArray('.scope-row').forEach((row, i) => {
+  gsap.from(row, { opacity: 0, x: -30, duration: 0.6, delay: i * 0.05, ease: 'power3.out', scrollTrigger: { trigger: row, start: 'top 92%', toggleActions: 'play none none reverse' } });
+});
+gsap.utils.toArray('.audience-card').forEach((card, i) => {
+  gsap.from(card, { opacity: 0, y: 30, duration: 0.7, delay: i * 0.08, ease: 'power3.out', scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none reverse' } });
+});
+gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+  gsap.from(item, { opacity: 0, x: -30, duration: 0.7, delay: i * 0.07, ease: 'power3.out', scrollTrigger: { trigger: item, start: 'top 90%', toggleActions: 'play none none reverse' } });
+});
+gsap.from('.case-card', { opacity: 0, y: 40, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: '.case-card', start: 'top 85%', toggleActions: 'play none none reverse' } });
+gsap.utils.toArray('.pricing-card').forEach((card, i) => {
+  gsap.from(card, { opacity: 0, y: 30, duration: 0.7, delay: i * 0.1, ease: 'power3.out', scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none reverse' } });
+});
+gsap.utils.toArray('.faq-item').forEach((item, i) => {
+  gsap.from(item, { opacity: 0, y: 20, duration: 0.5, delay: i * 0.04, ease: 'power3.out', scrollTrigger: { trigger: item, start: 'top 92%', toggleActions: 'play none none reverse' } });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
