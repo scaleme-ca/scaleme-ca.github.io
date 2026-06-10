@@ -110,13 +110,6 @@ button { cursor: none; font-family: inherit; }
 @keyframes bobDown { 0%,100% { transform: translateY(-4px); } 50% { transform: translateY(4px); } }
 .scroll-text { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 2px; color: var(--dim); }
 
-/* MARQUEE - outlined */
-.marquee-section { padding: 56px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; position: relative; background: var(--bg-alt); }
-.marquee-track { display: flex; gap: 56px; width: max-content; will-change: transform; }
-.mq-item { font-family: var(--display); font-size: clamp(1.6rem, 3.2vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; white-space: nowrap; color: transparent; -webkit-text-stroke: 1px var(--dim); display: flex; align-items: center; gap: 28px; transition: -webkit-text-stroke-color 0.4s, color 0.4s; }
-.mq-item:hover { -webkit-text-stroke-color: var(--amber); color: var(--amber); }
-.mq-dot { width: 8px; height: 8px; background: var(--amber); border-radius: 50%; flex-shrink: 0; }
-
 /* MANIFESTO */
 .manifesto { display: grid; grid-template-columns: 1fr 1fr; min-height: 90vh; position: relative; background: var(--bg); }
 .manifesto-left { padding: 120px 64px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--border); }
@@ -260,7 +253,7 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
     <a href="#services">Services</a>
     <a href="#work">Work</a>
     <a href="#process">Process</a>
-    <button class="nav-contact-btn" onclick="window.location.href='https://calendly.com/smahnoorhashmi/30min'">Book a call</button>
+    <button class="nav-contact-btn" onclick="window.location.href='https://calendly.com/syeda-scaleme/30min'">Book a call</button>
   </div>
 </nav>
 
@@ -275,9 +268,9 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
       <span class="word"><span class="word-inner dim">the</span></span>
       <span class="word"><span class="word-inner">needle.</span></span>
     </h1>
-    <p class="hero-sub">A small marketing team for early-stage products. We handle affiliate programs, strategy, web, content, and SEO — so founders can stay focused on what they're building.</p>
+    <p class="hero-sub">A small marketing team for early-stage products. We handle affiliate programs, strategy, web, and content — so founders can stay focused on what they're building.</p>
     <div class="hero-ctas">
-      <button class="mag-btn primary" onclick="window.location.href='https://calendly.com/smahnoorhashmi/30min'">Book a call</button>
+      <button class="mag-btn primary" onclick="window.location.href='https://calendly.com/syeda-scaleme/30min'">Book a call</button>
       <button class="mag-btn outline" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">See our work</button>
     </div>
   </div>
@@ -286,21 +279,6 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
     <div class="scroll-text">Scroll</div>
   </div>
 </section>
-
-<div class="marquee-section">
-  <div class="marquee-track" id="mqTrack">
-    <span class="mq-item">Affiliate Programs <span class="mq-dot"></span></span>
-    <span class="mq-item">Marketing Strategy <span class="mq-dot"></span></span>
-    <span class="mq-item">Web Design <span class="mq-dot"></span></span>
-    <span class="mq-item">Content Production <span class="mq-dot"></span></span>
-    <span class="mq-item">SEO <span class="mq-dot"></span></span>
-    <span class="mq-item">Affiliate Programs <span class="mq-dot"></span></span>
-    <span class="mq-item">Marketing Strategy <span class="mq-dot"></span></span>
-    <span class="mq-item">Web Design <span class="mq-dot"></span></span>
-    <span class="mq-item">Content Production <span class="mq-dot"></span></span>
-    <span class="mq-item">SEO <span class="mq-dot"></span></span>
-  </div>
-</div>
 
 <section class="manifesto">
   <div class="manifesto-left" data-reveal>
@@ -334,7 +312,7 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
       <div class="s-label">What we do</div>
       <h2>Services built for <span class="em">early-stage</span> growth.</h2>
     </div>
-    <div class="count">05 capabilities</div>
+    <div class="count">04 capabilities</div>
   </div>
   <div class="services-accordion">
     <a href="scaleme-affiliate.html" class="svc-row" data-svc>
@@ -361,12 +339,6 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
       <div class="svc-desc">Blog, video, and social content tied to your growth goals — not a calendar of posts that go nowhere.</div>
       <div class="svc-arrow-icon">↗</div>
     </a>
-    <div class="svc-row" data-svc>
-      <div class="svc-num">05</div>
-      <div class="svc-name">SEO</div>
-      <div class="svc-desc">Technical foundations, content built to rank, and the patience to compound. Real SEO, not link-spam.</div>
-      <div class="svc-arrow-icon">↗</div>
-    </div>
   </div>
 </section>
 
@@ -413,22 +385,6 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
           <span class="year">2026</span>
           <h3>Selected project</h3>
           <p>Web Design — Content</p>
-        </div>
-      </div>
-
-      <div class="portfolio-item">
-        <div class="portfolio-visual">
-          <svg viewBox="0 0 600 375" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <rect width="600" height="375" fill="#1a1610"/>
-            <polygon points="300,60 540,280 60,280" fill="none" stroke="#d4a843" stroke-width="1" opacity="0.45"/>
-            <polygon points="300,100 480,260 120,260" fill="none" stroke="#d4a843" stroke-width="0.5" opacity="0.25"/>
-            <text x="300" y="330" font-family="Geist Mono" font-size="17" fill="#f5efe0" text-anchor="middle" letter-spacing="8">CASE STUDY</text>
-          </svg>
-        </div>
-        <div class="portfolio-overlay">
-          <span class="year">2025</span>
-          <h3>Selected project</h3>
-          <p>SEO — Content Production</p>
         </div>
       </div>
 
@@ -520,13 +476,13 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
 <section class="cta-section" id="contact">
   <h2>Let's talk about your <span class="em">growth.</span></h2>
   <p class="cta-sub">Tell us where your product is and where you want to take it. No pitch decks required — just a conversation.</p>
-  <button class="mag-btn primary" onclick="window.location.href='https://calendly.com/smahnoorhashmi/30min'">Book a call →</button>
+  <button class="mag-btn primary" onclick="window.location.href='https://calendly.com/syeda-scaleme/30min'">Book a call →</button>
 </section>
 
 <footer>
   <div class="f-brand">
     <span class="nav-logo">scale<span>me</span></span>
-    <p>A marketing team for early-stage founders. Affiliate programs, strategy, web, content, and SEO — handled.</p>
+    <p>A marketing team for early-stage founders. Affiliate programs, strategy, web, and content — handled.</p>
   </div>
   <div class="f-col">
     <h4>Navigate</h4>
@@ -541,16 +497,11 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
     <a href="#services">Marketing Strategy</a>
     <a href="scaleme-web-design.html">Web Design</a>
     <a href="scaleme-content.html">Content Production</a>
-    <a href="#services">SEO</a>
   </div>
   <div class="f-col">
     <h4>Get in touch</h4>
     <p>hello@scaleme.ca</p>
     <p>Remote, building with founders.</p>
-    <p style="margin-top:12px;">
-      <a href="#" style="color:var(--amber);">LinkedIn</a> · 
-      <a href="#" style="color:var(--amber);">Twitter</a>
-    </p>
   </div>
   <div class="f-bottom">
     <span>© 2026 ScaleMe</span>
@@ -675,21 +626,6 @@ document.querySelectorAll('.mag-btn, .nav-contact-btn').forEach(btn => {
   btn.addEventListener('mouseleave', () => {
     gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
   });
-});
-
-/* Marquee */
-const mqTrack = document.getElementById('mqTrack');
-const mqWidth = mqTrack.scrollWidth / 2;
-let lastScroll = 0;
-const mqBase = gsap.to(mqTrack, {
-  x: -mqWidth, duration: 40, ease: 'none', repeat: -1,
-  modifiers: { x: gsap.utils.unitize(x => parseFloat(x) % mqWidth) }
-});
-window.addEventListener('scroll', () => {
-  const velocity = Math.abs(window.scrollY - lastScroll);
-  lastScroll = window.scrollY;
-  const newSpeed = 1 + velocity * 0.04;
-  gsap.to(mqBase, { timeScale: Math.min(newSpeed, 6), duration: 0.3, overwrite: true });
 });
 
 /* Section reveals */
