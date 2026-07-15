@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ScaleMe — Affiliate program management, end to end</title>
-<meta name="description" content="Full-service affiliate program management for early-stage SaaS, courses, and digital products. Recruitment, media kits, program design, tracking, payouts. We handle it.">
+<title>ScaleMe — Full-stack content production for early-stage products</title>
+<meta name="description" content="Full-service content for early-stage founders. Newsletter, social, video, lead magnets, distribution, measurement — operated as an engine, not a content calendar.">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4WNF6GNHW9"></script>
 <script>
@@ -94,7 +94,7 @@ button { cursor: none; font-family: inherit; }
 .nav-contact-btn { font-family: var(--display); font-size: 0.85rem; font-weight: 600; color: var(--bg); background: var(--amber); border: none; padding: 10px 22px; border-radius: 6px; transition: transform 0.3s, background 0.3s; box-shadow: 0 4px 16px rgba(212,168,67,0.15); }
 .nav-contact-btn:hover { transform: translateY(-1px); background: var(--amber-bright); }
 
-/* HERO (smaller than homepage) */
+/* HERO */
 .hero { min-height: 80vh; position: relative; display: flex; align-items: center; overflow: hidden; padding-top: 100px; }
 #hero-canvas { position: absolute; inset: 0; z-index: 0; }
 .hero-content { position: relative; z-index: 2; padding: 0 56px; width: 100%; max-width: 1280px; margin: 0 auto; }
@@ -110,7 +110,7 @@ button { cursor: none; font-family: inherit; }
 .hero-title .word { display: inline-block; overflow: hidden; margin-right: 0.18em; vertical-align: top; }
 .hero-title .word-inner { display: inline-block; transform: translateY(110%); }
 .hero-title .italic { font-family: var(--italic); font-style: italic; font-weight: 400; letter-spacing: 0; color: var(--amber); }
-.hero-sub { max-width: 620px; margin-top: 32px; font-size: 1.08rem; font-weight: 400; color: var(--mid); line-height: 1.65; opacity: 0; }
+.hero-sub { max-width: 640px; margin-top: 32px; font-size: 1.08rem; font-weight: 400; color: var(--mid); line-height: 1.65; opacity: 0; }
 .hero-sub .em { color: var(--cream); font-weight: 500; }
 .hero-ctas { display: flex; gap: 14px; margin-top: 36px; opacity: 0; }
 .mag-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--display); font-size: 0.92rem; font-weight: 600; border-radius: 6px; border: none; transition: transform 0.25s ease, background 0.25s ease; position: relative; }
@@ -138,7 +138,7 @@ button { cursor: none; font-family: inherit; }
 .problem-card h3 { font-family: var(--display); font-size: 1.25rem; font-weight: 600; color: var(--cream); margin-bottom: 12px; letter-spacing: -0.02em; }
 .problem-card p { font-size: 0.95rem; color: var(--mid); line-height: 1.65; }
 
-/* SCOPE SECTION - the big credibility block */
+/* SCOPE SECTION */
 .scope-section { padding: 160px 56px; background: var(--bg); }
 .scope-inner { max-width: 1280px; margin: 0 auto; }
 .scope-header { margin-bottom: 80px; max-width: 800px; }
@@ -185,25 +185,29 @@ button { cursor: none; font-family: inherit; }
 .timeline-content h3 { font-family: var(--display); font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; color: var(--cream); margin-bottom: 10px; }
 .timeline-content p { font-size: 0.95rem; color: var(--mid); line-height: 1.7; }
 
-/* CASE STUDY SECTION */
-.case-section { padding: 140px 56px; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.case-inner { max-width: 1100px; margin: 0 auto; }
-.case-header { margin-bottom: 48px; }
-.case-header h2 { font-family: var(--display); font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; color: var(--cream); }
-.case-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
-.case-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 14px; padding: 56px; box-shadow: 0 1px 0 rgba(245,239,224,0.04) inset; }
-.case-meta { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 32px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 1.5px; color: var(--dim); }
-.case-meta span { display: flex; align-items: center; gap: 8px; }
-.case-meta span::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); display: inline-block; }
-.case-title { font-family: var(--display); font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; letter-spacing: -0.025em; color: var(--cream); margin-bottom: 24px; }
-.case-body { font-size: 1.02rem; color: var(--mid); line-height: 1.75; margin-bottom: 36px; max-width: 800px; }
-.case-body strong { color: var(--cream); font-weight: 500; }
-.case-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-top: 36px; border-top: 1px solid var(--border); }
-.case-stat-num { font-family: var(--display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; color: var(--amber); line-height: 1; margin-bottom: 8px; }
-.case-stat-label { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 1.5px; color: var(--mid); }
-.case-disclaimer { font-family: var(--mono); font-size: 0.72rem; color: var(--dim); margin-top: 24px; line-height: 1.6; font-style: normal; }
+/* STACK SECTION (in place of case study) */
+.stack-section { padding: 140px 56px; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.stack-inner { max-width: 1100px; margin: 0 auto; }
+.stack-header { margin-bottom: 48px; }
+.stack-header h2 { font-family: var(--display); font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; color: var(--cream); }
+.stack-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
+.stack-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 14px; padding: 56px; box-shadow: 0 1px 0 rgba(245,239,224,0.04) inset; }
+.stack-meta { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 32px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 1.5px; color: var(--dim); }
+.stack-meta span { display: flex; align-items: center; gap: 8px; }
+.stack-meta span::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); display: inline-block; }
+.stack-title { font-family: var(--display); font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; letter-spacing: -0.025em; color: var(--cream); margin-bottom: 24px; }
+.stack-body { font-size: 1.02rem; color: var(--mid); line-height: 1.75; margin-bottom: 36px; max-width: 800px; }
+.stack-body strong { color: var(--cream); font-weight: 500; }
+.stack-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; padding-top: 36px; border-top: 1px solid var(--border); }
+.stack-col { padding: 24px 28px 24px 0; }
+.stack-col:nth-child(even) { padding-left: 28px; border-left: 1px solid var(--border); }
+.stack-col h4 { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 1.5px; color: var(--amber); margin-bottom: 14px; }
+.stack-col ul { list-style: none; }
+.stack-col li { font-size: 0.92rem; color: var(--cream); line-height: 1.6; padding: 4px 0; display: flex; gap: 10px; align-items: baseline; }
+.stack-col li::before { content: '·'; color: var(--amber); font-weight: 700; }
+.stack-col li span { color: var(--mid); font-size: 0.85rem; }
 
-/* PRICING APPROACH SECTION */
+/* PRICING SECTION */
 .pricing-section { padding: 160px 56px; background: var(--bg); }
 .pricing-inner { max-width: 1280px; margin: 0 auto; }
 .pricing-header { margin-bottom: 64px; max-width: 800px; }
@@ -236,7 +240,7 @@ button { cursor: none; font-family: inherit; }
 .faq-toggle { font-family: var(--italic); font-style: italic; font-size: 1.4rem; color: var(--amber); line-height: 1; flex-shrink: 0; transition: transform 0.4s ease; }
 .faq-item.open .faq-toggle { transform: rotate(45deg); }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1); }
-.faq-item.open .faq-a { max-height: 400px; }
+.faq-item.open .faq-a { max-height: 500px; }
 .faq-a-inner { padding-top: 20px; font-size: 0.98rem; color: var(--mid); line-height: 1.75; max-width: 720px; }
 
 /* CTA */
@@ -256,22 +260,26 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
 
 /* RESPONSIVE */
 @media (max-width: 1024px) {
-  .scope-row { grid-template-columns: 60px 180px 1fr; gap: 24px; }
-  .case-stats { grid-template-columns: 1fr 1fr; }
+  .problem-grid, .audience-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .scope-row { grid-template-columns: 60px 1fr; }
+  .scope-row .scope-detail { grid-column: 1 / -1; }
+  .stack-grid { grid-template-columns: 1fr; }
+  .stack-col:nth-child(even) { padding-left: 0; border-left: none; border-top: 1px solid var(--border); padding-top: 24px; }
   footer { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
   .nav { padding: 18px 24px; }
   .nav-right a:not(.nav-contact-btn) { display: none; }
-  .hero { padding-top: 120px; min-height: auto; padding-bottom: 80px; }
+  .hero { padding-top: 90px; min-height: auto; padding-bottom: 60px; }
   .hero-content { padding: 0 24px; }
-  .problem-section, .scope-section, .audience-section, .timeline-section, .case-section, .pricing-section, .faq-section { padding: 80px 24px; }
-  .problem-grid, .audience-grid, .pricing-grid { grid-template-columns: 1fr; }
-  .scope-row { grid-template-columns: 1fr; gap: 8px; padding: 28px 0; }
-  .scope-num { font-size: 0.75rem; }
+  .hero-ctas { flex-direction: column; align-items: flex-start; }
+  .problem-section, .scope-section, .audience-section, .timeline-section, .stack-section, .pricing-section, .faq-section { padding: 90px 24px; }
+  .problem-card, .audience-card, .pricing-card { padding: 28px; }
+  .stack-card { padding: 36px 28px; }
+  .scope-row { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
+  .scope-num { display: none; }
+  .scope-name { font-size: 1.2rem; }
   .timeline-item { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
-  .case-card { padding: 32px 24px; }
-  .case-stats { grid-template-columns: 1fr; gap: 24px; }
   .cta-section { padding: 100px 24px; }
   footer { grid-template-columns: 1fr; padding: 48px 24px 24px; }
   .cursor-dot, .cursor-ring { display: none; }
@@ -280,7 +288,7 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
 }
 </style>
 </head>
-<body data-page="affiliate">
+<body data-page="content">
 
 <div class="preloader" id="preloader">
   <div class="preloader-text">SCALEME</div>
@@ -293,9 +301,9 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
 <nav class="nav">
   <a href="index.html" class="nav-logo">scale<span>me</span></a>
   <div class="nav-right">
-    <a href="scaleme-affiliate.html" class="current">Affiliate</a>
+    <a href="scaleme-affiliate.html">Affiliate</a>
     <a href="scaleme-web-design.html">Web Design</a>
-    <a href="scaleme-content.html">Content</a>
+    <a href="scaleme-content.html" class="current">Content</a>
     <button class="nav-contact-btn" onclick="window.location.href='https://calendly.com/syeda-scaleme/30min'">Book a call</button>
   </div>
 </nav>
@@ -306,18 +314,18 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
     <div class="hero-breadcrumb">
       <a href="index.html">Services</a>
       <span class="sep">/</span>
-      <span class="current">Affiliate program management</span>
+      <span class="current">Content production</span>
     </div>
-    <div class="hero-eyebrow"><span>Service — Affiliate program management</span></div>
+    <div class="hero-eyebrow"><span>Service — Full-stack content production</span></div>
     <h1 class="hero-title">
-      <span class="word"><span class="word-inner">Affiliate</span></span>
-      <span class="word"><span class="word-inner">program</span></span>
-      <span class="word"><span class="word-inner">management,</span></span>
-      <span class="word"><span class="word-inner italic">end to end.</span></span>
+      <span class="word"><span class="word-inner">Full-stack</span></span>
+      <span class="word"><span class="word-inner">content.</span></span>
+      <span class="word"><span class="word-inner">Built to</span></span>
+      <span class="word"><span class="word-inner italic">compound.</span></span>
     </h1>
-    <p class="hero-sub">For early-stage founders who want an affiliate channel, but not a second full-time job. We handle <span class="em">recruitment, media kits, program design, tracking, payouts</span> — the whole operational stack.</p>
+    <p class="hero-sub">For early-stage founders who want content as a <span class="em">growth channel — not a publishing calendar.</span> Newsletter, social, video, lead magnets, distribution, measurement. Operated end to end, on the best tooling in each category.</p>
     <div class="hero-ctas">
-      <button class="mag-btn primary" onclick="window.location.href='https://calendly.com/syeda-scaleme/30min'">Book a call</button>
+      <button class="mag-btn primary" onclick="window.location.href='/contact'">Get a quote</button>
       <button class="mag-btn outline" onclick="document.getElementById('scope').scrollIntoView({behavior:'smooth'})">See what we do</button>
     </div>
   </div>
@@ -328,83 +336,78 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
   <div class="problem-inner">
     <div class="problem-header">
       <div class="s-label">The problem</div>
-      <h2>Most affiliate programs <span class="em">never get off the ground.</span></h2>
-      <p>Setting up software isn't the hard part. Running an affiliate program that actually drives revenue is operational work — the kind founders don't have time for and don't want to learn.</p>
+      <h2>Most agency content is <span class="em">expensive and forgettable.</span></h2>
+      <p>The standard playbook — twelve blog posts a month, a LinkedIn schedule, monthly "engagement" reports — produces volume, not pipeline. Here's what actually goes wrong.</p>
     </div>
     <div class="problem-grid">
       <div class="problem-card">
         <div class="pc-num">01</div>
-        <h3>Programs that launch and stall</h3>
-        <p>You set up the software, send a launch email, and then... nothing. No affiliates apply. The few who do never drive traffic. The program sits dormant.</p>
+        <h3>The content mill</h3>
+        <p>Agencies ship volume to justify the retainer. Twelve blog posts a month, none mapped to search demand or buyer intent. Six months in, your organic graph is flat and the "content strategy" turned out to be a calendar.</p>
       </div>
       <div class="problem-card">
         <div class="pc-num">02</div>
-        <h3>Recruitment that goes nowhere</h3>
-        <p>You DM ten creators in your niche. Two reply. One ghosts. The other says "send me a media kit." You don't have one. You build one badly. Nothing happens.</p>
+        <h3>The fabricated voice</h3>
+        <p>The agency invents a "brand voice" in a kickoff doc, then writes every piece in it. It reads like every other Series A SaaS blog. Founder voice — the actual differentiator — gets edited out in round two.</p>
       </div>
       <div class="problem-card">
         <div class="pc-num">03</div>
-        <h3>Tracking that no one trusts</h3>
-        <p>Cookie attribution, refund clawbacks, subscription edge cases. When affiliates can't see how their commissions are calculated, they stop promoting and find a brand that has its act together.</p>
+        <h3>Publish and pray</h3>
+        <p>The piece ships, gets one LinkedIn post and one tweet, then dies in your sitemap. No newsletter syndication, no internal links from older content, no outreach. Distribution is half the work; agencies skip it.</p>
       </div>
       <div class="problem-card">
         <div class="pc-num">04</div>
-        <h3>Payouts that become a part-time job</h3>
-        <p>Every month: pull the report, calculate commissions, handle disputes, run mass-pay, reconcile refunds. By month three you're spending more time on payouts than building product.</p>
+        <h3>Vibes as a KPI</h3>
+        <p>The monthly report says "engagement is up." Nobody can tell you which piece drove a demo, a signup, or a dollar. Without attribution back to pipeline, content stays a cost line you can't defend in a board meeting.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SCOPE SECTION - the credibility block -->
+<!-- SCOPE SECTION -->
 <section class="scope-section" id="scope">
   <div class="scope-inner">
     <div class="scope-header">
       <div class="s-label">What we do</div>
       <div class="section-number">01</div>
-      <h2>The whole operational <span class="em">stack.</span></h2>
-      <p>This is what running an affiliate program actually looks like. You hand us the product and the goals. We handle everything below.</p>
+      <h2>Seven functions. <span class="em">One engine.</span></h2>
+      <p>Content production is seven separate disciplines stitched together. Most agencies are good at one or two. We run the whole stack — and we use the best tool in each category instead of forcing a one-size suite.</p>
     </div>
     <div class="scope-list">
       <div class="scope-row">
         <div class="scope-num">01</div>
-        <div class="scope-name">Program design</div>
-        <div class="scope-detail">Commission structures (flat, percentage, recurring), cookie windows, refund policies, terms and conditions. <strong>We design the program around your unit economics</strong> so you're never paying out more than the channel is worth.</div>
+        <div class="scope-name">Strategy &amp; topic architecture</div>
+        <div class="scope-detail">Ahrefs and Search Console for keyword research, competitor gap analysis, and search intent mapping. We build topic clusters mapped to <strong>funnel stage and product surface area</strong> — not whatever has high search volume in your space.</div>
       </div>
       <div class="scope-row">
         <div class="scope-num">02</div>
-        <div class="scope-name">Creator recruitment</div>
-        <div class="scope-detail">Identifying affiliates in your niche, cold outreach, application review, onboarding. <strong>We bring our own network and build out a new one specific to your product.</strong> Outreach is personal, not blast.</div>
+        <div class="scope-name">Newsletter operations</div>
+        <div class="scope-detail">Beehiiv, ConvertKit, or Substack — whatever fits your audience model. We handle editorial calendar, writing, subject-line A/B testing, segmentation, and growth experiments. <strong>We treat the list like the asset it is</strong>, not a broadcast channel.</div>
       </div>
       <div class="scope-row">
         <div class="scope-num">03</div>
-        <div class="scope-name">Media kit production</div>
-        <div class="scope-detail">Branded one-pagers, swipe copy, banner assets, email templates, screenshots, talking points. <strong>Everything an affiliate needs to actually promote you</strong> — written and designed so they don't have to start from scratch.</div>
+        <div class="scope-name">Founder-led social</div>
+        <div class="scope-detail">LinkedIn and X ghostwriting, scheduled through Typefully or Buffer. We capture your voice through structured interviews, then write posts and threads <strong>you'd actually publish without changing a word.</strong> Founder voice is the moat; we don't sand it off.</div>
       </div>
       <div class="scope-row">
         <div class="scope-num">04</div>
-        <div class="scope-name">Technical setup</div>
-        <div class="scope-detail">Platform setup, payment processor integration (Stripe, PayPal, etc.), tracking links and promo codes, attribution rules, webhook configuration. <strong>Done right the first time</strong> so commissions are accurate from day one.</div>
+        <div class="scope-name">Video &amp; podcast production</div>
+        <div class="scope-detail">Descript for editing, OpusClip for short-form atomization, Riverside for remote recording. One hour-long recording becomes a long-form video, 8–12 vertical clips, a blog transcript, a newsletter issue, and a week of social posts. <strong>The math has to work.</strong></div>
       </div>
       <div class="scope-row">
         <div class="scope-num">05</div>
-        <div class="scope-name">Creator relationships</div>
-        <div class="scope-detail">Ongoing communication, performance reviews with top affiliates, exclusive offers, custom commission tiers, onboarding new affiliates as they come in. <strong>We're the affiliates' point of contact</strong> — not you.</div>
+        <div class="scope-name">Lead magnets &amp; sales collateral</div>
+        <div class="scope-detail">Ebooks, gated guides, case studies, sales one-pagers, comparison pages, ROI calculators. Each piece tied to a <strong>specific funnel stage and conversion goal</strong> — not "thought leadership" with a download form.</div>
       </div>
       <div class="scope-row">
         <div class="scope-num">06</div>
-        <div class="scope-name">Performance optimization</div>
-        <div class="scope-detail">Weekly performance monitoring, identifying top channels and top creators, testing commission structures, A/B testing landing pages affiliates drive traffic to. <strong>The program gets sharper every month.</strong></div>
+        <div class="scope-name">Distribution &amp; atomization</div>
+        <div class="scope-detail">Every long-form asset breaks down into LinkedIn carousels, X threads, newsletter sections, and short-form video. Plus outreach to relevant newsletters, podcasts, and communities. <strong>The piece is the input; reach is the output.</strong></div>
       </div>
       <div class="scope-row">
         <div class="scope-num">07</div>
-        <div class="scope-name">Payout management</div>
-        <div class="scope-detail">Monthly commission approval, refund reconciliation, dispute handling, mass-pay execution, 1099 preparation for US affiliates. <strong>You sign off; we handle the rest.</strong></div>
-      </div>
-      <div class="scope-row">
-        <div class="scope-num">08</div>
-        <div class="scope-name">Reporting &amp; strategy</div>
-        <div class="scope-detail">Monthly performance reports, quarterly strategy reviews, channel attribution analysis, roadmap recommendations. <strong>You always know where the channel stands</strong> and what's working.</div>
+        <div class="scope-name">Measurement &amp; attribution</div>
+        <div class="scope-detail">GA4, Search Console, Ahrefs, and PostHog dashboards. Monthly reporting with <strong>real attribution back to demos, signups, and pipeline</strong> — not vanity engagement metrics. You always know which pieces compound and which to kill.</div>
       </div>
     </div>
   </div>
@@ -415,29 +418,29 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
   <div class="audience-inner">
     <div class="audience-header">
       <div class="s-label">Who we work with</div>
-      <h2>Built for early-stage <span class="em">online products.</span></h2>
-      <p>Affiliate marketing works best for products with clear value, repeat customers, and creators who'd actually want to recommend them. Here's where we focus.</p>
+      <h2>Built for products where <span class="em">content is a real channel.</span></h2>
+      <p>Content compounds for businesses with clear search demand, repeat customers, or audiences who'd actively follow a creator-founder. Here's where the math works.</p>
     </div>
     <div class="audience-grid">
       <div class="audience-card">
         <span class="audience-tag">SaaS</span>
-        <h3>Subscription products</h3>
-        <p>Recurring commissions are what makes affiliate programs work for SaaS. We design programs around your LTV, set up subscription-aware tracking, and recruit creators who promote tools their audience would actually use.</p>
+        <h3>Pre-seed and seed SaaS</h3>
+        <p>Long-form content built around bottom-of-funnel keywords — "vs" pages, integration pages, jobs-to-be-done articles. Plus founder-led social to build a category POV before paid spend gets expensive.</p>
       </div>
       <div class="audience-card">
         <span class="audience-tag">Courses</span>
-        <h3>Online courses and cohorts</h3>
-        <p>High-ticket sales and launch windows reward affiliate channels that can drive concentrated traffic. We design commission structures for both evergreen and launch-cycle programs.</p>
+        <h3>Course creators &amp; cohort programs</h3>
+        <p>Launch sequences (newsletter, social, video) timed to enrollment windows. Plus evergreen authority content that compounds between launches — so you're not starting from zero every cohort.</p>
       </div>
       <div class="audience-card">
-        <span class="audience-tag">Digital products</span>
-        <h3>Templates, ebooks, downloads</h3>
-        <p>Volume products work well with affiliate programs when the operational cost per sale stays low. We design lightweight programs that scale across many small sales without becoming admin-heavy.</p>
+        <span class="audience-tag">Indie products</span>
+        <h3>Solo founders &amp; indie hackers</h3>
+        <p>Founder-led content engines tuned for minimum overhead — one weekly long-form, atomized into a week of social. Plus comparison and use-case content for product discovery queries.</p>
       </div>
       <div class="audience-card">
         <span class="audience-tag">Newsletters</span>
-        <h3>Paid newsletters and memberships</h3>
-        <p>Audience-first products are a natural fit for affiliate channels — other creators with engaged lists can drive paid subscribers efficiently. We recruit from inside your niche.</p>
+        <h3>Paid newsletters &amp; memberships</h3>
+        <p>Free-to-paid conversion sequences, creator partnership outreach, and content that turns the free list into a recurring revenue stream. Plus podcast or video to give the newsletter a second surface area.</p>
       </div>
     </div>
   </div>
@@ -449,107 +452,121 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
     <div class="timeline-header">
       <div class="s-label">Engagement timeline</div>
       <div class="section-number">02</div>
-      <h2>What the first ninety days <span class="em">look like.</span></h2>
-      <p>Most engagements follow a similar arc. Discovery and design in the first weeks, recruitment ramping in month one, optimization from month two onward.</p>
+      <h2>The first ninety days, <span class="em">end to end.</span></h2>
+      <p>Content engines take time to ramp — but you should see motion in week three and meaningful organic compounding by month four. Here's the arc most engagements follow.</p>
     </div>
     <div class="timeline-list">
       <div class="timeline-item">
         <div class="timeline-when">WEEK 1</div>
         <div class="timeline-content">
-          <h3>Discovery and program design</h3>
-          <p>We learn your product, audience, and unit economics. Together we agree on commission structure, refund policy, target creator profiles, and program goals. Output: a written program design doc.</p>
+          <h3>Audit, strategy, voice capture</h3>
+          <p>Content audit, gap analysis, competitor teardown. In parallel, we run founder voice interviews to capture the patterns, references, and opinions that make your content sound like <em>you</em>, not the agency. Output: a written content strategy with topic clusters mapped to funnel stage.</p>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-when">WEEK 2</div>
         <div class="timeline-content">
-          <h3>Technical setup and assets</h3>
-          <p>Platform configuration, payment integration, tracking links, attribution testing. In parallel, we build the media kit — landing pages, swipe copy, banners, talking points. By end of week, everything's ready to launch.</p>
+          <h3>Editorial calendar &amp; tooling setup</h3>
+          <p>Quarterly editorial calendar across long-form, newsletter, and social. We set up the CMS, the scheduler stack (Typefully, Buffer), the analytics layer (GA4 events, Search Console verification), and the editorial workflow in Notion or your preferred system.</p>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-when">WEEK 3–4</div>
         <div class="timeline-content">
-          <h3>Soft launch and first recruits</h3>
-          <p>We onboard your existing creator relationships (BYOI — bring your own influencers) and start active recruitment in your niche. First commissions usually land within the first three weeks after launch.</p>
+          <h3>First production cycle</h3>
+          <p>First long-form piece drafted, edited, optimized in Surfer/Clearscope, and shipped. Newsletter cadence starts. Founder social begins publishing on schedule. By end of week four, the engine is running on every channel — not just one.</p>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-when">MONTH 2</div>
         <div class="timeline-content">
-          <h3>Recruitment scale-up</h3>
-          <p>The bulk of new creator onboarding happens here. We're typically running 10–30 outreach conversations per week, with weekly performance reports flowing back to you. First proper payout cycle runs at end of month.</p>
+          <h3>Distribution machine + first report</h3>
+          <p>Atomization workflows are live — every long-form piece auto-breaks into a week of social and a newsletter section. Outreach to newsletters and podcasts begins. End of month: first attribution report with real numbers, plus calibration on what's working.</p>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-when">MONTH 3+</div>
         <div class="timeline-content">
-          <h3>Optimization and compounding</h3>
-          <p>Top creators identified and given dedicated attention. Commission structures tested and refined. Landing pages optimized for affiliate traffic. By month three, the program should be generating revenue you can plan around.</p>
+          <h3>Compounding &amp; optimization</h3>
+          <p>Long-form content gains traction, internal linking compounds, social audience grows. We double down on the formats and topics that converted, kill the ones that didn't. By month four, you should be able to point at specific pieces that drove specific pipeline.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CASE STUDY SECTION -->
-<section class="case-section">
-  <div class="case-inner">
-    <div class="case-header">
-      <h2>One we're <span class="em">currently working on.</span></h2>
+<!-- STACK SECTION (case study slot, repurposed) -->
+<section class="stack-section">
+  <div class="stack-inner">
+    <div class="stack-header">
+      <h2>The stack <span class="em">we operate on.</span></h2>
     </div>
-    <div class="case-card">
-      <div class="case-meta">
-        <span>Cybersecurity SaaS</span>
-        <span>B2B subscription</span>
-        <span>2026 — ongoing</span>
+    <div class="stack-card">
+      <div class="stack-meta">
+        <span>Best-in-class per function</span>
+        <span>No one-size suites</span>
+        <span>Included in every retainer</span>
       </div>
-      <h3 class="case-title">From zero affiliates to a working channel in six months.</h3>
-      <p class="case-body">A founder running a cybersecurity SaaS came to us with a working product, paying customers, and zero affiliate channel. We designed the commission structure, built the media kit, and ran <strong>hand-curated recruitment</strong> in security communities, podcasts, and creator networks. Six months in, the program is generating consistent monthly affiliate revenue and the founder hasn't touched program operations since week three.</p>
-      <div class="case-stats">
-        <div>
-          <div class="case-stat-num">~4x</div>
-          <div class="case-stat-label">Increase in affiliate revenue</div>
+      <h3 class="stack-title">We use the best tool for each job, not the cheapest bundle.</h3>
+      <p class="stack-body">Most agencies pick one platform — HubSpot, Semrush, Jasper — and force-fit every workflow to it. We pay for the category leader in each function and treat the stack as glue, not a religion. <strong>You get the output of professional tooling without managing twelve subscriptions yourself.</strong></p>
+      <div class="stack-grid">
+        <div class="stack-col">
+          <h4>WRITING &amp; EDITORIAL</h4>
+          <ul>
+            <li>Notion <span>— editorial calendar and brief management</span></li>
+            <li>Google Docs <span>— drafting and review</span></li>
+            <li>Grammarly Business <span>— editorial QA pass</span></li>
+            <li>Claude &amp; ChatGPT <span>— research and editing assist only</span></li>
+          </ul>
         </div>
-        <div>
-          <div class="case-stat-num">28</div>
-          <div class="case-stat-label">Active affiliates recruited</div>
+        <div class="stack-col">
+          <h4>VIDEO &amp; PODCAST</h4>
+          <ul>
+            <li>Descript <span>— editing, transcription, overdubs</span></li>
+            <li>Riverside <span>— remote recording, separate tracks</span></li>
+            <li>OpusClip <span>— vertical clip atomization</span></li>
+            <li>CapCut Pro <span>— short-form polish and captions</span></li>
+          </ul>
         </div>
-        <div>
-          <div class="case-stat-num">0 hrs</div>
-          <div class="case-stat-label">Founder spends on program weekly</div>
+        <div class="stack-col">
+          <h4>NEWSLETTER &amp; SOCIAL</h4>
+          <ul>
+            <li>Beehiiv / ConvertKit / Substack <span>— publishing</span></li>
+            <li>Typefully <span>— X/LinkedIn scheduling and analytics</span></li>
+            <li>Buffer <span>— multi-channel scheduling</span></li>
+            <li>GA4 &amp; PostHog <span>— attribution and event tracking</span></li>
+          </ul>
         </div>
       </div>
-      <p class="case-disclaimer">Single-client case study. Results vary based on niche, product, and audience. We're happy to discuss whether your situation is comparable on a call.</p>
     </div>
   </div>
 </section>
 
-<!-- PRICING APPROACH SECTION -->
+<!-- PRICING SECTION -->
 <section class="pricing-section">
   <div class="pricing-inner">
     <div class="pricing-header">
       <div class="s-label">How we charge</div>
       <div class="section-number">03</div>
-      <h2>Two engagement models. <span class="em">No surprises.</span></h2>
-      <p>Most affiliate engagements work as either a one-time launch project or an ongoing retainer. We'll recommend what fits your stage on the discovery call.</p>
+      <h2>Retainers for engines. <span class="em">Sprints for one-offs.</span></h2>
+      <p>Content compounds — which is why retainers are how content works at the agency level. For founders who just need a single deliverable, we run project sprints. Both come as fixed quotes agreed before kickoff.</p>
     </div>
     <div class="pricing-grid">
       <div class="pricing-card">
         <div class="pc-label">Engagement type 01</div>
-        <h3>Launch project</h3>
-        <p class="pc-desc">Fixed-scope, fixed-fee engagement to design, build, and launch your affiliate program from scratch. Includes program design, media kit, technical setup, initial recruitment push, and a thirty-day handoff period.</p>
-        <div class="pc-fit"><strong>Best fit:</strong> You want to run the program yourself eventually but need it built right the first time.</div>
+        <h3>Monthly retainer</h3>
+        <p class="pc-desc">Ongoing content operations across the channels that matter for your stage — typically some mix of newsletter, social, and atomization. Scope and deliverable counts are defined in the contract; the retainer doesn't bill by the hour, it bills by output.</p>
+        <div class="pc-fit"><strong>Best fit:</strong> Content is a growth channel you want to own without hiring a team. Most clients.</div>
       </div>
       <div class="pricing-card">
         <div class="pc-label">Engagement type 02</div>
-        <h3>Monthly retainer</h3>
-        <p class="pc-desc">Ongoing management of every operational layer — recruitment, creator relationships, payouts, reporting, optimization. Usually starts with a launch project, then transitions to a retainer once the program is live.</p>
-        <div class="pc-fit"><strong>Best fit:</strong> You want affiliate revenue as a real channel but not as your job. Most clients.</div>
+        <h3>Project sprint</h3>
+        <p class="pc-desc">A defined, time-boxed deliverable. Ebook or pillar guide, podcast launch, course launch sequence, sales-enablement library, content audit and remediation. Typically two to six weeks, fixed scope, fixed fee.</p>
+        <div class="pc-fit"><strong>Best fit:</strong> You need a specific asset shipped well — not an ongoing engine.</div>
       </div>
     </div>
     <div class="pricing-note">
-      <strong>Pricing depends on scope.</strong> A solo founder selling a $40/month SaaS has different needs than a course creator running quarterly launches. We'll walk through pricing on the discovery call once we understand what you're building and what success looks like.
+      <strong>Quotes come through the contact form.</strong> A solo founder publishing one weekly newsletter has different needs than a Series A SaaS running newsletter and podcast simultaneously. Tell us your stage and your channels — we'll come back with a written scope and a fixed monthly or project number within two business days.
     </div>
   </div>
 </section>
@@ -564,52 +581,45 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
     <div class="faq-list">
       <div class="faq-item">
         <div class="faq-q">
-          <h3>How long until we see real revenue from the program?</h3>
+          <h3>Do you use AI to write content?</h3>
           <div class="faq-toggle">+</div>
         </div>
-        <div class="faq-a"><div class="faq-a-inner">First commissions usually land within three weeks of launch from existing relationships you bring in. Meaningful monthly revenue takes two to three months once recruitment scales and top affiliates start consistently driving traffic. Programs in well-defined niches ramp faster.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">AI assists the work — it doesn't replace it. We use Claude and ChatGPT for research synthesis, draft acceleration, and editing passes. Every published piece is written and edited by humans with subject-matter context. Pure AI-generated content tanks on E-E-A-T signals, gets flagged by Google's helpful content systems, and reads like everyone else's pure AI-generated content. That's not the bar.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-q">
-          <h3>What if we already have an affiliate program running?</h3>
+          <h3>Whose voice will the content be in?</h3>
           <div class="faq-toggle">+</div>
         </div>
-        <div class="faq-a"><div class="faq-a-inner">We audit what you have, identify what's working and what isn't, and either optimize the existing program or rebuild it. Most of the time the program structure is fine but recruitment has stalled and operations have piled up — both fixable.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Yours. We capture founder voice through structured interviews — your stories, references, opinions, the specific way you describe things on calls. That becomes the voice doc every writer references. For social and newsletter especially, the goal is content you'd post without editing. We send drafts; you redline anything that doesn't sound like you; the voice gets sharper every month.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-q">
-          <h3>What if we have our own creators already?</h3>
+          <h3>How much volume can you produce per month?</h3>
           <div class="faq-toggle">+</div>
         </div>
-        <div class="faq-a"><div class="faq-a-inner">Even better. Bringing your own creators (we call this BYOI — bring your own influencers) gives the program an immediate head start. We onboard them, handle their experience going forward, and recruit additional creators alongside them.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Volume is scope-dependent and we'd push back on framing it as the main question. A typical mid-tier retainer might be 2–4 long-form pieces, a weekly newsletter, 3–5 social posts per week per founder, and the atomization of all of it. We'd rather ship four pieces that drive pipeline than twelve that don't.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-q">
-          <h3>Do we have to use a specific tracking platform?</h3>
+          <h3>Can you work with our existing content team or freelancers?</h3>
           <div class="faq-toggle">+</div>
         </div>
-        <div class="faq-a"><div class="faq-a-inner">No. We work with whatever platform fits your stack and budget. We'll recommend options on the discovery call based on your payment processor, audience size, and program complexity.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes. We integrate with internal teams a lot — sometimes as the strategy and ops layer with internal writers, sometimes the opposite. We'll audit what you have, identify the gaps, and propose the leanest engagement that covers them.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-q">
-          <h3>How do you find affiliates in our specific niche?</h3>
+          <h3>What if a piece doesn't perform?</h3>
           <div class="faq-toggle">+</div>
         </div>
-        <div class="faq-a"><div class="faq-a-inner">A mix of our existing network, deep research into your niche (newsletters, podcasts, YouTube channels, communities), and direct outreach. We don't do mass DMs or blast emails. Every outreach is personal and targeted.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Some won't. The monthly report flags underperformers and we either rework them — new angle, refresh, re-optimize, redistribute — or kill them. Content portfolios work like venture portfolios; a few pieces drive most of the return. The job is to find those pieces fast, double down, and stop spending on the rest.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-q">
-          <h3>What if a campaign or relationship doesn't work out?</h3>
+          <h3>Can we start with one piece before committing to a retainer?</h3>
           <div class="faq-toggle">+</div>
         </div>
-        <div class="faq-a"><div class="faq-a-inner">Some affiliates won't perform. Some campaigns won't land. We monitor performance weekly and prune what isn't working — both creators who aren't driving traffic and program structures that aren't converting. Affiliate marketing is iterative; we treat it that way.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">
-          <h3>Can we start with just a strategy engagement?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">Yes. If you want a written program design and recruitment plan to execute yourself, we can do that as a standalone project. Most founders end up wanting us to handle execution too once they see what the operational work looks like.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes — that's what project sprints are for. A pillar article, an ebook, a podcast launch. It's a low-commitment way to see how we operate before signing on for ongoing work. Most retainer clients started this way.</div></div>
       </div>
     </div>
   </div>
@@ -617,9 +627,9 @@ footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: 
 
 <!-- CTA -->
 <section class="cta-section" id="contact">
-  <h2>Let's talk about your <span class="em">program.</span></h2>
-  <p class="cta-sub">Tell us about your product and what you're trying to grow. We'll walk you through what an engagement would look like — no pitch decks, no pressure.</p>
-  <button class="mag-btn primary" onclick="window.location.href='https://calendly.com/syeda-scaleme/30min'">Book a call →</button>
+  <h2>Let's talk about your <span class="em">content engine.</span></h2>
+  <p class="cta-sub">Tell us your stage, your channels, and what you're trying to grow. We'll come back with a written scope and fixed quote — no pitch decks, no pressure.</p>
+  <button class="mag-btn primary" onclick="window.location.href='/contact'">Get a quote →</button>
 </section>
 
 <footer>
