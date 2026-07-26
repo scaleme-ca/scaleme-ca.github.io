@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScaleMe | Websites, marketing, automation, and affiliate programs</title>
+<meta name="description" content="A marketing agency working with companies growing past word of mouth. Websites, marketing, automation, and affiliate programs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --paper:#EDE9DE;--white:#FFFFFF;--ink:#111110;--ink-2:#4E4C44;
+  --pink:#FF2E88;--aqua:#00B3A6;--sun:#FFC400;--bw:3px;
+  --sh:6px 6px 0 var(--ink);--sh-sm:4px 4px 0 var(--ink);--sh-lg:10px 10px 0 var(--ink);
+  --disp:'Bricolage Grotesque','Archivo','Helvetica Neue',sans-serif;
+  --body:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+}
+
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;}
+ul{list-style:none;}
+:focus-visible{outline:var(--bw) solid var(--ink);outline-offset:3px;}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}html{scroll-behavior:auto;}}
+
+.d{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84,'opsz' 48;letter-spacing:-.025em;line-height:1.03;}
+.skip{position:absolute;left:-9999px;}
+.skip:focus{left:12px;top:12px;z-index:999;background:var(--ink);color:var(--paper);padding:12px 18px;font-family:var(--mono);}
+.in{max-width:1140px;margin:0 auto;}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:1rem;letter-spacing:-.015em;
+  padding:15px 28px;border:var(--bw) solid var(--ink);background:var(--white);color:var(--ink);
+  box-shadow:var(--sh);cursor:pointer;text-decoration:none;
+  transition:transform .09s ease,box-shadow .09s ease;
+}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:var(--sh-lg);}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink);}
+.btn--sun{background:var(--sun);}
+.btn--pink{background:var(--pink);color:var(--white);}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:200;background:var(--paper);border-bottom:var(--bw) solid var(--ink);display:flex;align-items:stretch;min-height:58px;}
+.nav__brand{display:flex;align-items:center;gap:10px;padding:0 24px;background:var(--ink);color:var(--paper);font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.1rem;letter-spacing:-.045em;text-decoration:none;}
+.nav__brand i{width:13px;height:13px;background:var(--pink);border:2px solid var(--paper);display:block;}
+.nav__links{display:flex;align-items:stretch;margin-left:auto;}
+.nav__links a{display:flex;align-items:center;padding:0 20px;border-left:var(--bw) solid var(--ink);font-family:var(--mono);font-size:.73rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;transition:background .1s,color .1s;}
+.nav__links a:hover{background:var(--ink);color:var(--paper);}
+.nav__q{background:var(--pink);color:var(--white);font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:.95rem;text-transform:none;letter-spacing:-.015em;}
+.nav__q:hover{background:var(--sun);color:var(--ink);}
+
+
+/* statement */
+.hero{background:var(--paper);border-bottom:var(--bw) solid var(--ink);padding:88px 34px 78px;}
+.mega{
+  font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84,'opsz' 72;
+  font-size:clamp(1.85rem,5vw,4.2rem);line-height:1.24;letter-spacing:-.035em;max-width:20ch;
+}
+.w{
+  display:inline-block;text-decoration:none;border:var(--bw) solid var(--ink);
+  padding:0 .14em;margin:0 .02em;box-shadow:5px 5px 0 var(--ink);
+  transition:transform .09s ease,box-shadow .09s ease,background .09s ease,color .09s ease;
+}
+.w--a{background:var(--aqua);}
+.w--b{background:var(--sun);}
+.w--c{background:var(--pink);color:var(--white);}
+.w--d{background:var(--white);}
+.w:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink);background:var(--ink);color:var(--paper);}
+.hero__ctas{display:flex;gap:15px;flex-wrap:wrap;margin-top:40px;}
+
+/* section shell */
+.sec{border-bottom:var(--bw) solid var(--ink);padding:64px 34px 60px;}
+.sec > .in > h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:24ch;margin-bottom:12px;}
+.sec__sub{font-size:1.03rem;color:var(--ink-2);max-width:62ch;margin-bottom:36px;}
+
+
+/* takes */
+.takes{border-top:var(--bw) solid var(--ink);}
+.take{display:grid;grid-template-columns:1fr 150px;gap:34px;align-items:start;padding:30px 0 28px;border-bottom:var(--bw) solid var(--ink);}
+.take p{font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86,'opsz' 40;font-size:clamp(1.15rem,2.3vw,1.72rem);letter-spacing:-.028em;line-height:1.24;max-width:34ch;}
+.take__t{font-family:var(--mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;border:2px solid var(--ink);padding:5px 9px;justify-self:end;white-space:nowrap;}
+.take__t--a{background:var(--aqua);}
+.take__t--b{background:var(--sun);}
+.take__t--c{background:var(--pink);color:var(--white);}
+.take__t--d{background:var(--white);}
+
+/* contact form */
+.talk{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:start;}
+.talk h2{font-size:clamp(1.7rem,3.4vw,2.6rem);max-width:15ch;margin-bottom:18px;}
+.talk p{font-size:1.03rem;color:var(--ink-2);margin-bottom:16px;max-width:44ch;}
+.talk__act{display:flex;flex-direction:column;gap:18px;align-items:flex-start;}
+.talk__mail{display:inline-block;font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;background:var(--sun);border:2px solid var(--ink);padding:7px 11px;text-decoration:none;}
+.form{background:var(--white);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:28px 26px 26px;display:flex;flex-direction:column;gap:16px;}
+.f{display:flex;flex-direction:column;gap:7px;}
+.f--row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.f label{font-family:var(--mono);font-size:.66rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;}
+.f input,.f select,.f textarea{
+  font-family:var(--body);font-size:1rem;color:var(--ink);
+  border:2px solid var(--ink);background:var(--paper);padding:11px 12px;width:100%;border-radius:0;
+}
+.f textarea{resize:vertical;min-height:104px;}
+.f select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 18px) 55%,calc(100% - 12px) 55%;background-size:6px 6px,6px 6px;background-repeat:no-repeat;}
+.f input:focus,.f select:focus,.f textarea:focus{background:var(--white);outline:var(--bw) solid var(--sun);outline-offset:0;}
+.form__go{align-self:flex-start;margin-top:4px;}
+.form__note{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;color:var(--ink-2);}
+
+/* footer */
+.band{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:20px 34px;font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;}
+.band a{color:var(--ink-2);text-decoration:none;}
+.band a:hover{color:var(--ink);background:var(--sun);}
+.band__set{display:flex;gap:16px;flex-wrap:wrap;}
+
+@media(max-width:960px){
+  .take{grid-template-columns:1fr;gap:14px;}
+  .take__t{justify-self:start;}
+  .talk{grid-template-columns:1fr;gap:32px;}
+}
+@media(max-width:640px){
+  .nav,.hero,.sec,.band{padding-left:20px;padding-right:20px;}
+  .nav__links a:not(.nav__q){display:none;}
+  .nav__brand{padding:0 16px;font-size:1rem;}
+  .hero{padding-top:54px;padding-bottom:50px;}
+  .mega{line-height:1.3;}
+  .w{box-shadow:3px 3px 0 var(--ink);}
+  .sec{padding-top:46px;padding-bottom:44px;}
+  .f--row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<nav class="nav">
+  <a href="index.html" class="nav__brand"><i></i>SCALEME</a>
+  <span class="nav__links">
+    <a href="scaleme-web-design.html">Web design</a>
+    <a href="scaleme-marketing.html">Marketing</a>
+    <a href="scaleme-automation.html">Automation</a>
+    <a href="scaleme-affiliate.html">Affiliate</a>
+    <a href="contact.html" class="nav__q">Get a quote</a>
+  </span>
+</nav>
+
+<main id="main">
+
+<!-- STATEMENT -->
+<header class="hero">
+  <div class="in">
+    <h1 class="mega">A marketing agency that builds <a href="scaleme-web-design.html" class="w w--b">websites</a>, runs <a href="scaleme-marketing.html" class="w w--a">marketing</a>, automates the <a href="scaleme-automation.html" class="w w--c">admin</a>, and sets up <a href="scaleme-affiliate.html" class="w w--d">affiliate programs</a> for companies growing past word of mouth.</h1>
+    <div class="hero__ctas">
+      <a href="contact.html" class="btn btn--sun">Get a quote</a>
+    </div>
+  </div>
+</header>
+
+
+
+
+<!-- TAKES -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">Things we would tell you on the first call.</h2>
+    <p class="sec__sub">Not everything on this site is worth doing at every stage, and we would rather say so early than take the work.</p>
+    <div class="takes">
+
+      <div class="take">
+        <p>If your Google listing is half empty, fix that before you pay anybody to rebuild your website.</p>
+        <span class="take__t take__t--a">Marketing</span>
+      </div>
+
+      <div class="take">
+        <p>For a first campaign, one landing page and a form that actually delivers will usually out-earn a full site rebuild.</p>
+        <span class="take__t take__t--b">Web design</span>
+      </div>
+
+      <div class="take">
+        <p>Automating something that saves ten minutes a month costs more to build than it will ever give back.</p>
+        <span class="take__t take__t--c">Automation</span>
+      </div>
+
+      <div class="take">
+        <p>Affiliate programs need a repeatable product and a checkout. If every job you sell is priced from scratch, skip it.</p>
+        <span class="take__t take__t--d">Affiliate</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="sec">
+  <div class="in talk">
+    <div>
+      <h2 class="d">Tell us what you are trying to grow.</h2>
+      <p>Send your site if you have one, or a line about what you sell and who buys it. We will tell you what we would do first, and what we would leave alone.</p>
+    </div>
+    <div class="talk__act">
+      <a href="contact.html" class="btn btn--sun">Get a quote</a>
+      
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="band">
+  <a href="index.html" class="mark"><i></i>SCALEME</a>
+  <span class="band__set">
+    <a href="scaleme-web-design.html">Web design</a>
+    <a href="scaleme-marketing.html">Marketing</a>
+    <a href="scaleme-automation.html">Automation</a>
+    <a href="scaleme-affiliate.html">Affiliate</a>
+    <a href="contact.html">Get a quote</a>
+  </span>
+  <span>Working remotely, worldwide</span>
+</footer>
+
+</body>
+</html>
