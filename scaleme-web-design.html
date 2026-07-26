@@ -3,669 +3,597 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ScaleMe — Web design for products that need to sell</title>
-<meta name="description" content="Web design for early-stage founders. Positioning, copy, design, build, launch — handled. Sites that earn customers, not just compliments.">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4WNF6GNHW9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4WNF6GNHW9');
-</script>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<title>Web design and build | ScaleMe</title>
+<meta name="description" content="Websites built to be found, fast, and usable. Yours completely, from the first day. Prices from $1,200.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&display=swap"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --bg: #0f0d0a;
-  --bg-alt: #161310;
-  --bg-elev: #1c1814;
-  --border: #2a251f;
-  --border-strong: #3a3329;
-  --dim: #5a554d;
-  --mid: #a8a094;
-  --cream: #f5efe0;
-  --cream-bright: #fdf8ec;
-  --amber: #d4a843;
-  --amber-bright: #e8c269;
-  --amber-dim: rgba(212,168,67,0.08);
-  --amber-dim-strong: rgba(212,168,67,0.18);
-  --display: 'Geist', sans-serif;
-  --body: 'Geist', sans-serif;
-  --italic: 'Cormorant Garamond', serif;
-  --mono: 'Geist Mono', monospace;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --paper:#EDE9DE;
+  --white:#FFFFFF;
+  --ink:#111110;
+  --ink-2:#4E4C44;
+  --pink:#FF2E88;
+  --aqua:#00B3A6;
+  --sun:#FFC400;
+  --bw:3px;
+  --disp:'Bricolage Grotesque','Archivo','Helvetica Neue',sans-serif;
+  --body:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;
 }
 
-html { scroll-behavior: auto; }
-body {
-  background: var(--bg);
-  color: var(--cream);
-  font-family: var(--body);
-  font-weight: 400;
-  overflow-x: hidden;
-  cursor: none;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  position: relative;
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;}
+ul,ol{list-style:none;}
+:focus-visible{outline:var(--bw) solid var(--ink);outline-offset:3px;}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}html{scroll-behavior:auto;}}
+
+.d{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84,'opsz' 48;letter-spacing:-.025em;line-height:1.03;}
+.skip{position:absolute;left:-9999px;}
+.skip:focus{left:12px;top:12px;z-index:99;background:var(--ink);color:var(--paper);padding:12px 18px;font-family:var(--mono);}
+.in{max-width:1140px;margin:0 auto;}
+
+/* path bar */
+.path{border-bottom:var(--bw) solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:20px;padding:13px 34px;flex-wrap:wrap;font-family:var(--mono);font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;}
+.path__here{display:flex;align-items:center;gap:11px;}
+.path__here b{font-weight:500;background:var(--ink);color:var(--paper);padding:4px 9px;}
+.mark{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1rem;letter-spacing:-.045em;text-transform:none;text-decoration:none;}
+.path__rest{display:flex;gap:18px;flex-wrap:wrap;}
+.path__rest a{color:var(--ink-2);text-decoration:none;}
+.path__rest a:hover{color:var(--ink);background:var(--sun);}
+
+/* opening */
+.open{background:var(--pink);border-bottom:var(--bw) solid var(--ink);padding:70px 34px 62px;}
+.open h1{font-size:clamp(2.1rem,5vw,4rem);max-width:15ch;}
+.open p{font-size:1.12rem;max-width:48ch;margin-top:22px;font-weight:500;}
+
+/* section shell */
+.sec{border-bottom:var(--bw) solid var(--ink);padding:64px 34px 60px;}
+.sec > .in > h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:24ch;margin-bottom:12px;}
+.sec__sub{font-size:1.03rem;color:var(--ink-2);max-width:60ch;margin-bottom:36px;}
+.sec__sub b{color:var(--ink);font-weight:700;}
+
+/* ── tile grid ─────────────────────────── */
+.wall{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.frag{border:var(--bw) solid var(--ink);background:var(--white);padding:16px 15px 14px;min-height:158px;display:flex;flex-direction:column;gap:11px;overflow:hidden;}
+.frag--w{grid-column:span 2;}
+.frag__lab{margin-top:auto;font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);}
+.frag__cap{margin-top:auto;font-size:.85rem;line-height:1.45;color:var(--ink-2);}
+
+/* design fragments */
+.tp{display:flex;gap:22px;align-items:baseline;flex-wrap:wrap;}
+.tp span{line-height:.9;}
+.tp .a{font-family:'Fraunces',serif;font-weight:400;font-size:3.6rem;color:#2C3A33;}
+.tp .b{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 78;font-size:3.6rem;letter-spacing:-.06em;color:var(--ink);}
+.tp .c{font-family:var(--mono);font-size:2.6rem;color:#7A3B12;}
+.sw{display:grid;grid-template-columns:repeat(3,1fr);flex:1;border:2px solid var(--ink);}
+.sw i{display:block;}
+.btns{display:flex;flex-direction:column;gap:8px;align-items:flex-start;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;}
+.btns i{font-style:normal;padding:7px 13px;}
+.b1{background:#3F5B4C;color:#F4F1EC;border-radius:20px;}
+.b2{background:#D96E1F;color:#FFFBF3;}
+.b3{background:transparent;color:var(--ink);border:2px solid var(--ink);}
+.navf{background:#141416;margin:-16px -15px 0;padding:16px 15px;flex:1;display:flex;flex-direction:column;gap:12px;}
+.navf__bar{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:#8A8A94;}
+.navf__bar b{color:#F2F2F0;font-weight:500;}
+.navf__h{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 80;font-size:2rem;letter-spacing:-.045em;color:#F2F2F0;line-height:.98;text-transform:uppercase;}
+.navf__cta{align-self:flex-start;background:#C6F24A;color:#141416;font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 11px;}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field label{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#6E6A62;}
+.field .box{border:2px solid #2C3A33;background:#F4F1EC;padding:9px 10px;font-family:'Fraunces',serif;font-size:.9rem;color:#2C3A33;}
+.field .go{align-self:flex-start;background:#2C3A33;color:#F4F1EC;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:16px;}
+.scale{display:flex;flex-direction:column;gap:3px;}
+.scale span{font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 84;letter-spacing:-.03em;line-height:1;}
+.scale .s1{font-size:1.9rem;}
+.scale .s2{font-size:1.25rem;}
+.scale .s3{font-size:.95rem;}
+.scale .s4{font-family:var(--body);font-weight:400;font-size:.8rem;color:var(--ink-2);}
+.tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tags i{font-style:normal;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;}
+.t1{background:var(--sun);border:2px solid var(--ink);}
+.t2{background:#2C3A33;color:#F4F1EC;border-radius:12px;}
+.t3{background:#FFE7D1;color:#7A3B12;}
+.t4{background:transparent;border:1px dashed var(--ink);}
+.card{flex:1;display:grid;grid-template-columns:78px 1fr;gap:12px;align-items:center;background:#FFFBF3;margin:-16px -15px 0;padding:16px 15px;}
+.card__img{aspect-ratio:1;background:repeating-linear-gradient(45deg,#E8D9C4 0 7px,#F2E6D5 7px 14px);border:2px solid #7A3B12;}
+.card__t{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;color:#7A3B12;line-height:1.15;}
+.card__m{font-family:var(--mono);font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;color:#A5825F;margin-top:5px;}
+
+/* functional tiles */
+.serp{display:flex;flex-direction:column;gap:4px;}
+.serp__u{font-size:.72rem;color:#0F7B36;}
+.serp__t{font-size:1.06rem;color:#1A0DAB;line-height:1.2;}
+.serp__d{font-size:.76rem;color:#4D5156;line-height:1.4;}
+.serp__s{font-size:.7rem;color:#70757A;display:flex;gap:5px;align-items:center;}
+.serp__s b{color:#E7711B;font-weight:400;letter-spacing:-1px;}
+.map{flex:1;min-height:74px;position:relative;border:2px solid var(--ink);background:#E7EDE4;background-image:linear-gradient(90deg,#D3DCCE 2px,transparent 2px),linear-gradient(#D3DCCE 2px,transparent 2px);background-size:26px 22px;}
+.map__pin{position:absolute;left:38%;top:32%;width:15px;height:15px;border-radius:50% 50% 50% 0;background:var(--pink);border:2px solid var(--ink);transform:rotate(-45deg);}
+.map__card{position:absolute;right:5px;bottom:5px;background:var(--white);border:2px solid var(--ink);padding:5px 7px;font-size:.58rem;line-height:1.35;}
+.map__card b{display:block;font-weight:700;}
+.map__card em{font-style:normal;color:#0F7B36;}
+.dials{display:flex;gap:9px;justify-content:space-between;}
+.dial{text-align:center;flex:1;}
+.dial__r{width:100%;max-width:44px;aspect-ratio:1;margin:0 auto 5px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.72rem;font-weight:500;background:conic-gradient(var(--aqua) var(--p),#DFDBD0 0);position:relative;}
+.dial__r::after{content:'';position:absolute;inset:5px;background:var(--white);border-radius:50%;}
+.dial__r span{position:relative;z-index:1;}
+.dial__n{font-family:var(--mono);font-size:.55rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);line-height:1.2;}
+.ctr{display:flex;flex-direction:column;gap:8px;}
+.ctr__pair{display:flex;border:2px solid var(--ink);}
+.ctr__pair i{flex:1;height:34px;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;font-style:normal;}
+.ctr__read{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.78rem;}
+.ctr__read em{font-style:normal;background:var(--aqua);border:2px solid var(--ink);padding:2px 7px;font-size:.6rem;letter-spacing:.08em;}
+.flow{display:flex;align-items:center;flex:1;}
+.flow i{font-style:normal;flex:1;text-align:center;font-family:var(--mono);font-size:.62rem;letter-spacing:.04em;text-transform:uppercase;border:2px solid var(--ink);background:var(--sun);padding:9px 4px;}
+.flow i:nth-child(4n+3){background:var(--aqua);}
+.flow u{flex:0 0 14px;height:2px;background:var(--ink);text-decoration:none;}
+.focus{display:flex;flex-direction:column;gap:10px;align-items:flex-start;}
+.focus__btn{background:var(--white);border:2px solid var(--ink);padding:9px 15px;font-size:.75rem;font-weight:700;outline:3px solid var(--pink);outline-offset:3px;}
+.focus__key{font-family:var(--mono);font-size:.6rem;border:2px solid var(--ink);border-bottom-width:4px;padding:3px 8px;background:#F2F0EA;}
+.up{display:flex;flex-direction:column;gap:8px;}
+.up__bars{display:flex;gap:2px;align-items:flex-end;height:44px;}
+.up__bars i{flex:1;background:var(--aqua);border:1px solid var(--ink);height:100%;}
+.up__bars i.warn{background:var(--sun);height:62%;}
+.up__m{font-family:var(--mono);font-size:.65rem;color:var(--ink-2);display:flex;justify-content:space-between;}
+.src{display:flex;flex-direction:column;gap:6px;}
+.src__r{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.7rem;}
+.src__r i{display:block;height:11px;background:var(--aqua);border:1px solid var(--ink);}
+.src__r span{color:var(--ink-2);width:110px;flex-shrink:0;}
+.rsp{display:flex;gap:8px;align-items:flex-end;flex:1;}
+.rsp__d{flex:1;border:2px solid var(--ink);background:#F7F6F2;height:60px;padding:6px;display:flex;flex-direction:column;gap:4px;}
+.rsp__p{width:32px;border:2px solid var(--ink);background:#F7F6F2;height:74px;padding:5px;display:flex;flex-direction:column;gap:3px;border-radius:5px;}
+.rsp i{display:block;height:4px;background:#D6D2C6;}
+.rsp i.hd{background:var(--ink);height:7px;}
+
+/* ── spec boxes ────────────────────────── */
+.spec{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.spec__b{border:var(--bw) solid var(--ink);background:var(--white);padding:20px 18px 18px;display:flex;flex-direction:column;gap:10px;min-height:132px;}
+.spec__b--sun{background:var(--sun);}
+.spec__b--aqua{background:var(--aqua);}
+.spec__v{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 82;font-size:2.2rem;letter-spacing:-.05em;line-height:1;}
+.spec__v--sm{font-size:1.5rem;letter-spacing:-.04em;}
+.spec__l{font-size:.87rem;line-height:1.4;color:var(--ink-2);margin-top:auto;}
+.spec__b--sun .spec__l,.spec__b--aqua .spec__l{color:var(--ink);}
+
+/* ── menu ──────────────────────────────── */
+.built{border:var(--bw) solid var(--ink);background:var(--sun);padding:24px 22px 22px;margin-bottom:16px;}
+.built h3{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.15rem;letter-spacing:-.03em;margin-bottom:10px;}
+.built p{font-size:.99rem;max-width:88ch;}
+
+.menu{display:grid;grid-template-columns:repeat(4,1fr);border:var(--bw) solid var(--ink);}
+.menu__i{border-right:var(--bw) solid var(--ink);background:var(--white);padding:24px 20px 22px;display:flex;flex-direction:column;gap:9px;transition:background .1s;}
+.menu__i:last-child{border-right:none;}
+.menu__i:hover{background:var(--sun);}
+.menu__i h3{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.15rem;letter-spacing:-.03em;}
+.menu__i p{font-size:.92rem;color:var(--ink-2);flex:1;}
+.menu__i:hover p{color:var(--ink);}
+.menu__price{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.32rem;letter-spacing:-.03em;border-top:2px solid var(--ink);padding-top:11px;}
+.menu__price small{display:block;font-family:var(--mono);font-size:.68rem;font-weight:400;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);margin-top:4px;}
+.menu__i:hover .menu__price small{color:var(--ink);}
+
+/* your part */
+.part{background:var(--aqua);}
+.part__grid{display:grid;grid-template-columns:1fr 1.2fr;gap:44px;align-items:start;}
+.part__grid h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:14ch;}
+.part ol{border-top:var(--bw) solid var(--ink);}
+.part li{border-bottom:var(--bw) solid var(--ink);padding:14px 4px;display:grid;grid-template-columns:1fr 90px;gap:16px;align-items:baseline;font-size:1rem;}
+.part li span{font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;text-align:right;}
+
+/* own */
+.own{background:var(--ink);color:var(--paper);}
+.own h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:18ch;margin-bottom:26px;}
+.own p{font-size:1.05rem;color:#C0BCB1;max-width:60ch;margin-bottom:16px;}
+.own p:last-child{margin-bottom:0;}
+.own b{color:var(--paper);font-weight:600;}
+
+/* faq */
+.faq{border-top:var(--bw) solid var(--ink);}
+.faq details{border-bottom:var(--bw) solid var(--ink);background:var(--white);}
+.faq summary{list-style:none;cursor:pointer;padding:18px 46px 18px 18px;position:relative;font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 84;font-size:1.06rem;letter-spacing:-.025em;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:'+';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:1.2rem;}
+.faq details[open] summary{background:var(--sun);}
+.faq details[open] summary::after{content:'\2013';}
+.faq summary:hover{background:var(--sun);}
+.faq p{padding:4px 18px 20px;font-size:.99rem;color:var(--ink-2);max-width:74ch;}
+.faq p a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;}
+
+/* talk */
+.talk__grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;}
+.talk__grid h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:16ch;}
+.talk p{font-size:1.03rem;color:var(--ink-2);margin-bottom:16px;max-width:46ch;}
+.mail{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:clamp(1.25rem,2.8vw,1.9rem);letter-spacing:-.035em;text-decoration:none;background:var(--sun);border:var(--bw) solid var(--ink);padding:9px 16px;display:inline-block;margin-top:8px;}
+.mail:hover{background:var(--ink);color:var(--sun);}
+
+/* footer */
+.band{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:20px 34px;font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;}
+.band a{color:var(--ink-2);text-decoration:none;}
+.band a:hover{color:var(--ink);background:var(--sun);}
+.band__set{display:flex;gap:16px;flex-wrap:wrap;}
+
+@media(max-width:1000px){
+  .wall{grid-template-columns:repeat(2,1fr);}
+  .spec{grid-template-columns:repeat(2,1fr);}
+  .menu{grid-template-columns:repeat(2,1fr);}
+  .menu__i:nth-child(2n){border-right:none;}
+  .menu__i:nth-child(-n+2){border-bottom:var(--bw) solid var(--ink);}
+  .part__grid,.talk__grid{grid-template-columns:1fr;gap:26px;}
 }
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9997;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 0.9 0 0 0 0 0.7 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
-}
-
-a { color: inherit; text-decoration: none; cursor: none; }
-button { cursor: none; font-family: inherit; }
-
-/* PRELOADER */
-.preloader { position: fixed; inset: 0; z-index: 10000; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 24px; }
-.preloader-text { font-family: var(--display); font-size: 1rem; font-weight: 700; letter-spacing: 8px; color: var(--amber); }
-.preloader-bar { width: 200px; height: 2px; background: var(--border); overflow: hidden; }
-.preloader-fill { width: 0%; height: 100%; background: var(--amber); }
-
-/* CURSOR */
-.cursor-dot { width: 6px; height: 6px; background: var(--amber); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; mix-blend-mode: difference; }
-.cursor-ring { width: 36px; height: 36px; border: 1px solid var(--amber); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; opacity: 0.5; transition: width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s; }
-.cursor-ring.expand { width: 72px; height: 72px; opacity: 0.25; border-color: var(--cream); }
-
-/* NAV */
-.nav { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 24px 56px; z-index: 1000; mix-blend-mode: difference; }
-.nav-logo { font-family: var(--display); font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; color: var(--cream); }
-.nav-logo span { color: var(--amber); }
-.nav-right { display: flex; align-items: center; gap: 36px; }
-.nav-right a { font-family: var(--display); font-size: 0.88rem; font-weight: 500; color: var(--mid); transition: color 0.3s; position: relative; }
-.nav-right a:hover { color: var(--cream); }
-.nav-right a:not(.nav-contact-btn)::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: var(--amber); transition: width 0.3s ease; }
-.nav-right a:not(.nav-contact-btn):hover::after { width: 100%; }
-.nav-right a.current { color: var(--amber); }
-.nav-right a.current::after { width: 100%; }
-.nav-contact-btn { font-family: var(--display); font-size: 0.85rem; font-weight: 600; color: var(--bg); background: var(--amber); border: none; padding: 10px 22px; border-radius: 6px; transition: transform 0.3s, background 0.3s; box-shadow: 0 4px 16px rgba(212,168,67,0.15); }
-.nav-contact-btn:hover { transform: translateY(-1px); background: var(--amber-bright); }
-
-/* HERO */
-.hero { min-height: 80vh; position: relative; display: flex; align-items: center; overflow: hidden; padding-top: 100px; }
-#hero-canvas { position: absolute; inset: 0; z-index: 0; }
-.hero-content { position: relative; z-index: 2; padding: 0 56px; width: 100%; max-width: 1280px; margin: 0 auto; }
-.hero-breadcrumb { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 2px; color: var(--mid); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
-.hero-breadcrumb a { color: var(--mid); transition: color 0.3s; }
-.hero-breadcrumb a:hover { color: var(--amber); }
-.hero-breadcrumb .sep { color: var(--dim); }
-.hero-breadcrumb .current { color: var(--amber); }
-.hero-eyebrow { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 2px; color: var(--amber); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; overflow: hidden; }
-.hero-eyebrow span { display: inline-block; }
-.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--amber); display: inline-block; }
-.hero-title { font-family: var(--display); font-size: clamp(2.2rem, 5.5vw, 5rem); font-weight: 700; line-height: 1.04; letter-spacing: -0.04em; max-width: 18ch; color: var(--cream); }
-.hero-title .word { display: inline-block; overflow: hidden; margin-right: 0.18em; vertical-align: top; }
-.hero-title .word-inner { display: inline-block; transform: translateY(110%); }
-.hero-title .italic { font-family: var(--italic); font-style: italic; font-weight: 400; letter-spacing: 0; color: var(--amber); }
-.hero-sub { max-width: 620px; margin-top: 32px; font-size: 1.08rem; font-weight: 400; color: var(--mid); line-height: 1.65; opacity: 0; }
-.hero-sub .em { color: var(--cream); font-weight: 500; }
-.hero-ctas { display: flex; gap: 14px; margin-top: 36px; opacity: 0; }
-.mag-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--display); font-size: 0.92rem; font-weight: 600; border-radius: 6px; border: none; transition: transform 0.25s ease, background 0.25s ease; position: relative; }
-.mag-btn.primary { background: var(--amber); color: var(--bg); box-shadow: 0 4px 24px rgba(212,168,67,0.18); }
-.mag-btn.primary:hover { background: var(--amber-bright); }
-.mag-btn.outline { background: transparent; color: var(--cream); border: 1px solid var(--border-strong); }
-.mag-btn.outline:hover { border-color: var(--mid); }
-
-/* GENERIC SECTION HEADERS */
-.s-label { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 2px; color: var(--amber); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-.s-label::before { content: ''; width: 28px; height: 1px; background: var(--amber); }
-.section-number { font-family: var(--italic); font-style: italic; font-size: 0.95rem; color: var(--dim); margin-bottom: 24px; }
-
-/* PROBLEM SECTION */
-.problem-section { padding: 140px 56px; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.problem-inner { max-width: 1280px; margin: 0 auto; }
-.problem-header { margin-bottom: 64px; max-width: 800px; }
-.problem-header h2 { font-family: var(--display); font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; color: var(--cream); margin-bottom: 24px; }
-.problem-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
-.problem-header p { font-size: 1.05rem; color: var(--mid); line-height: 1.7; max-width: 640px; }
-.problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.problem-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 12px; padding: 36px; transition: border-color 0.3s, transform 0.3s; box-shadow: 0 1px 0 rgba(245,239,224,0.04) inset; }
-.problem-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
-.problem-card .pc-num { font-family: var(--italic); font-style: italic; font-size: 1.4rem; color: var(--amber); margin-bottom: 16px; opacity: 0.7; }
-.problem-card h3 { font-family: var(--display); font-size: 1.25rem; font-weight: 600; color: var(--cream); margin-bottom: 12px; letter-spacing: -0.02em; }
-.problem-card p { font-size: 0.95rem; color: var(--mid); line-height: 1.65; }
-
-/* SCOPE SECTION */
-.scope-section { padding: 160px 56px; background: var(--bg); }
-.scope-inner { max-width: 1280px; margin: 0 auto; }
-.scope-header { margin-bottom: 80px; max-width: 800px; }
-.scope-header h2 { font-family: var(--display); font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.035em; color: var(--cream); margin-bottom: 24px; }
-.scope-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
-.scope-header p { font-size: 1.05rem; color: var(--mid); line-height: 1.7; max-width: 640px; }
-.scope-list { display: flex; flex-direction: column; border-top: 1px solid var(--border); }
-.scope-row { display: grid; grid-template-columns: 80px 220px 1fr; gap: 48px; padding: 40px 0; border-bottom: 1px solid var(--border); align-items: flex-start; cursor: pointer; transition: padding-left 0.4s ease, background 0.3s ease; position: relative; }
-.scope-row::before { content: ''; position: absolute; left: 0; top: 0; width: 2px; height: 0; background: var(--amber); transition: height 0.4s ease; }
-.scope-row:hover { padding-left: 20px; }
-.scope-row:hover::before { height: 100%; }
-.scope-num { font-family: var(--mono); font-size: 0.85rem; font-weight: 500; color: var(--dim); padding-top: 4px; transition: color 0.3s; }
-.scope-row:hover .scope-num { color: var(--amber); }
-.scope-name { font-family: var(--display); font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; color: var(--cream); transition: color 0.3s; }
-.scope-row:hover .scope-name { color: var(--amber); }
-.scope-detail { font-size: 0.98rem; color: var(--mid); line-height: 1.7; }
-.scope-detail strong { color: var(--cream); font-weight: 500; }
-
-/* AUDIENCE SECTION */
-.audience-section { padding: 140px 56px; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.audience-inner { max-width: 1280px; margin: 0 auto; }
-.audience-header { margin-bottom: 64px; max-width: 800px; }
-.audience-header h2 { font-family: var(--display); font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; color: var(--cream); margin-bottom: 24px; }
-.audience-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
-.audience-header p { font-size: 1.05rem; color: var(--mid); line-height: 1.7; max-width: 640px; }
-.audience-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.audience-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 12px; padding: 36px; transition: border-color 0.3s, transform 0.3s; box-shadow: 0 1px 0 rgba(245,239,224,0.04) inset; }
-.audience-card:hover { border-color: var(--amber); transform: translateY(-2px); }
-.audience-tag { display: inline-block; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 1.5px; padding: 4px 10px; background: var(--amber-dim); color: var(--amber); border-radius: 4px; margin-bottom: 18px; border: 1px solid var(--amber-dim-strong); }
-.audience-card h3 { font-family: var(--display); font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; color: var(--cream); margin-bottom: 12px; }
-.audience-card p { font-size: 0.95rem; color: var(--mid); line-height: 1.7; }
-
-/* TIMELINE SECTION */
-.timeline-section { padding: 160px 56px; background: var(--bg); }
-.timeline-inner { max-width: 1280px; margin: 0 auto; }
-.timeline-header { margin-bottom: 80px; max-width: 800px; }
-.timeline-header h2 { font-family: var(--display); font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.035em; color: var(--cream); margin-bottom: 24px; }
-.timeline-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
-.timeline-header p { font-size: 1.05rem; color: var(--mid); line-height: 1.7; max-width: 640px; }
-.timeline-list { display: flex; flex-direction: column; gap: 0; max-width: 1000px; }
-.timeline-item { display: grid; grid-template-columns: 200px 1fr; gap: 40px; padding: 36px 0; border-bottom: 1px solid var(--border); align-items: flex-start; position: relative; }
-.timeline-item:last-child { border-bottom: 1px solid var(--border); }
-.timeline-when { font-family: var(--mono); font-size: 0.78rem; font-weight: 500; letter-spacing: 1.5px; color: var(--amber); padding-top: 4px; }
-.timeline-content h3 { font-family: var(--display); font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; color: var(--cream); margin-bottom: 10px; }
-.timeline-content p { font-size: 0.95rem; color: var(--mid); line-height: 1.7; }
-
-/* STANDARDS SECTION (in place of case study) */
-.standards-section { padding: 140px 56px; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.standards-inner { max-width: 1100px; margin: 0 auto; }
-.standards-header { margin-bottom: 48px; }
-.standards-header h2 { font-family: var(--display); font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; color: var(--cream); }
-.standards-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
-.standards-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 14px; padding: 56px; box-shadow: 0 1px 0 rgba(245,239,224,0.04) inset; }
-.standards-meta { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 32px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 1.5px; color: var(--dim); }
-.standards-meta span { display: flex; align-items: center; gap: 8px; }
-.standards-meta span::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); display: inline-block; }
-.standards-title { font-family: var(--display); font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; letter-spacing: -0.025em; color: var(--cream); margin-bottom: 24px; }
-.standards-body { font-size: 1.02rem; color: var(--mid); line-height: 1.75; margin-bottom: 36px; max-width: 800px; }
-.standards-body strong { color: var(--cream); font-weight: 500; }
-.standards-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 40px; padding-top: 36px; border-top: 1px solid var(--border); }
-.standards-item { display: flex; gap: 16px; align-items: flex-start; }
-.standards-item-icon { width: 28px; height: 28px; background: var(--amber-dim); border: 1px solid var(--amber-dim-strong); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--amber); font-size: 0.85rem; flex-shrink: 0; }
-.standards-item-text { font-size: 0.95rem; color: var(--cream); line-height: 1.55; font-weight: 400; }
-.standards-item-text strong { color: var(--cream); font-weight: 500; display: block; margin-bottom: 4px; font-size: 0.95rem; }
-.standards-item-text span { color: var(--mid); font-size: 0.9rem; }
-
-/* PRICING SECTION */
-.pricing-section { padding: 160px 56px; background: var(--bg); }
-.pricing-inner { max-width: 1280px; margin: 0 auto; }
-.pricing-header { margin-bottom: 64px; max-width: 800px; }
-.pricing-header h2 { font-family: var(--display); font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; color: var(--cream); margin-bottom: 24px; }
-.pricing-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
-.pricing-header p { font-size: 1.05rem; color: var(--mid); line-height: 1.7; max-width: 640px; }
-.pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.pricing-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 12px; padding: 40px; transition: border-color 0.3s; box-shadow: 0 1px 0 rgba(245,239,224,0.04) inset; }
-.pricing-card:hover { border-color: var(--border-strong); }
-.pricing-card .pc-label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 1.5px; color: var(--amber); margin-bottom: 16px; }
-.pricing-card h3 { font-family: var(--display); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.025em; color: var(--cream); margin-bottom: 16px; }
-.pricing-card .pc-desc { font-size: 0.98rem; color: var(--mid); line-height: 1.7; margin-bottom: 24px; }
-.pricing-card .pc-fit { font-family: var(--mono); font-size: 0.78rem; color: var(--dim); padding-top: 20px; border-top: 1px solid var(--border); }
-.pricing-card .pc-fit strong { color: var(--cream); font-weight: 500; }
-.pricing-note { margin-top: 40px; padding: 24px 28px; background: var(--amber-dim); border-left: 2px solid var(--amber); border-radius: 4px; font-size: 0.95rem; color: var(--cream); line-height: 1.65; max-width: 800px; }
-.pricing-note strong { color: var(--amber); font-weight: 500; }
-
-/* FAQ SECTION */
-.faq-section { padding: 160px 56px; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.faq-inner { max-width: 900px; margin: 0 auto; }
-.faq-header { margin-bottom: 60px; }
-.faq-header h2 { font-family: var(--display); font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.035em; color: var(--cream); }
-.faq-header h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
-.faq-list { display: flex; flex-direction: column; }
-.faq-item { border-bottom: 1px solid var(--border); padding: 28px 0; cursor: pointer; }
-.faq-item:first-child { border-top: 1px solid var(--border); }
-.faq-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
-.faq-q h3 { font-family: var(--display); font-size: 1.1rem; font-weight: 500; letter-spacing: -0.015em; color: var(--cream); line-height: 1.4; flex: 1; transition: color 0.3s; }
-.faq-item:hover .faq-q h3 { color: var(--amber); }
-.faq-toggle { font-family: var(--italic); font-style: italic; font-size: 1.4rem; color: var(--amber); line-height: 1; flex-shrink: 0; transition: transform 0.4s ease; }
-.faq-item.open .faq-toggle { transform: rotate(45deg); }
-.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1); }
-.faq-item.open .faq-a { max-height: 400px; }
-.faq-a-inner { padding-top: 20px; font-size: 0.98rem; color: var(--mid); line-height: 1.75; max-width: 720px; }
-
-/* CTA */
-.cta-section { text-align: center; padding: 180px 56px; position: relative; background: var(--bg); }
-.cta-section h2 { font-family: var(--display); font-size: clamp(2.5rem, 6vw, 5.5rem); font-weight: 700; line-height: 1.02; letter-spacing: -0.04em; margin-bottom: 32px; color: var(--cream); }
-.cta-section h2 .em { font-family: var(--italic); font-style: italic; font-weight: 400; color: var(--amber); }
-.cta-sub { font-size: 1.05rem; color: var(--mid); margin-bottom: 40px; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.65; }
-
-/* FOOTER */
-footer { padding: 70px 56px 36px; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 56px; background: var(--bg-alt); }
-.f-brand .nav-logo { display: inline-block; margin-bottom: 18px; }
-.f-brand p { color: var(--mid); font-size: 0.88rem; line-height: 1.65; font-weight: 400; max-width: 280px; }
-.f-col h4 { font-family: var(--mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 1.5px; color: var(--amber); margin-bottom: 22px; }
-.f-col a, .f-col p { display: block; font-size: 0.88rem; color: var(--mid); margin-bottom: 10px; font-weight: 400; transition: color 0.3s; }
-.f-col a:hover { color: var(--cream); }
-.f-bottom { grid-column: 1 / -1; display: flex; justify-content: space-between; padding-top: 32px; margin-top: 24px; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 0.7rem; letter-spacing: 1px; color: var(--dim); }
-
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-  .problem-grid, .audience-grid, .pricing-grid { grid-template-columns: 1fr; }
-  .scope-row { grid-template-columns: 60px 1fr; }
-  .scope-row .scope-detail { grid-column: 1 / -1; }
-  .standards-list { grid-template-columns: 1fr; }
-  footer { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 768px) {
-  .nav { padding: 18px 24px; }
-  .nav-right a:not(.nav-contact-btn) { display: none; }
-  .hero { padding-top: 90px; min-height: auto; padding-bottom: 60px; }
-  .hero-content { padding: 0 24px; }
-  .hero-ctas { flex-direction: column; align-items: flex-start; }
-  .problem-section, .scope-section, .audience-section, .timeline-section, .standards-section, .pricing-section, .faq-section { padding: 90px 24px; }
-  .problem-card, .audience-card, .pricing-card { padding: 28px; }
-  .standards-card { padding: 36px 28px; }
-  .scope-row { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
-  .scope-num { display: none; }
-  .scope-name { font-size: 1.2rem; }
-  .timeline-item { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
-  .standards-list { grid-template-columns: 1fr; gap: 20px; }
-  .cta-section { padding: 100px 24px; }
-  footer { grid-template-columns: 1fr; padding: 48px 24px 24px; }
-  .cursor-dot, .cursor-ring { display: none; }
-  body { cursor: auto; }
-  a, button { cursor: auto; }
+@media(max-width:640px){
+  .path,.open,.sec,.band{padding-left:20px;padding-right:20px;}
+  .open{padding-top:46px;padding-bottom:44px;}
+  .sec{padding-top:46px;padding-bottom:44px;}
+  .wall{grid-template-columns:1fr;}
+  .frag--w{grid-column:span 1;}
+  .spec{grid-template-columns:1fr 1fr;}
+  .spec__v{font-size:1.8rem;}
+  .menu{grid-template-columns:1fr;}
+  .menu__i{border-right:none;border-bottom:var(--bw) solid var(--ink);}
+  .menu__i:last-child{border-bottom:none;}
 }
 </style>
 </head>
-<body data-page="web-design">
+<body>
 
-<div class="preloader" id="preloader">
-  <div class="preloader-text">SCALEME</div>
-  <div class="preloader-bar"><div class="preloader-fill" id="preloaderFill"></div></div>
-</div>
+<a href="#main" class="skip">Skip to content</a>
 
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<nav class="nav">
-  <a href="index.html" class="nav-logo">scale<span>me</span></a>
-  <div class="nav-right">
+<nav class="path" aria-label="Breadcrumb and services">
+  <span class="path__here">
+    <a href="index.html" class="mark">SCALEME</a>
+    <span aria-hidden="true">/</span>
+    <b>Web design</b>
+  </span>
+  <span class="path__rest">
+    <a href="scaleme-marketing.html">Marketing</a>
+    <a href="scaleme-automation.html">Automation</a>
     <a href="scaleme-affiliate.html">Affiliate</a>
-    <a href="scaleme-web-design.html" class="current">Web Design</a>
-    <a href="scaleme-content.html">Content</a>
-    <button class="nav-contact-btn" onclick="window.location.href='https://calendly.com/syeda-scaleme/30min'">Book a call</button>
-  </div>
+    <a href="mailto:hello@scaleme.ca">hello@scaleme.ca</a>
+  </span>
 </nav>
 
-<section class="hero" id="hero">
-  <canvas id="hero-canvas"></canvas>
-  <div class="hero-content">
-    <div class="hero-breadcrumb">
-      <a href="index.html">Services</a>
-      <span class="sep">/</span>
-      <span class="current">Web design</span>
-    </div>
-    <div class="hero-eyebrow"><span>Service — Web design &amp; development</span></div>
-    <h1 class="hero-title">
-      <span class="word"><span class="word-inner">Web design</span></span>
-      <span class="word"><span class="word-inner">for products</span></span>
-      <span class="word"><span class="word-inner">that need to</span></span>
-      <span class="word"><span class="word-inner italic">sell.</span></span>
-    </h1>
-    <p class="hero-sub">For early-stage founders who need a site that earns customers, not just compliments. We handle <span class="em">positioning, copy, design, build, launch</span> — the whole stack from message to live URL.</p>
-    <div class="hero-ctas">
-      <button class="mag-btn primary" onclick="window.location.href='/contact'">Get a quote</button>
-      <button class="mag-btn outline" onclick="document.getElementById('scope').scrollIntoView({behavior:'smooth'})">See what we do</button>
+<main id="main">
+
+<section class="open">
+  <div class="in">
+    <h1 class="d">Websites that bring in customers.</h1>
+    <p>Built to be found, fast, and usable. Yours completely, from the first day.</p>
+  </div>
+</section>
+
+<!-- DESIGN FRAGMENTS -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">We start from a blank page, every time.</h2>
+    <p class="sec__sub">There is no house style you have to fit into. We work out how your customers should feel when they land, then draw the type, colour, and layout for that, whatever the site ends up being built on. Fragments below were made for this page to show the range.</p>
+    <div class="wall">
+
+      <div class="frag frag--w">
+        <div class="tp"><span class="a">Aa</span><span class="b">Aa</span><span class="c">Aa</span></div>
+        <span class="frag__lab">Type pairing studies</span>
+      </div>
+
+      <div class="frag">
+        <div class="sw">
+          <i style="background:#F4F1EC"></i><i style="background:#DCE3DA"></i><i style="background:#3F5B4C"></i>
+          <i style="background:#8FA697"></i><i style="background:#2C3A33"></i><i style="background:#C9D6C6"></i>
+        </div>
+        <span class="frag__lab">Palette, quiet</span>
+      </div>
+
+      <div class="frag">
+        <div class="btns"><i class="b1">Book a session</i><i class="b2">Get a quote</i><i class="b3">See prices</i></div>
+        <span class="frag__lab">Button treatments</span>
+      </div>
+
+      <div class="frag frag--w">
+        <div class="navf">
+          <div class="navf__bar"><b>MERIDIAN</b><span>Product · Pricing · Login</span></div>
+          <div class="navf__h">Ship it<br>Friday.</div>
+          <div class="navf__cta">Start free</div>
+        </div>
+        <span class="frag__lab">Header, high contrast</span>
+      </div>
+
+      <div class="frag">
+        <div class="sw">
+          <i style="background:#FFFBF3"></i><i style="background:#F2E6D5"></i><i style="background:#D96E1F"></i>
+          <i style="background:#E8D9C4"></i><i style="background:#7A3B12"></i><i style="background:#FFE7D1"></i>
+        </div>
+        <span class="frag__lab">Palette, warm</span>
+      </div>
+
+      <div class="frag">
+        <div class="field">
+          <label>Preferred day</label>
+          <div class="box">Thursday morning</div>
+          <div class="go">Request</div>
+        </div>
+        <span class="frag__lab">Booking field</span>
+      </div>
+
+      <div class="frag">
+        <div class="scale">
+          <span class="s1">Heading</span>
+          <span class="s2">Subheading</span>
+          <span class="s3">Small title</span>
+          <span class="s4">Body copy sits here at reading size.</span>
+        </div>
+        <span class="frag__lab">Type scale</span>
+      </div>
+
+      <div class="frag">
+        <div class="tags"><i class="t1">Open today</i><i class="t2">Insured</i><i class="t3">New</i><i class="t4">Since 2004</i></div>
+        <span class="frag__lab">Labels and badges</span>
+      </div>
+
+      <div class="frag frag--w">
+        <div class="card">
+          <div class="card__img"></div>
+          <div>
+            <div class="card__t">Kitchen fitting, start to finish</div>
+            <div class="card__m">Six weeks · Fixed quote</div>
+          </div>
+        </div>
+        <span class="frag__lab">Service card</span>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- PROBLEM SECTION -->
-<section class="problem-section">
-  <div class="problem-inner">
-    <div class="problem-header">
-      <div class="s-label">The problem</div>
-      <h2>Most early-stage sites look fine, and <span class="em">convert no one.</span></h2>
-      <p>Web design at the early stage isn't a styling problem. It's a strategy problem dressed up as a design problem. The fix isn't a prettier hero — it's the four things below.</p>
-    </div>
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="pc-num">01</div>
-        <h3>The template lookalike</h3>
-        <p>Big hero, three feature cards, a "trusted by" row with stock logos, a vague gradient. Every YC-stage site looks the same now. The template is doing the talking, and the actual product is invisible.</p>
+<!-- FUNCTIONAL BOARD -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">Design is half of it.</h2>
+    <p class="sec__sub">The other half is whether people find you, whether you can tell what is working, and whether the thing still runs six months after we leave. This part costs the same either way, so it goes into every build.</p>
+    <div class="wall">
+
+      <div class="frag frag--w">
+        <div class="serp">
+          <div class="serp__u">examplekitchens.ca › kitchens</div>
+          <div class="serp__t">Kitchen fitting in Burnaby | Example Kitchens</div>
+          <div class="serp__d">Fixed quotes, six week turnaround, and a five year guarantee on every install. Family run since 2004.</div>
+          <div class="serp__s"><b>★★★★★</b> 4.9 · 41 reviews · Open until 6pm</div>
+        </div>
+        <p class="frag__cap">How you look on Google before anyone clicks, written for each page, not generated from a formula.</p>
       </div>
-      <div class="problem-card">
-        <div class="pc-num">02</div>
-        <h3>The feature-list trap</h3>
-        <p>Your site reads like the product backlog. "Powerful integrations." "Built for teams." Customers don't buy features — they buy outcomes they can describe to themselves. Most early sites skip that translation entirely.</p>
+
+      <div class="frag">
+        <div class="map">
+          <span class="map__pin"></span>
+          <span class="map__card"><b>Example Kitchens</b><em>Open</em> · Closes 6pm</span>
+        </div>
+        <p class="frag__cap">Showing up in map results when somebody searches your trade and your city.</p>
       </div>
-      <div class="problem-card">
-        <div class="pc-num">03</div>
-        <h3>The founder-eye problem</h3>
-        <p>You picked the design because it looks like brands you admire. But your buyer isn't on Awwwards. They're trying to figure out in eight seconds whether you solve their problem. The site has to do that work — not impress your taste.</p>
+
+      <div class="frag">
+        <div class="dials">
+          <div class="dial"><div class="dial__r" style="--p:353deg"><span>98</span></div><div class="dial__n">Speed</div></div>
+          <div class="dial"><div class="dial__r" style="--p:360deg"><span>100</span></div><div class="dial__n">Access</div></div>
+          <div class="dial"><div class="dial__r" style="--p:360deg"><span>100</span></div><div class="dial__n">SEO</div></div>
+        </div>
+        <p class="frag__cap">The bar every page clears before it is allowed to go live.</p>
       </div>
-      <div class="problem-card">
-        <div class="pc-num">04</div>
-        <h3>The "we'll redo it later" site</h3>
-        <p>Slapped together pre-launch, then never touched. Six months in, the copy is stale, half the links are broken on mobile, and you're caveating it on every sales call. The "later" never comes.</p>
+
+      <div class="frag frag--w">
+        <div class="src">
+          <div class="src__r"><span>Google search</span><i style="width:52%"></i>18</div>
+          <div class="src__r"><span>Google Maps</span><i style="width:32%"></i>11</div>
+          <div class="src__r"><span>Instagram</span><i style="width:18%"></i>6</div>
+          <div class="src__r"><span>Typed it in</span><i style="width:12%"></i>4</div>
+        </div>
+        <p class="frag__cap">Where every enquiry came from, so you know what is worth spending on next month.</p>
       </div>
+
+      <div class="frag">
+        <div class="ctr">
+          <div class="ctr__pair"><i style="background:#2C3A33;color:#F4F1EC">Aa</i><i style="background:#F4F1EC;color:#2C3A33">Aa</i></div>
+          <div class="ctr__read">11.4 : 1 <em>Passes AA</em></div>
+        </div>
+        <p class="frag__cap">Readable in bright sun, on an old screen, and to customers with weaker eyesight.</p>
+      </div>
+
+      <div class="frag">
+        <div class="rsp">
+          <div class="rsp__d"><i class="hd"></i><i></i><i></i><i style="width:60%"></i></div>
+          <div class="rsp__p"><i class="hd"></i><i></i><i></i><i style="width:70%"></i><i></i></div>
+        </div>
+        <p class="frag__cap">Laid out for a phone first, because that is where most of your visitors already are.</p>
+      </div>
+
+      <div class="frag frag--w">
+        <div class="flow">
+          <i>Form</i><u></u><i>CRM</i><u></u><i>Auto reply</i><u></u><i>Calendar</i>
+        </div>
+        <p class="frag__cap">A new enquiry files itself, replies to the customer while you are still on a job, and books into your calendar. More on the <a href="scaleme-automation.html">automation page</a>.</p>
+      </div>
+
+      <div class="frag">
+        <div class="focus">
+          <span class="focus__btn">Request a quote</span>
+          <span class="focus__key">Tab</span>
+        </div>
+        <p class="frag__cap">Usable with a keyboard alone, for customers who cannot use a mouse.</p>
+      </div>
+
+      <div class="frag">
+        <div class="up">
+          <div class="up__bars"><i></i><i></i><i></i><i class="warn"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="up__m"><span>30 days</span><span>99.9%</span></div>
+        </div>
+        <p class="frag__cap">If the site goes down, the alert reaches you as well as us.</p>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- SCOPE SECTION -->
-<section class="scope-section" id="scope">
-  <div class="scope-inner">
-    <div class="scope-header">
-      <div class="s-label">What we do</div>
-      <div class="section-number">01</div>
-      <h2>From message to <span class="em">live URL.</span></h2>
-      <p>Web design isn't pixels. It's the chain from "who is this for" all the way down to "the page loads in 1.2 seconds." We do the whole chain. You're not stitching together a positioning consultant, a designer, a copywriter, and a developer.</p>
-    </div>
-    <div class="scope-list">
-      <div class="scope-row">
-        <div class="scope-num">01</div>
-        <div class="scope-name">Positioning &amp; messaging</div>
-        <div class="scope-detail">Before any pixel. We figure out who you're for, what they're trying to do, and what your product makes possible for them. <strong>The site is downstream of this</strong> — if positioning is fuzzy, no amount of design saves it.</div>
-      </div>
-      <div class="scope-row">
-        <div class="scope-num">02</div>
-        <div class="scope-name">Information architecture</div>
-        <div class="scope-detail">Page structure, section order, scroll logic. What does someone need to read first, second, third to go from "what is this" to "I want to try it." <strong>Most early sites bury the answer to "what is this" three sections deep.</strong></div>
-      </div>
-      <div class="scope-row">
-        <div class="scope-num">03</div>
-        <div class="scope-name">Copywriting</div>
-        <div class="scope-detail">Hero, sections, CTAs, microcopy, error states. Written in your voice, but to your buyer's brain. <strong>We write the page; you edit until it sounds like you</strong> — not like an agency wrote it.</div>
-      </div>
-      <div class="scope-row">
-        <div class="scope-num">04</div>
-        <div class="scope-name">Visual design &amp; art direction</div>
-        <div class="scope-detail">Type system, color, layout, imagery direction. Distinctive without being weird. <strong>Founder sites should look like real products</strong> — confident and considered, not a Framer template with the colors swapped.</div>
-      </div>
-      <div class="scope-row">
-        <div class="scope-num">05</div>
-        <div class="scope-name">Development</div>
-        <div class="scope-detail">Webflow, Framer, or hand-coded Next.js — we pick the stack that fits how technical you are and how often you want to update. <strong>You should be able to change copy without paying us.</strong></div>
-      </div>
-      <div class="scope-row">
-        <div class="scope-num">06</div>
-        <div class="scope-name">Analytics &amp; tracking setup</div>
-        <div class="scope-detail">GA4, Plausible, PostHog — whatever you use. Goal events, scroll depth, CTA clicks configured properly. <strong>You'll know which sections and CTAs are working from day one,</strong> not from guesses.</div>
-      </div>
-      <div class="scope-row">
-        <div class="scope-num">07</div>
-        <div class="scope-name">Handoff &amp; training</div>
-        <div class="scope-detail">A recorded walkthrough, a written guide, an editable CMS. <strong>You can update copy, add a press logo, ship a new landing page</strong> without putting in a support ticket. We're not your hostage situation.</div>
-      </div>
+<!-- SPEC BOXES -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">What every page has to hit before it goes live.</h2>
+    <p class="sec__sub">Checked with tools at handover, not judged by eye.</p>
+    <div class="spec">
+
+      <div class="spec__b"><span class="spec__v d">2.5s</span><span class="spec__l">Main content on screen, tested on a phone over 4G</span></div>
+      <div class="spec__b"><span class="spec__v d">0.1</span><span class="spec__l">Limit on how far the page shifts while loading</span></div>
+      <div class="spec__b"><span class="spec__v d">200ms</span><span class="spec__l">How fast a tap gets a response</span></div>
+      <div class="spec__b spec__b--sun"><span class="spec__v d">95+</span><span class="spec__l">Lighthouse score across all four categories</span></div>
+
+      <div class="spec__b spec__b--aqua"><span class="spec__v d">AA</span><span class="spec__l">WCAG 2.2 contrast and keyboard use</span></div>
+      <div class="spec__b"><span class="spec__v d">320px</span><span class="spec__l">Smallest screen laid out and tested for</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">JSON-LD</span><span class="spec__l">Business, service, and review markup Google reads</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">XML</span><span class="spec__l">Sitemap and canonical tags submitted to Google</span></div>
+
+      <div class="spec__b"><span class="spec__v spec__v--sm d">GA4</span><span class="spec__l">Analytics and conversion tracking, live at launch</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">AVIF</span><span class="spec__l">Images compressed and resized as they upload</span></div>
+      <div class="spec__b spec__b--sun"><span class="spec__v spec__v--sm d">SSL</span><span class="spec__l">Certificate, daily backups, renewal dates handed over</span></div>
+      <div class="spec__b"><span class="spec__v d">24/7</span><span class="spec__l">Uptime and form delivery monitoring</span></div>
+
     </div>
   </div>
 </section>
 
-<!-- AUDIENCE SECTION -->
-<section class="audience-section">
-  <div class="audience-inner">
-    <div class="audience-header">
-      <div class="s-label">Who we work with</div>
-      <h2>Built for early-stage <span class="em">products with paying customers.</span></h2>
-      <p>Web design pays back fastest for products where the homepage actually does sales work — every visitor matters, every CTA gets measured. Here's where we focus.</p>
-    </div>
-    <div class="audience-grid">
-      <div class="audience-card">
-        <span class="audience-tag">SaaS</span>
-        <h3>Pre-seed and seed SaaS</h3>
-        <p>You've shipped, you have a handful of paying customers, and the site is the one you threw up in a weekend last year. Time for a real one — built around who actually pays, not who you originally thought would.</p>
-      </div>
-      <div class="audience-card">
-        <span class="audience-tag">Courses</span>
-        <h3>Course creators &amp; cohort programs</h3>
-        <p>High-ticket sales and launch windows mean a landing page can swing a launch by tens of thousands. We design pages around the actual decision path — objections, social proof, urgency, sequence.</p>
-      </div>
-      <div class="audience-card">
-        <span class="audience-tag">Indie products</span>
-        <h3>Solo founders &amp; indie hackers</h3>
-        <p>You shipped a product. You have an audience. Now you need a site that punches above its weight — looks like a real company, even if it's currently just you and a Stripe account.</p>
-      </div>
-      <div class="audience-card">
-        <span class="audience-tag">Newsletters</span>
-        <h3>Paid newsletters &amp; memberships</h3>
-        <p>Free-to-paid conversion lives or dies on the landing page. We design pages that articulate the why, kill the friction, and make subscribing feel like the obvious next step.</p>
-      </div>
+
+<!-- YOUR PART -->
+<section class="sec part">
+  <div class="in part__grid">
+    <h2 class="d">Your side of it takes about four hours.</h2>
+    <div>
+      <ol>
+        <li>One call about the business and who buys from you<span>60 min</span></li>
+        <li>Send us photos, your logo, and anything already written<span>30 min</span></li>
+        <li>Read the copy and design, tell us what is wrong<span>60 min</span></li>
+        <li>Check the built site before it goes live<span>60 min</span></li>
+      </ol>
     </div>
   </div>
 </section>
 
-<!-- TIMELINE SECTION -->
-<section class="timeline-section">
-  <div class="timeline-inner">
-    <div class="timeline-header">
-      <div class="s-label">Engagement timeline</div>
-      <div class="section-number">02</div>
-      <h2>What the typical build <span class="em">looks like.</span></h2>
-      <p>Most projects run four to six weeks end to end. Faster if scope is tight (a landing page, a refresh). Longer if it's a full multi-page site with custom development.</p>
-    </div>
-    <div class="timeline-list">
-      <div class="timeline-item">
-        <div class="timeline-when">WEEK 1</div>
-        <div class="timeline-content">
-          <h3>Positioning &amp; discovery</h3>
-          <p>We dig into your product, your customer interviews (or run a few if you don't have them), your competitors, your sales calls. Output: a written positioning brief that becomes the source of truth for every page decision after.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-when">WEEK 2</div>
-        <div class="timeline-content">
-          <h3>Architecture &amp; copy</h3>
-          <p>Page structure, section-by-section outlines, then copy drafts. We share early — you react fast. Most of the strategic decisions get made and locked here, before anything visual exists to distract from them.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-when">WEEK 3</div>
-        <div class="timeline-content">
-          <h3>Visual design</h3>
-          <p>Type system, color, components, page-level design. We send two directions in the first round and converge from there. Done in design tools that match the build stack so nothing gets lost in translation.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-when">WEEK 4–5</div>
-        <div class="timeline-content">
-          <h3>Build &amp; QA</h3>
-          <p>Build out in your chosen stack. Mobile-first, performance-budgeted, all states (hover, focus, error, empty). Cross-browser and cross-device QA before launch. You get a staging URL to break things on.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-when">WEEK 6</div>
-        <div class="timeline-content">
-          <h3>Launch &amp; handoff</h3>
-          <p>DNS, redirects from old URLs, analytics live, sitemap submitted. Then a recorded walkthrough so you can edit, add pages, swap copy, and run the site yourself. We're around for two weeks of post-launch fixes.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STANDARDS SECTION (case study slot, repurposed) -->
-<section class="standards-section">
-  <div class="standards-inner">
-    <div class="standards-header">
-      <h2>The standard <span class="em">we ship to.</span></h2>
-    </div>
-    <div class="standards-card">
-      <div class="standards-meta">
-        <span>Quality bar</span>
-        <span>Every project</span>
-        <span>No exceptions</span>
-      </div>
-      <h3 class="standards-title">A site we'd be willing to put our name on.</h3>
-      <p class="standards-body">A lot of agencies hand off work that's "fine." We don't ship sites that are fine. <strong>The below are commitments, not aspirations</strong> — if a build doesn't hit them, we don't launch. This page itself is held to the same bar; if any of it doesn't, tell us.</p>
-      <div class="standards-list">
-        <div class="standards-item">
-          <div class="standards-item-icon">✓</div>
-          <div class="standards-item-text"><strong>Sub-1.5s LCP on every page</strong><span>Largest Contentful Paint measured on real mobile devices, not laptop dev tools.</span></div>
-        </div>
-        <div class="standards-item">
-          <div class="standards-item-icon">✓</div>
-          <div class="standards-item-text"><strong>Lighthouse 95+ across the board</strong><span>Performance, accessibility, and best practices. Audited before every launch.</span></div>
-        </div>
-        <div class="standards-item">
-          <div class="standards-item-icon">✓</div>
-          <div class="standards-item-text"><strong>A real point of view</strong><span>No template lookalikes. If your site could swap logos with three competitors, we missed.</span></div>
-        </div>
-        <div class="standards-item">
-          <div class="standards-item-icon">✓</div>
-          <div class="standards-item-text"><strong>Copy you'd actually say out loud</strong><span>No "leveraging synergies." Every line passes the read-aloud test.</span></div>
-        </div>
-        <div class="standards-item">
-          <div class="standards-item-icon">✓</div>
-          <div class="standards-item-text"><strong>Editable without us</strong><span>You can update copy, swap images, ship landing pages — without a developer.</span></div>
-        </div>
-        <div class="standards-item">
-          <div class="standards-item-icon">✓</div>
-          <div class="standards-item-text"><strong>Tracking from day one</strong><span>Goal events, CTA tracking, scroll depth set up before launch — not retrofitted later.</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING SECTION -->
-<section class="pricing-section">
-  <div class="pricing-inner">
-    <div class="pricing-header">
-      <div class="s-label">How we charge</div>
-      <div class="section-number">03</div>
-      <h2>Fixed price. <span class="em">Quoted per project.</span></h2>
-      <p>Every engagement is a fixed quote agreed before we start. No hourly billing, no scope-creep invoices. The two models below cover most of what founders need.</p>
-    </div>
-    <div class="pricing-grid">
-      <div class="pricing-card">
-        <div class="pc-label">Engagement type 01</div>
-        <h3>Site build</h3>
-        <p class="pc-desc">Positioning, copy, design, development, launch. Fixed price agreed before kickoff based on scope — number of pages, complexity of build, custom development needs. No hidden line items.</p>
-        <div class="pc-fit"><strong>Best fit:</strong> You need a new site (or full rebuild) and you want it done in four to six weeks without managing five vendors.</div>
-      </div>
-      <div class="pricing-card">
-        <div class="pc-label">Engagement type 02</div>
-        <h3>Landing page</h3>
-        <p class="pc-desc">A single high-converting page — for a launch, a campaign, a paid traffic destination, a waitlist. Same process compressed: positioning, copy, design, build. Usually two to three weeks.</p>
-        <div class="pc-fit"><strong>Best fit:</strong> You have a homepage that works fine, but you need a dedicated page that does specific sales work — and does it well.</div>
-      </div>
-    </div>
-    <div class="pricing-note">
-      <strong>Quotes come through the contact form.</strong> A solo founder with a five-page SaaS site has different needs than a course creator running a launch. Tell us what you're building and what success looks like — we'll send back a written scope and fixed price within two business days.
-    </div>
+<!-- OWNERSHIP -->
+<section class="sec own">
+  <div class="in">
+    <h2 class="d">You own every piece of it.</h2>
+    <p>The domain, the code, and the analytics sit in <b>your</b> accounts from the first day. We get added as a user, and you can remove us in one click. Hosting can sit with you or with us, whichever you would rather.</p>
+    <p>Whatever we build on, you get the logins and the ability to run it without us. If you ever want to move to another team, there is nothing to hand over, because none of it was ever held.</p>
+    <p>You also get the design file, the source code, a short recorded walkthrough of how to edit the site, and a written note of what renews when.</p>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="faq-section">
-  <div class="faq-inner">
-    <div class="faq-header">
-      <div class="s-label">Common questions</div>
-      <h2>Things founders ask <span class="em">first.</span></h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-q">
-          <h3>What platform or stack do you build on?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">Webflow, Framer, or hand-coded Next.js — we pick based on how often you'll want to update, how custom the design needs to be, and how technical your team is. Webflow is the default for most marketing sites because non-technical founders can edit it without breaking anything. We'll recommend on the discovery call.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">
-          <h3>Do you write the copy or do I?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">We write it. You edit it until it sounds like you. Copy is part of the build, not a separate workstream — design without copy is wallpaper, and copy without design is a Google Doc. If you'd rather write copy yourself, we'll work from your drafts, but most founders find that the writing is the part they were dreading anyway.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">
-          <h3>What happens to my current site during the build?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">It stays live until we cut over. Build happens on a staging URL only you and we can see. On launch day, we redirect old URLs to new ones so existing pages keep their traffic, point DNS, verify analytics fired, and watch for anything weird. The cutover usually takes an hour.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">
-          <h3>Do you also do brand identity or logos?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">Not as a separate service. We'll evolve an existing brand — refine the type system, palette, voice, and visual treatment — but starting a brand from scratch (logo, full identity system, brand guidelines) is a different discipline. If you need that, we'll point you to brand designers we trust.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">
-          <h3>How involved do I need to be?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">Heavy in weeks one and two, light after that. Positioning and architecture need your input — you're the one who knows your customers. Once the strategy is locked, we ship and you react. Most founders spend three to five hours per week during the project; less than that and the build risks going off-piste.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">
-          <h3>What if I want changes after launch?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">Small edits — copy tweaks, swap an image, add a logo to the press row — you handle yourself in the CMS. We include a recorded walkthrough and a written guide so this is doable without us. Bigger changes (new pages, A/B tests, structural updates) we handle on a per-project basis or as a monthly retainer.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">
-          <h3>Can we start with just a single landing page?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">Yes. Single landing pages are a common starting point — for a paid traffic destination, a launch, a waitlist, a specific campaign. We run the same process (positioning, copy, design, build), just compressed to two to three weeks. Some founders use this as a low-commitment way to see how we work before committing to a full site.</div></div>
-      </div>
+<section class="sec">
+  <div class="in">
+    <h2 class="d">Questions people ask before booking.</h2>
+    <p class="sec__sub">If yours is not here, email it over and we will answer it properly.</p>
+    <div class="faq">
+
+      <details>
+        <summary>Who writes the copy?</summary>
+        <p>We do, and it is included in the price. You talk us through the business and your customers on the first call, we write the pages, and you change anything that does not sound like you. If you would rather write it yourself, send your drafts and we will edit them and build around them.</p>
+      </details>
+
+      <details>
+        <summary>Can you work on a site built in WordPress, Wix, Squarespace, or Shopify?</summary>
+        <p>Yes, any of those, and custom builds too. We do not need to have built a site to fix it or take over looking after it. Send us the login and we will come back with what we would change and what it would cost.</p>
+      </details>
+
+      <details>
+        <summary>What happens to my current site while you build the new one?</summary>
+        <p>It stays live throughout. The new site is built on a private address that only you and we can reach, so nothing changes for your customers until you have signed it off. On launch day the domain gets pointed across and redirects are set up so your existing rankings carry over. The switch itself takes about an hour.</p>
+      </details>
+
+      <details>
+        <summary>Our photos aren't great.</summary>
+        <p>Most people's aren't. We work with what you have and use stock where it genuinely fits. Where the site needs original photography, we will either tell you what to shoot and how, or bring in a photographer and quote that separately.</p>
+      </details>
+
+      <details>
+        <summary>Do you do logos and branding?</summary>
+        <p>Yes, though it sits under our <a href="scaleme-marketing.html">marketing service</a>. If you already have a brand, refining how it is used across the site is part of the build: type, colour, spacing, and tone. Building an identity from scratch is quoted separately.</p>
+      </details>
+
+      <details>
+        <summary>What if something breaks after launch?</summary>
+        <p>Anything that shipped broken is fixed at no charge for the first thirty days. After that a care plan covers updates, backups, monitoring, and small changes, and one off fixes are quoted before we start them.</p>
+      </details>
+
+      <details>
+        <summary>Can we start with a single page?</summary>
+        <p>Yes. A landing page is a common first job, particularly if you are about to run ads, and it is an inexpensive way to see how we work before committing to a full site.</p>
+      </details>
+
+      <details>
+        <summary>How will I know whether it is working?</summary>
+        <p>Analytics go in before launch, with tracking on every form and phone number, so you can see how many enquiries arrived and where each one came from. On a care plan we send a written summary each month.</p>
+      </details>
+
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" id="contact">
-  <h2>Let's talk about your <span class="em">site.</span></h2>
-  <p class="cta-sub">Tell us what you're building and what the site needs to do. We'll come back with a written scope and fixed quote — no pitch decks, no pressure.</p>
-  <button class="mag-btn primary" onclick="window.location.href='/contact'">Get a quote →</button>
+<!-- MENU -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">What you can book.</h2>
+    <p class="sec__sub">Every price includes the copy, and every price is fixed before the work starts.</p>
+
+    <div class="built">
+      <h3>What we build on</h3>
+      <p>Whatever suits your budget and how often you plan to change things. Wix or Squarespace if you want something inexpensive you can run yourself. WordPress if you need particular plugins or already have someone who knows it. A fully coded build if you want it as fast and as custom as it gets.</p>
+    </div>
+
+    <div class="menu">
+      <article class="menu__i">
+        <h3>New website</h3>
+        <p>Copy, design, and build across four to eight pages. Booking, forms, and payments connected if you need them.</p>
+        <span class="menu__price">From $1,200<small>3 to 5 weeks</small></span>
+      </article>
+      <article class="menu__i">
+        <h3>Landing page</h3>
+        <p>One page for one campaign, copy included. The right thing to build first if you are about to run ads.</p>
+        <span class="menu__price">From $600<small>1 to 2 weeks</small></span>
+      </article>
+      <article class="menu__i">
+        <h3>Rebuild</h3>
+        <p>Your current site redesigned and rebuilt, with your existing Google rankings carried across.</p>
+        <span class="menu__price">From $1,000<small>3 to 5 weeks</small></span>
+      </article>
+      <article class="menu__i">
+        <h3>Care plan</h3>
+        <p>Updates, backups, uptime checks, and small changes whenever you ask. On a site we built or one we did not.</p>
+        <span class="menu__price">From $150 / month<small>Monthly</small></span>
+      </article>
+    </div>
+  </div>
 </section>
 
-<footer>
-  <div class="f-brand">
-    <a href="index.html" class="nav-logo">scale<span>me</span></a>
-    <p>A marketing team for early-stage founders. Affiliate program management, web design, and content — handled.</p>
+<!-- TALK -->
+<section class="sec">
+  <div class="in talk__grid">
+    <h2 class="d">Send us your site, or tell us what you do.</h2>
+    <div>
+      <p>Already have a site? We will run the checks above and send you the results, along with what we would fix and roughly what it would cost, whether or not you hire us.</p>
+      <p>Either way you get a reply within two working days with questions, a rough scope, and a fixed price.</p>
+      <a href="mailto:hello@scaleme.ca" class="mail">hello@scaleme.ca</a>
+    </div>
   </div>
-  <div class="f-col">
-    <h4>Navigate</h4>
-    <a href="index.html#services">Services</a>
-    <a href="index.html#process">Process</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <div class="f-col">
-    <h4>Services</h4>
-    <a href="scaleme-affiliate.html">Affiliate Program Management</a>
-    <a href="scaleme-web-design.html">Web Design</a>
-    <a href="scaleme-content.html">Content</a>
-  </div>
-  <div class="f-col">
-    <h4>Get in touch</h4>
-    <p>hello@scaleme.ca</p>
-    <p>Remote, building with founders.</p>
-  </div>
-  <div class="f-bottom">
-    <span>© 2026 ScaleMe</span>
-    <span>Marketing that moves the needle</span>
-  </div>
+</section>
+
+</main>
+
+<footer class="band">
+  <a href="index.html" class="mark">SCALEME</a>
+  <span class="band__set">
+    <a href="scaleme-web-design.html">Web design</a>
+    <a href="scaleme-marketing.html">Marketing</a>
+    <a href="scaleme-automation.html">Automation</a>
+    <a href="scaleme-affiliate.html">Affiliate</a>
+  </span>
+  <span>Working remotely, worldwide</span>
 </footer>
 
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script defer src="js/runtime.js"></script>
-<script defer src="js/service-hero.js"></script>
-<script defer src="js/service-init.js"></script>
 </body>
 </html>
