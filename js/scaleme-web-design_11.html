@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web design and build | ScaleMe</title>
+<meta name="description" content="Websites built to be found, fast, and usable. Yours completely, from the first day. Prices from $1,200.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --paper:#EDE9DE;
+  --white:#FFFFFF;
+  --ink:#111110;
+  --ink-2:#4E4C44;
+  --pink:#FF2E88;
+  --aqua:#00B3A6;
+  --sun:#FFC400;
+  --bw:3px;
+  --disp:'Bricolage Grotesque','Archivo','Helvetica Neue',sans-serif;
+  --body:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+}
+
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;}
+ul,ol{list-style:none;}
+:focus-visible{outline:var(--bw) solid var(--ink);outline-offset:3px;}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}html{scroll-behavior:auto;}}
+
+.d{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84,'opsz' 48;letter-spacing:-.025em;line-height:1.03;}
+.skip{position:absolute;left:-9999px;}
+.skip:focus{left:12px;top:12px;z-index:99;background:var(--ink);color:var(--paper);padding:12px 18px;font-family:var(--mono);}
+.in{max-width:1140px;margin:0 auto;}
+
+/* path bar */
+.path{border-bottom:var(--bw) solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:20px;padding:13px 34px;flex-wrap:wrap;font-family:var(--mono);font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;}
+.path__here{display:flex;align-items:center;gap:11px;}
+.path__here b{font-weight:500;background:var(--ink);color:var(--paper);padding:4px 9px;}
+.mark{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1rem;letter-spacing:-.045em;text-transform:none;text-decoration:none;}
+.path__rest{display:flex;gap:18px;flex-wrap:wrap;}
+.path__rest a{color:var(--ink-2);text-decoration:none;}
+.path__rest a:hover{color:var(--ink);background:var(--sun);}
+
+/* opening */
+.open{background:var(--pink);border-bottom:var(--bw) solid var(--ink);padding:70px 34px 62px;}
+.open h1{font-size:clamp(2.1rem,5vw,4rem);max-width:15ch;}
+.open p{font-size:1.12rem;max-width:48ch;margin-top:22px;font-weight:500;}
+
+/* section shell */
+.sec{border-bottom:var(--bw) solid var(--ink);padding:64px 34px 60px;}
+.sec > .in > h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:24ch;margin-bottom:12px;}
+.sec__sub{font-size:1.03rem;color:var(--ink-2);max-width:60ch;margin-bottom:36px;}
+.sec__sub b{color:var(--ink);font-weight:700;}
+
+/* ── tile grid ─────────────────────────── */
+.wall{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.frag{border:var(--bw) solid var(--ink);background:var(--white);padding:16px 15px 14px;min-height:158px;display:flex;flex-direction:column;gap:11px;overflow:hidden;}
+.frag--w{grid-column:span 2;}
+.frag__lab{margin-top:auto;font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);}
+.frag__cap{margin-top:auto;font-size:.85rem;line-height:1.45;color:var(--ink-2);}
+
+/* design fragments */
+.tp{display:flex;gap:22px;align-items:baseline;flex-wrap:wrap;}
+.tp span{line-height:.9;}
+.tp .a{font-family:'Fraunces',serif;font-weight:400;font-size:3.6rem;color:#2C3A33;}
+.tp .b{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 78;font-size:3.6rem;letter-spacing:-.06em;color:var(--ink);}
+.tp .c{font-family:var(--mono);font-size:2.6rem;color:#7A3B12;}
+.sw{display:grid;grid-template-columns:repeat(3,1fr);flex:1;border:2px solid var(--ink);}
+.sw i{display:block;}
+.btns{display:flex;flex-direction:column;gap:8px;align-items:flex-start;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;}
+.btns i{font-style:normal;padding:7px 13px;}
+.b1{background:#3F5B4C;color:#F4F1EC;border-radius:20px;}
+.b2{background:#D96E1F;color:#FFFBF3;}
+.b3{background:transparent;color:var(--ink);border:2px solid var(--ink);}
+.navf{background:#141416;margin:-16px -15px 0;padding:16px 15px;flex:1;display:flex;flex-direction:column;gap:12px;}
+.navf__bar{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:#8A8A94;}
+.navf__bar b{color:#F2F2F0;font-weight:500;}
+.navf__h{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 80;font-size:2rem;letter-spacing:-.045em;color:#F2F2F0;line-height:.98;text-transform:uppercase;}
+.navf__cta{align-self:flex-start;background:#C6F24A;color:#141416;font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 11px;}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field label{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#6E6A62;}
+.field .box{border:2px solid #2C3A33;background:#F4F1EC;padding:9px 10px;font-family:'Fraunces',serif;font-size:.9rem;color:#2C3A33;}
+.field .go{align-self:flex-start;background:#2C3A33;color:#F4F1EC;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:16px;}
+.scale{display:flex;flex-direction:column;gap:3px;}
+.scale span{font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 84;letter-spacing:-.03em;line-height:1;}
+.scale .s1{font-size:1.9rem;}
+.scale .s2{font-size:1.25rem;}
+.scale .s3{font-size:.95rem;}
+.scale .s4{font-family:var(--body);font-weight:400;font-size:.8rem;color:var(--ink-2);}
+.tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tags i{font-style:normal;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;}
+.t1{background:var(--sun);border:2px solid var(--ink);}
+.t2{background:#2C3A33;color:#F4F1EC;border-radius:12px;}
+.t3{background:#FFE7D1;color:#7A3B12;}
+.t4{background:transparent;border:1px dashed var(--ink);}
+.card{flex:1;display:grid;grid-template-columns:78px 1fr;gap:12px;align-items:center;background:#FFFBF3;margin:-16px -15px 0;padding:16px 15px;}
+.card__img{aspect-ratio:1;background:repeating-linear-gradient(45deg,#E8D9C4 0 7px,#F2E6D5 7px 14px);border:2px solid #7A3B12;}
+.card__t{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;color:#7A3B12;line-height:1.15;}
+.card__m{font-family:var(--mono);font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;color:#A5825F;margin-top:5px;}
+
+/* functional tiles */
+.serp{display:flex;flex-direction:column;gap:4px;}
+.serp__u{font-size:.72rem;color:#0F7B36;}
+.serp__t{font-size:1.06rem;color:#1A0DAB;line-height:1.2;}
+.serp__d{font-size:.76rem;color:#4D5156;line-height:1.4;}
+.serp__s{font-size:.7rem;color:#70757A;display:flex;gap:5px;align-items:center;}
+.serp__s b{color:#E7711B;font-weight:400;letter-spacing:-1px;}
+.map{flex:1;min-height:74px;position:relative;border:2px solid var(--ink);background:#E7EDE4;background-image:linear-gradient(90deg,#D3DCCE 2px,transparent 2px),linear-gradient(#D3DCCE 2px,transparent 2px);background-size:26px 22px;}
+.map__pin{position:absolute;left:38%;top:32%;width:15px;height:15px;border-radius:50% 50% 50% 0;background:var(--pink);border:2px solid var(--ink);transform:rotate(-45deg);}
+.map__card{position:absolute;right:5px;bottom:5px;background:var(--white);border:2px solid var(--ink);padding:5px 7px;font-size:.58rem;line-height:1.35;}
+.map__card b{display:block;font-weight:700;}
+.map__card em{font-style:normal;color:#0F7B36;}
+.dials{display:flex;gap:9px;justify-content:space-between;}
+.dial{text-align:center;flex:1;}
+.dial__r{width:100%;max-width:44px;aspect-ratio:1;margin:0 auto 5px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.72rem;font-weight:500;background:conic-gradient(var(--aqua) var(--p),#DFDBD0 0);position:relative;}
+.dial__r::after{content:'';position:absolute;inset:5px;background:var(--white);border-radius:50%;}
+.dial__r span{position:relative;z-index:1;}
+.dial__n{font-family:var(--mono);font-size:.55rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);line-height:1.2;}
+.ctr{display:flex;flex-direction:column;gap:8px;}
+.ctr__pair{display:flex;border:2px solid var(--ink);}
+.ctr__pair i{flex:1;height:34px;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;font-style:normal;}
+.ctr__read{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.78rem;}
+.ctr__read em{font-style:normal;background:var(--aqua);border:2px solid var(--ink);padding:2px 7px;font-size:.6rem;letter-spacing:.08em;}
+.flow{display:flex;align-items:center;flex:1;}
+.flow i{font-style:normal;flex:1;text-align:center;font-family:var(--mono);font-size:.62rem;letter-spacing:.04em;text-transform:uppercase;border:2px solid var(--ink);background:var(--sun);padding:9px 4px;}
+.flow i:nth-child(4n+3){background:var(--aqua);}
+.flow u{flex:0 0 14px;height:2px;background:var(--ink);text-decoration:none;}
+.focus{display:flex;flex-direction:column;gap:10px;align-items:flex-start;}
+.focus__btn{background:var(--white);border:2px solid var(--ink);padding:9px 15px;font-size:.75rem;font-weight:700;outline:3px solid var(--pink);outline-offset:3px;}
+.focus__key{font-family:var(--mono);font-size:.6rem;border:2px solid var(--ink);border-bottom-width:4px;padding:3px 8px;background:#F2F0EA;}
+.up{display:flex;flex-direction:column;gap:8px;}
+.up__bars{display:flex;gap:2px;align-items:flex-end;height:44px;}
+.up__bars i{flex:1;background:var(--aqua);border:1px solid var(--ink);height:100%;}
+.up__bars i.warn{background:var(--sun);height:62%;}
+.up__m{font-family:var(--mono);font-size:.65rem;color:var(--ink-2);display:flex;justify-content:space-between;}
+.src{display:flex;flex-direction:column;gap:6px;}
+.src__r{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.7rem;}
+.src__r i{display:block;height:11px;background:var(--aqua);border:1px solid var(--ink);}
+.src__r span{color:var(--ink-2);width:110px;flex-shrink:0;}
+.rsp{display:flex;gap:8px;align-items:flex-end;flex:1;}
+.rsp__d{flex:1;border:2px solid var(--ink);background:#F7F6F2;height:60px;padding:6px;display:flex;flex-direction:column;gap:4px;}
+.rsp__p{width:32px;border:2px solid var(--ink);background:#F7F6F2;height:74px;padding:5px;display:flex;flex-direction:column;gap:3px;border-radius:5px;}
+.rsp i{display:block;height:4px;background:#D6D2C6;}
+.rsp i.hd{background:var(--ink);height:7px;}
+
+/* ── spec boxes ────────────────────────── */
+.spec{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.spec__b{border:var(--bw) solid var(--ink);background:var(--white);padding:20px 18px 18px;display:flex;flex-direction:column;gap:10px;min-height:132px;}
+.spec__b--sun{background:var(--sun);}
+.spec__b--aqua{background:var(--aqua);}
+.spec__v{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 82;font-size:2.2rem;letter-spacing:-.05em;line-height:1;}
+.spec__v--sm{font-size:1.5rem;letter-spacing:-.04em;}
+.spec__l{font-size:.87rem;line-height:1.4;color:var(--ink-2);margin-top:auto;}
+.spec__b--sun .spec__l,.spec__b--aqua .spec__l{color:var(--ink);}
+
+/* ── menu ──────────────────────────────── */
+.built{border:var(--bw) solid var(--ink);background:var(--sun);padding:24px 22px 22px;margin-bottom:16px;}
+.built h3{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.15rem;letter-spacing:-.03em;margin-bottom:10px;}
+.built p{font-size:.99rem;max-width:88ch;}
+
+.menu{display:grid;grid-template-columns:repeat(4,1fr);border:var(--bw) solid var(--ink);}
+.menu__i{border-right:var(--bw) solid var(--ink);background:var(--white);padding:24px 20px 22px;display:flex;flex-direction:column;gap:9px;transition:background .1s;}
+.menu__i:last-child{border-right:none;}
+.menu__i:hover{background:var(--sun);}
+.menu__i h3{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.15rem;letter-spacing:-.03em;}
+.menu__i p{font-size:.92rem;color:var(--ink-2);flex:1;}
+.menu__i:hover p{color:var(--ink);}
+.menu__price{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.32rem;letter-spacing:-.03em;border-top:2px solid var(--ink);padding-top:11px;}
+.menu__price small{display:block;font-family:var(--mono);font-size:.68rem;font-weight:400;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);margin-top:4px;}
+.menu__i:hover .menu__price small{color:var(--ink);}
+
+/* your part */
+.part{background:var(--aqua);}
+.part__grid{display:grid;grid-template-columns:1fr 1.2fr;gap:44px;align-items:start;}
+.part__grid h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:14ch;}
+.part ol{border-top:var(--bw) solid var(--ink);}
+.part li{border-bottom:var(--bw) solid var(--ink);padding:14px 4px;display:grid;grid-template-columns:1fr 90px;gap:16px;align-items:baseline;font-size:1rem;}
+.part li span{font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;text-align:right;}
+
+/* own */
+.own{background:var(--ink);color:var(--paper);}
+.own h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:18ch;margin-bottom:26px;}
+.own p{font-size:1.05rem;color:#C0BCB1;max-width:60ch;margin-bottom:16px;}
+.own p:last-child{margin-bottom:0;}
+.own b{color:var(--paper);font-weight:600;}
+
+/* faq */
+.faq{border-top:var(--bw) solid var(--ink);}
+.faq details{border-bottom:var(--bw) solid var(--ink);background:var(--white);}
+.faq summary{list-style:none;cursor:pointer;padding:18px 46px 18px 18px;position:relative;font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 84;font-size:1.06rem;letter-spacing:-.025em;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:'+';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:1.2rem;}
+.faq details[open] summary{background:var(--sun);}
+.faq details[open] summary::after{content:'\2013';}
+.faq summary:hover{background:var(--sun);}
+.faq p{padding:4px 18px 20px;font-size:.99rem;color:var(--ink-2);max-width:74ch;}
+.faq p a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;}
+
+/* talk */
+.talk__grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;}
+.talk__grid h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:16ch;}
+.talk p{font-size:1.03rem;color:var(--ink-2);margin-bottom:16px;max-width:46ch;}
+.mail{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:clamp(1.25rem,2.8vw,1.9rem);letter-spacing:-.035em;text-decoration:none;background:var(--sun);border:var(--bw) solid var(--ink);padding:9px 16px;display:inline-block;margin-top:8px;}
+.mail:hover{background:var(--ink);color:var(--sun);}
+
+/* footer */
+.band{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:20px 34px;font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;}
+.band a{color:var(--ink-2);text-decoration:none;}
+.band a:hover{color:var(--ink);background:var(--sun);}
+.band__set{display:flex;gap:16px;flex-wrap:wrap;}
+
+@media(max-width:1000px){
+  .wall{grid-template-columns:repeat(2,1fr);}
+  .spec{grid-template-columns:repeat(2,1fr);}
+  .menu{grid-template-columns:repeat(2,1fr);}
+  .menu__i:nth-child(2n){border-right:none;}
+  .menu__i:nth-child(-n+2){border-bottom:var(--bw) solid var(--ink);}
+  .part__grid,.talk__grid{grid-template-columns:1fr;gap:26px;}
+}
+@media(max-width:640px){
+  .path,.open,.sec,.band{padding-left:20px;padding-right:20px;}
+  .open{padding-top:46px;padding-bottom:44px;}
+  .sec{padding-top:46px;padding-bottom:44px;}
+  .wall{grid-template-columns:1fr;}
+  .frag--w{grid-column:span 1;}
+  .spec{grid-template-columns:1fr 1fr;}
+  .spec__v{font-size:1.8rem;}
+  .menu{grid-template-columns:1fr;}
+  .menu__i{border-right:none;border-bottom:var(--bw) solid var(--ink);}
+  .menu__i:last-child{border-bottom:none;}
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<nav class="path" aria-label="Breadcrumb and services">
+  <span class="path__here">
+    <a href="index.html" class="mark">SCALEME</a>
+    <span aria-hidden="true">/</span>
+    <b>Web design</b>
+  </span>
+  <span class="path__rest">
+    <a href="scaleme-marketing.html">Marketing</a>
+    <a href="scaleme-automation.html">Automation</a>
+    <a href="scaleme-affiliate.html">Affiliate</a>
+    <a href="mailto:hello@scaleme.ca">hello@scaleme.ca</a>
+  </span>
+</nav>
+
+<main id="main">
+
+<section class="open">
+  <div class="in">
+    <h1 class="d">Websites that bring in customers.</h1>
+    <p>Built to be found, fast, and usable. Yours completely, from the first day.</p>
+  </div>
+</section>
+
+<!-- DESIGN FRAGMENTS -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">We start from a blank page, every time.</h2>
+    <p class="sec__sub">There is no house style you have to fit into. We work out how your customers should feel when they land, then draw the type, colour, and layout for that, whatever the site ends up being built on. Fragments below were made for this page to show the range.</p>
+    <div class="wall">
+
+      <div class="frag frag--w">
+        <div class="tp"><span class="a">Aa</span><span class="b">Aa</span><span class="c">Aa</span></div>
+        <span class="frag__lab">Type pairing studies</span>
+      </div>
+
+      <div class="frag">
+        <div class="sw">
+          <i style="background:#F4F1EC"></i><i style="background:#DCE3DA"></i><i style="background:#3F5B4C"></i>
+          <i style="background:#8FA697"></i><i style="background:#2C3A33"></i><i style="background:#C9D6C6"></i>
+        </div>
+        <span class="frag__lab">Palette, quiet</span>
+      </div>
+
+      <div class="frag">
+        <div class="btns"><i class="b1">Book a session</i><i class="b2">Get a quote</i><i class="b3">See prices</i></div>
+        <span class="frag__lab">Button treatments</span>
+      </div>
+
+      <div class="frag frag--w">
+        <div class="navf">
+          <div class="navf__bar"><b>MERIDIAN</b><span>Product · Pricing · Login</span></div>
+          <div class="navf__h">Ship it<br>Friday.</div>
+          <div class="navf__cta">Start free</div>
+        </div>
+        <span class="frag__lab">Header, high contrast</span>
+      </div>
+
+      <div class="frag">
+        <div class="sw">
+          <i style="background:#FFFBF3"></i><i style="background:#F2E6D5"></i><i style="background:#D96E1F"></i>
+          <i style="background:#E8D9C4"></i><i style="background:#7A3B12"></i><i style="background:#FFE7D1"></i>
+        </div>
+        <span class="frag__lab">Palette, warm</span>
+      </div>
+
+      <div class="frag">
+        <div class="field">
+          <label>Preferred day</label>
+          <div class="box">Thursday morning</div>
+          <div class="go">Request</div>
+        </div>
+        <span class="frag__lab">Booking field</span>
+      </div>
+
+      <div class="frag">
+        <div class="scale">
+          <span class="s1">Heading</span>
+          <span class="s2">Subheading</span>
+          <span class="s3">Small title</span>
+          <span class="s4">Body copy sits here at reading size.</span>
+        </div>
+        <span class="frag__lab">Type scale</span>
+      </div>
+
+      <div class="frag">
+        <div class="tags"><i class="t1">Open today</i><i class="t2">Insured</i><i class="t3">New</i><i class="t4">Since 2004</i></div>
+        <span class="frag__lab">Labels and badges</span>
+      </div>
+
+      <div class="frag frag--w">
+        <div class="card">
+          <div class="card__img"></div>
+          <div>
+            <div class="card__t">Kitchen fitting, start to finish</div>
+            <div class="card__m">Six weeks · Fixed quote</div>
+          </div>
+        </div>
+        <span class="frag__lab">Service card</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FUNCTIONAL BOARD -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">Design is half of it.</h2>
+    <p class="sec__sub">The other half is whether people find you, whether you can tell what is working, and whether the thing still runs six months after we leave. This part costs the same either way, so it goes into every build.</p>
+    <div class="wall">
+
+      <div class="frag frag--w">
+        <div class="serp">
+          <div class="serp__u">examplekitchens.ca › kitchens</div>
+          <div class="serp__t">Kitchen fitting in Burnaby | Example Kitchens</div>
+          <div class="serp__d">Fixed quotes, six week turnaround, and a five year guarantee on every install. Family run since 2004.</div>
+          <div class="serp__s"><b>★★★★★</b> 4.9 · 41 reviews · Open until 6pm</div>
+        </div>
+        <p class="frag__cap">How you look on Google before anyone clicks, written for each page, not generated from a formula.</p>
+      </div>
+
+      <div class="frag">
+        <div class="map">
+          <span class="map__pin"></span>
+          <span class="map__card"><b>Example Kitchens</b><em>Open</em> · Closes 6pm</span>
+        </div>
+        <p class="frag__cap">Showing up in map results when somebody searches your trade and your city.</p>
+      </div>
+
+      <div class="frag">
+        <div class="dials">
+          <div class="dial"><div class="dial__r" style="--p:353deg"><span>98</span></div><div class="dial__n">Speed</div></div>
+          <div class="dial"><div class="dial__r" style="--p:360deg"><span>100</span></div><div class="dial__n">Access</div></div>
+          <div class="dial"><div class="dial__r" style="--p:360deg"><span>100</span></div><div class="dial__n">SEO</div></div>
+        </div>
+        <p class="frag__cap">The bar every page clears before it is allowed to go live.</p>
+      </div>
+
+      <div class="frag frag--w">
+        <div class="src">
+          <div class="src__r"><span>Google search</span><i style="width:52%"></i>18</div>
+          <div class="src__r"><span>Google Maps</span><i style="width:32%"></i>11</div>
+          <div class="src__r"><span>Instagram</span><i style="width:18%"></i>6</div>
+          <div class="src__r"><span>Typed it in</span><i style="width:12%"></i>4</div>
+        </div>
+        <p class="frag__cap">Where every enquiry came from, so you know what is worth spending on next month.</p>
+      </div>
+
+      <div class="frag">
+        <div class="ctr">
+          <div class="ctr__pair"><i style="background:#2C3A33;color:#F4F1EC">Aa</i><i style="background:#F4F1EC;color:#2C3A33">Aa</i></div>
+          <div class="ctr__read">11.4 : 1 <em>Passes AA</em></div>
+        </div>
+        <p class="frag__cap">Readable in bright sun, on an old screen, and to customers with weaker eyesight.</p>
+      </div>
+
+      <div class="frag">
+        <div class="rsp">
+          <div class="rsp__d"><i class="hd"></i><i></i><i></i><i style="width:60%"></i></div>
+          <div class="rsp__p"><i class="hd"></i><i></i><i></i><i style="width:70%"></i><i></i></div>
+        </div>
+        <p class="frag__cap">Laid out for a phone first, because that is where most of your visitors already are.</p>
+      </div>
+
+      <div class="frag frag--w">
+        <div class="flow">
+          <i>Form</i><u></u><i>CRM</i><u></u><i>Auto reply</i><u></u><i>Calendar</i>
+        </div>
+        <p class="frag__cap">A new enquiry files itself, replies to the customer while you are still on a job, and books into your calendar. More on the <a href="scaleme-automation.html">automation page</a>.</p>
+      </div>
+
+      <div class="frag">
+        <div class="focus">
+          <span class="focus__btn">Request a quote</span>
+          <span class="focus__key">Tab</span>
+        </div>
+        <p class="frag__cap">Usable with a keyboard alone, for customers who cannot use a mouse.</p>
+      </div>
+
+      <div class="frag">
+        <div class="up">
+          <div class="up__bars"><i></i><i></i><i></i><i class="warn"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="up__m"><span>30 days</span><span>99.9%</span></div>
+        </div>
+        <p class="frag__cap">If the site goes down, the alert reaches you as well as us.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SPEC BOXES -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">What every page has to hit before it goes live.</h2>
+    <p class="sec__sub">Checked with tools at handover, not judged by eye.</p>
+    <div class="spec">
+
+      <div class="spec__b"><span class="spec__v d">2.5s</span><span class="spec__l">Main content on screen, tested on a phone over 4G</span></div>
+      <div class="spec__b"><span class="spec__v d">0.1</span><span class="spec__l">Limit on how far the page shifts while loading</span></div>
+      <div class="spec__b"><span class="spec__v d">200ms</span><span class="spec__l">How fast a tap gets a response</span></div>
+      <div class="spec__b spec__b--sun"><span class="spec__v d">95+</span><span class="spec__l">Lighthouse score across all four categories</span></div>
+
+      <div class="spec__b spec__b--aqua"><span class="spec__v d">AA</span><span class="spec__l">WCAG 2.2 contrast and keyboard use</span></div>
+      <div class="spec__b"><span class="spec__v d">320px</span><span class="spec__l">Smallest screen laid out and tested for</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">JSON-LD</span><span class="spec__l">Business, service, and review markup Google reads</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">XML</span><span class="spec__l">Sitemap and canonical tags submitted to Google</span></div>
+
+      <div class="spec__b"><span class="spec__v spec__v--sm d">GA4</span><span class="spec__l">Analytics and conversion tracking, live at launch</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">AVIF</span><span class="spec__l">Images compressed and resized as they upload</span></div>
+      <div class="spec__b spec__b--sun"><span class="spec__v spec__v--sm d">SSL</span><span class="spec__l">Certificate, daily backups, renewal dates handed over</span></div>
+      <div class="spec__b"><span class="spec__v d">24/7</span><span class="spec__l">Uptime and form delivery monitoring</span></div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- YOUR PART -->
+<section class="sec part">
+  <div class="in part__grid">
+    <h2 class="d">Your side of it takes about four hours.</h2>
+    <div>
+      <ol>
+        <li>One call about the business and who buys from you<span>60 min</span></li>
+        <li>Send us photos, your logo, and anything already written<span>30 min</span></li>
+        <li>Read the copy and design, tell us what is wrong<span>60 min</span></li>
+        <li>Check the built site before it goes live<span>60 min</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- OWNERSHIP -->
+<section class="sec own">
+  <div class="in">
+    <h2 class="d">You own every piece of it.</h2>
+    <p>The domain, the code, and the analytics sit in <b>your</b> accounts from the first day. We get added as a user, and you can remove us in one click. Hosting can sit with you or with us, whichever you would rather.</p>
+    <p>Whatever we build on, you get the logins and the ability to run it without us. If you ever want to move to another team, there is nothing to hand over, because none of it was ever held.</p>
+    <p>You also get the design file, the source code, a short recorded walkthrough of how to edit the site, and a written note of what renews when.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">Questions people ask before booking.</h2>
+    <p class="sec__sub">If yours is not here, email it over and we will answer it properly.</p>
+    <div class="faq">
+
+      <details>
+        <summary>Who writes the copy?</summary>
+        <p>We do, and it is included in the price. You talk us through the business and your customers on the first call, we write the pages, and you change anything that does not sound like you. If you would rather write it yourself, send your drafts and we will edit them and build around them.</p>
+      </details>
+
+      <details>
+        <summary>Can you work on a site built in WordPress, Wix, Squarespace, or Shopify?</summary>
+        <p>Yes, any of those, and custom builds too. We do not need to have built a site to fix it or take over looking after it. Send us the login and we will come back with what we would change and what it would cost.</p>
+      </details>
+
+      <details>
+        <summary>What happens to my current site while you build the new one?</summary>
+        <p>It stays live throughout. The new site is built on a private address that only you and we can reach, so nothing changes for your customers until you have signed it off. On launch day the domain gets pointed across and redirects are set up so your existing rankings carry over. The switch itself takes about an hour.</p>
+      </details>
+
+      <details>
+        <summary>Our photos aren't great.</summary>
+        <p>Most people's aren't. We work with what you have and use stock where it genuinely fits. Where the site needs original photography, we will either tell you what to shoot and how, or bring in a photographer and quote that separately.</p>
+      </details>
+
+      <details>
+        <summary>Do you do logos and branding?</summary>
+        <p>Yes, though it sits under our <a href="scaleme-marketing.html">marketing service</a>. If you already have a brand, refining how it is used across the site is part of the build: type, colour, spacing, and tone. Building an identity from scratch is quoted separately.</p>
+      </details>
+
+      <details>
+        <summary>What if something breaks after launch?</summary>
+        <p>Anything that shipped broken is fixed at no charge for the first thirty days. After that a care plan covers updates, backups, monitoring, and small changes, and one off fixes are quoted before we start them.</p>
+      </details>
+
+      <details>
+        <summary>Can we start with a single page?</summary>
+        <p>Yes. A landing page is a common first job, particularly if you are about to run ads, and it is an inexpensive way to see how we work before committing to a full site.</p>
+      </details>
+
+      <details>
+        <summary>How will I know whether it is working?</summary>
+        <p>Analytics go in before launch, with tracking on every form and phone number, so you can see how many enquiries arrived and where each one came from. On a care plan we send a written summary each month.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">What you can book.</h2>
+    <p class="sec__sub">Every price includes the copy, and every price is fixed before the work starts.</p>
+
+    <div class="built">
+      <h3>What we build on</h3>
+      <p>Whatever suits your budget and how often you plan to change things. Wix or Squarespace if you want something inexpensive you can run yourself. WordPress if you need particular plugins or already have someone who knows it. A fully coded build if you want it as fast and as custom as it gets.</p>
+    </div>
+
+    <div class="menu">
+      <article class="menu__i">
+        <h3>New website</h3>
+        <p>Copy, design, and build across four to eight pages. Booking, forms, and payments connected if you need them.</p>
+        <span class="menu__price">From $1,200<small>3 to 5 weeks</small></span>
+      </article>
+      <article class="menu__i">
+        <h3>Landing page</h3>
+        <p>One page for one campaign, copy included. The right thing to build first if you are about to run ads.</p>
+        <span class="menu__price">From $600<small>1 to 2 weeks</small></span>
+      </article>
+      <article class="menu__i">
+        <h3>Rebuild</h3>
+        <p>Your current site redesigned and rebuilt, with your existing Google rankings carried across.</p>
+        <span class="menu__price">From $1,000<small>3 to 5 weeks</small></span>
+      </article>
+      <article class="menu__i">
+        <h3>Care plan</h3>
+        <p>Updates, backups, uptime checks, and small changes whenever you ask. On a site we built or one we did not.</p>
+        <span class="menu__price">From $150 / month<small>Monthly</small></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TALK -->
+<section class="sec">
+  <div class="in talk__grid">
+    <h2 class="d">Send us your site, or tell us what you do.</h2>
+    <div>
+      <p>Already have a site? We will run the checks above and send you the results, along with what we would fix and roughly what it would cost, whether or not you hire us.</p>
+      <p>Either way you get a reply within two working days with questions, a rough scope, and a fixed price.</p>
+      <a href="mailto:hello@scaleme.ca" class="mail">hello@scaleme.ca</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="band">
+  <a href="index.html" class="mark">SCALEME</a>
+  <span class="band__set">
+    <a href="scaleme-web-design.html">Web design</a>
+    <a href="scaleme-marketing.html">Marketing</a>
+    <a href="scaleme-automation.html">Automation</a>
+    <a href="scaleme-affiliate.html">Affiliate</a>
+  </span>
+  <span>Working remotely, worldwide</span>
+</footer>
+
+</body>
+</html>
