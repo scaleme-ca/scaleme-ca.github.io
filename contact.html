@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get a quote | ScaleMe</title>
+<meta name="description" content="Tell us what you are trying to grow. A reply within two working days, whether or not there is a job in it for us.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --paper:#EDE9DE;--white:#FFFFFF;--ink:#111110;--ink-2:#4E4C44;
+  --pink:#FF2E88;--aqua:#00B3A6;--sun:#FFC400;--bw:3px;
+  --disp:'Bricolage Grotesque','Archivo','Helvetica Neue',sans-serif;
+  --body:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;} ul{list-style:none;}
+:focus-visible{outline:var(--bw) solid var(--ink);outline-offset:3px;}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+.d{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84,'opsz' 48;letter-spacing:-.025em;line-height:1.03;}
+.skip{position:absolute;left:-9999px;}
+.skip:focus{left:12px;top:12px;z-index:999;background:var(--ink);color:var(--paper);padding:12px 18px;font-family:var(--mono);}
+.in{max-width:1140px;margin:0 auto;}
+
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:1rem;letter-spacing:-.015em;padding:15px 28px;border:var(--bw) solid var(--ink);background:var(--white);color:var(--ink);box-shadow:6px 6px 0 var(--ink);cursor:pointer;text-decoration:none;transition:transform .09s ease,box-shadow .09s ease;}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:10px 10px 0 var(--ink);}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink);}
+.btn--sun{background:var(--sun);}
+.btn--pink{background:var(--pink);color:var(--white);}
+.navbtn{padding:9px 16px;font-size:.83rem;box-shadow:4px 4px 0 var(--ink);}
+.navbtn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);}
+
+.nav{position:sticky;top:0;z-index:200;background:var(--paper);border-bottom:var(--bw) solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 34px;flex-wrap:wrap;}
+.mark{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.14rem;letter-spacing:-.045em;text-decoration:none;display:inline-flex;align-items:center;gap:9px;}
+.mark i{width:14px;height:14px;background:var(--pink);border:2px solid var(--ink);display:block;}
+.nav__links{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.nav__links a:not(.btn){font-family:var(--mono);font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px;}
+.nav__links a:not(.btn):hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+.open{background:var(--pink);border-bottom:var(--bw) solid var(--ink);padding:66px 34px 58px;}
+.open h1{font-size:clamp(2.1rem,5vw,3.8rem);max-width:16ch;}
+.open p{font-size:1.12rem;max-width:52ch;margin-top:20px;font-weight:500;}
+
+.sec{border-bottom:var(--bw) solid var(--ink);padding:60px 34px 58px;}
+
+
+
+.narrow{max-width:660px;}
+.form__to{display:grid;grid-template-columns:64px 1fr;align-items:stretch;border:2px solid var(--ink);background:var(--paper);margin-bottom:4px;}
+.form__to-l{font-family:var(--mono);font-size:.66rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;}
+.form__to-v{font-family:var(--mono);font-size:.95rem;padding:12px 14px;}
+.form{background:var(--white);border:var(--bw) solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:30px 28px 28px;display:flex;flex-direction:column;gap:17px;}
+.f{display:flex;flex-direction:column;gap:7px;}
+.f--row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.f label{font-family:var(--mono);font-size:.66rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;}
+.f input,.f select,.f textarea{font-family:var(--body);font-size:1rem;color:var(--ink);border:2px solid var(--ink);background:var(--paper);padding:11px 12px;width:100%;border-radius:0;}
+.f textarea{resize:vertical;min-height:120px;}
+.f select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 18px) 55%,calc(100% - 12px) 55%;background-size:6px 6px,6px 6px;background-repeat:no-repeat;}
+.f input:focus,.f select:focus,.f textarea:focus{background:var(--white);outline:var(--bw) solid var(--sun);outline-offset:0;}
+.form__go{align-self:flex-start;margin-top:4px;}
+.form__note{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;color:var(--ink-2);}
+
+.band{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:20px 34px;font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;}
+.band a{color:var(--ink-2);text-decoration:none;}
+.band a:hover{color:var(--ink);background:var(--sun);}
+.band__set{display:flex;gap:16px;flex-wrap:wrap;}
+
+
+@media(max-width:640px){
+  .nav,.open,.sec,.band{padding-left:20px;padding-right:20px;}
+  .nav__links a:not(.btn){display:none;}
+  .open{padding-top:46px;padding-bottom:42px;}
+  .f--row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<nav class="nav">
+  <a href="index.html" class="mark"><i></i>SCALEME</a>
+  <span class="nav__links">
+    <a href="scaleme-web-design.html">Web design</a>
+    <a href="scaleme-marketing.html">Marketing</a>
+    <a href="scaleme-automation.html">Automation</a>
+    <a href="scaleme-affiliate.html">Affiliate</a>
+    <a href="contact.html" class="btn btn--pink navbtn">Get a quote</a>
+  </span>
+</nav>
+
+<main id="main">
+
+<section class="open">
+  <div class="in">
+    <h1 class="d">Tell us what you are trying to grow.</h1>
+    <p>You get a reply within two working days, whether or not there is a job in it for us.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="in narrow">
+    <form class="form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+      <div class="form__to">
+        <span class="form__to-l">To</span>
+        <span class="form__to-v">hello@scaleme.ca</span>
+      </div>
+      <div class="f--row">
+        <span class="f"><label for="name">Your name</label><input id="name" name="name" type="text" required></span>
+        <span class="f"><label for="email">Email</label><input id="email" name="email" type="email" required></span>
+      </div>
+      <div class="f">
+        <label for="site">Website, if you have one</label>
+        <input id="site" name="website" type="text" placeholder="yourcompany.com">
+      </div>
+      <div class="f">
+        <label for="need">What do you need</label>
+        <select id="need" name="need">
+          <option>Not sure yet</option>
+          <option>Web design</option>
+          <option>Marketing</option>
+          <option>Automation</option>
+          <option>Affiliate programs</option>
+          <option>More than one of these</option>
+        </select>
+      </div>
+      <div class="f">
+        <label for="budget">Rough budget, if you have one in mind</label>
+        <input id="budget" name="budget" type="text" placeholder="Happy to say later">
+      </div>
+      <div class="f">
+        <label for="msg">What are you trying to grow</label>
+        <textarea id="msg" name="message" required placeholder="What you sell, who buys it, and what is slow or missing right now."></textarea>
+      </div>
+      <button type="submit" class="btn btn--sun form__go">Send it over</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="band">
+  <a href="index.html" class="mark"><i></i>SCALEME</a>
+  <span class="band__set">
+    <a href="scaleme-web-design.html">Web design</a>
+    <a href="scaleme-marketing.html">Marketing</a>
+    <a href="scaleme-automation.html">Automation</a>
+    <a href="scaleme-affiliate.html">Affiliate</a>
+    <a href="contact.html">Get a quote</a>
+  </span>
+  <span>Working remotely, worldwide</span>
+</footer>
+
+</body>
+</html>
