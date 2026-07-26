@@ -233,7 +233,7 @@ ul,ol{list-style:none;}
 @media(max-width:900px){
   .nav{flex-wrap:wrap;padding:0;}
   .nav__brand{order:1;font-size:1rem;padding:0 16px;min-height:58px;}
-  .nav__q{order:2;margin-left:auto;font-size:.9rem;padding:0 16px;min-height:58px;}
+  .nav__q{order:2;font-size:.9rem;padding:0 16px;min-height:58px;}
   .nav__toggle{order:3;display:flex;}
   .nav__links{order:4;display:none;flex-direction:column;align-items:stretch;width:100%;margin-left:0;border-top:var(--bw) solid var(--ink);}
   .nav[data-open="true"] .nav__links{display:flex;}
@@ -270,6 +270,20 @@ ul,ol{list-style:none;}
 /* footer wordmark: identical on every page */
 .band .mark{display:inline-flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.14rem;letter-spacing:-.045em;text-transform:none;text-decoration:none;color:var(--ink);}
 .band .mark i{width:14px;height:14px;background:var(--pink);border:2px solid var(--ink);display:block;flex:none;}
+
+/* ===== mobile nav: CTA fills the space between brand and toggle ===== */
+@media(max-width:900px){
+  .nav__q{order:2;flex:1 1 auto;margin-left:0;justify-content:center;text-align:center;}
+  .nav__brand{flex:0 0 auto;}
+  .nav__toggle{flex:0 0 auto;}
+}
+@media(max-width:420px){
+  .nav__brand{padding-left:14px;padding-right:12px;font-size:1.02rem;}
+  .nav__q{padding:0 8px;font-size:.86rem;}
+}
+
+/* skip link: off-screen until focused, then a real 44px target */
+.skip:focus{position:fixed;left:12px;top:12px;z-index:999;display:inline-flex;align-items:center;min-height:44px;padding:0 16px;background:var(--sun);color:var(--ink);border:var(--bw) solid var(--ink);font-family:var(--mono);font-size:.8rem;text-decoration:none;}
 </style>
 </head>
 <body>

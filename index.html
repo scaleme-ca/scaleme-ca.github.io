@@ -164,7 +164,7 @@ ul{list-style:none;}
 @media(max-width:900px){
   .nav{flex-wrap:wrap;padding:0;}
   .nav__brand{order:1;font-size:1rem;padding:0 16px;min-height:58px;}
-  .nav__q{order:2;margin-left:auto;font-size:.9rem;padding:0 16px;min-height:58px;}
+  .nav__q{order:2;font-size:.9rem;padding:0 16px;min-height:58px;}
   .nav__toggle{order:3;display:flex;}
   .nav__links{order:4;display:none;flex-direction:column;align-items:stretch;width:100%;margin-left:0;border-top:var(--bw) solid var(--ink);}
   .nav[data-open="true"] .nav__links{display:flex;}
@@ -201,6 +201,36 @@ ul{list-style:none;}
 /* footer wordmark: identical on every page */
 .band .mark{display:inline-flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.14rem;letter-spacing:-.045em;text-transform:none;text-decoration:none;color:var(--ink);}
 .band .mark i{width:14px;height:14px;background:var(--pink);border:2px solid var(--ink);display:block;flex:none;}
+
+/* ===== mobile nav: CTA fills the space between brand and toggle ===== */
+@media(max-width:900px){
+  .nav__q{order:2;flex:1 1 auto;margin-left:0;justify-content:center;text-align:center;}
+  .nav__brand{flex:0 0 auto;}
+  .nav__toggle{flex:0 0 auto;}
+}
+@media(max-width:420px){
+  .nav__brand{padding-left:14px;padding-right:12px;font-size:1.02rem;}
+  .nav__q{padding:0 8px;font-size:.86rem;}
+}
+
+/* ===== hero punctuation clears the highlight-box shadow ===== */
+.mega .nb{white-space:nowrap;}
+.mega .nb .w{white-space:normal;}
+.mega .pn{display:inline-block;margin-left:8px;}
+@media(max-width:640px){ .mega .pn{margin-left:6px;} }
+
+/* ===== first-call chips are links to the service pages ===== */
+a.take__t{text-decoration:none;color:var(--ink);box-shadow:3px 3px 0 var(--ink);
+  transition:background .1s,color .1s,transform .09s ease,box-shadow .09s ease;}
+a.take__t--c{color:var(--white);}
+a.take__t:hover,a.take__t:focus-visible{background:var(--ink);color:var(--paper);
+  transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);}
+@media(max-width:900px){
+  a.take__t{display:inline-flex;align-items:center;min-height:44px;padding:0 13px;}
+}
+
+/* skip link: off-screen until focused, then a real 44px target */
+.skip:focus{position:fixed;left:12px;top:12px;z-index:999;display:inline-flex;align-items:center;min-height:44px;padding:0 16px;background:var(--sun);color:var(--ink);border:var(--bw) solid var(--ink);font-family:var(--mono);font-size:.8rem;text-decoration:none;}
 </style>
 </head>
 <body>
@@ -224,7 +254,7 @@ ul{list-style:none;}
 <!-- STATEMENT -->
 <header class="hero">
   <div class="in">
-    <h1 class="mega">A marketing agency that builds <a href="web-design.html" class="w w--b">websites</a>, runs <a href="marketing.html" class="w w--a">marketing</a>, automates the <a href="automation.html" class="w w--c">admin</a>, and sets up <a href="affiliate.html" class="w w--d">affiliate programs</a> for companies growing past word of mouth.</h1>
+    <h1 class="mega">A marketing agency that builds <span class="nb"><a href="web-design.html" class="w w--b">websites</a><span class="pn">,</span></span> runs <span class="nb"><a href="marketing.html" class="w w--a">marketing</a><span class="pn">,</span></span> automates the <span class="nb"><a href="automation.html" class="w w--c">admin</a><span class="pn">,</span></span> and sets up <a href="affiliate.html" class="w w--d">affiliate programs</a> for companies growing past word of mouth.</h1>
     <div class="hero__ctas">
       <a href="contact.html" class="btn btn--sun">Get a quote</a>
     </div>
@@ -243,22 +273,22 @@ ul{list-style:none;}
 
       <div class="take">
         <p>If your Google listing is half empty, fix that before you pay anybody to rebuild your website.</p>
-        <span class="take__t take__t--a">Marketing</span>
+        <a href="marketing.html" class="take__t take__t--a">Marketing</a>
       </div>
 
       <div class="take">
         <p>For a first campaign, one landing page and a form that actually delivers will usually out-earn a full site rebuild.</p>
-        <span class="take__t take__t--b">Web design</span>
+        <a href="web-design.html" class="take__t take__t--b">Web design</a>
       </div>
 
       <div class="take">
         <p>Automating something that saves ten minutes a month costs more to build than it will ever give back.</p>
-        <span class="take__t take__t--c">Automation</span>
+        <a href="automation.html" class="take__t take__t--c">Automation</a>
       </div>
 
       <div class="take">
         <p>Affiliate programs need a repeatable product and a checkout. If every job you sell is priced from scratch, skip it.</p>
-        <span class="take__t take__t--d">Affiliate</span>
+        <a href="affiliate.html" class="take__t take__t--d">Affiliate</a>
       </div>
 
     </div>
@@ -269,7 +299,7 @@ ul{list-style:none;}
 <section class="sec">
   <div class="in talk">
     <div>
-      <h2 class="d">Tell us what you are trying to grow.</h2>
+      <h2 class="d">Every quote starts with a straight answer.</h2>
       <p>Send your site if you have one, or a line about what you sell and who buys it. We will tell you what we would do first, and what we would leave alone.</p>
     </div>
     <div class="talk__act">
