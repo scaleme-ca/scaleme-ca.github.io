@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automation | ScaleMe</title>
+<meta name="description" content="Enquiries answered, appointments booked, clients onboarded, invoices chased. Every workflow documented and handed over. Prices from $200.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --paper:#EDE9DE;
+  --white:#FFFFFF;
+  --ink:#111110;
+  --ink-2:#4E4C44;
+  --pink:#FF2E88;
+  --aqua:#00B3A6;
+  --sun:#FFC400;
+  --bw:3px;
+  --disp:'Bricolage Grotesque','Archivo','Helvetica Neue',sans-serif;
+  --body:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+}
+
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;}
+ul,ol{list-style:none;}
+:focus-visible{outline:var(--bw) solid var(--ink);outline-offset:3px;}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}html{scroll-behavior:auto;}}
+
+.d{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84,'opsz' 48;letter-spacing:-.025em;line-height:1.03;}
+.skip{position:absolute;left:-9999px;}
+.skip:focus{left:12px;top:12px;z-index:99;background:var(--ink);color:var(--paper);padding:12px 18px;font-family:var(--mono);}
+.in{max-width:1140px;margin:0 auto;}
+
+/* path bar */
+.path{border-bottom:var(--bw) solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:20px;padding:13px 34px;flex-wrap:wrap;font-family:var(--mono);font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;}
+.path__here{display:flex;align-items:center;gap:11px;}
+.path__here b{font-weight:500;background:var(--ink);color:var(--paper);padding:4px 9px;}
+.mark{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1rem;letter-spacing:-.045em;text-transform:none;text-decoration:none;}
+.path__rest{display:flex;gap:18px;flex-wrap:wrap;}
+.path__rest a{color:var(--ink-2);text-decoration:none;}
+.path__rest a:hover{color:var(--ink);background:var(--sun);}
+
+/* opening */
+.open{background:var(--pink);border-bottom:var(--bw) solid var(--ink);padding:70px 34px 62px;}
+.open h1{font-size:clamp(2.1rem,5vw,4rem);max-width:16ch;}
+.open p{font-size:1.12rem;max-width:54ch;margin-top:22px;font-weight:500;}
+
+/* section shell */
+.sec{border-bottom:var(--bw) solid var(--ink);padding:64px 34px 60px;}
+.sec > .in > h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:24ch;margin-bottom:12px;}
+.sec__sub{font-size:1.03rem;color:var(--ink-2);max-width:62ch;margin-bottom:36px;}
+
+/* menu */
+.menu{display:grid;grid-template-columns:repeat(3,1fr);border:var(--bw) solid var(--ink);}
+.menu__i{border-right:var(--bw) solid var(--ink);border-bottom:var(--bw) solid var(--ink);background:var(--white);padding:24px 20px 22px;display:flex;flex-direction:column;gap:9px;transition:background .1s;}
+.menu__i:nth-child(3n){border-right:none;}
+.menu__i:nth-last-child(-n+3){border-bottom:none;}
+.menu__i:hover{background:var(--sun);}
+.menu__i h3{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.15rem;letter-spacing:-.03em;}
+.menu__i p{font-size:.92rem;color:var(--ink-2);flex:1;}
+.menu__i:hover p{color:var(--ink);}
+.menu__price{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.32rem;letter-spacing:-.03em;border-top:2px solid var(--ink);padding-top:11px;}
+.menu__price small{display:block;font-family:var(--mono);font-size:.68rem;font-weight:400;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);margin-top:4px;}
+.menu__i:hover .menu__price small{color:var(--ink);}
+.menu__ask{background:var(--aqua);}
+.menu__ask:hover{background:var(--aqua);}
+.menu__ask p{color:var(--ink);}
+.menu__ask a{font-family:var(--mono);font-size:.8rem;text-decoration:underline;text-underline-offset:3px;}
+
+/* tiles */
+.wall{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.frag{border:var(--bw) solid var(--ink);background:var(--white);padding:16px 15px 14px;min-height:196px;display:flex;flex-direction:column;gap:11px;overflow:hidden;}
+.frag--w{grid-column:span 2;}
+.frag__t{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.02rem;letter-spacing:-.03em;padding-bottom:10px;border-bottom:2px solid var(--ink);}
+.frag__cap{margin-top:auto;font-size:.85rem;line-height:1.45;color:var(--ink-2);}
+
+/* flow */
+.flow{display:flex;align-items:center;flex:1;}
+.flow i{font-style:normal;flex:1;text-align:center;font-family:var(--mono);font-size:.62rem;letter-spacing:.04em;text-transform:uppercase;border:2px solid var(--ink);background:var(--sun);padding:12px 4px;}
+.flow i:nth-child(4n+3){background:var(--aqua);}
+.flow u{flex:0 0 13px;height:2px;background:var(--ink);text-decoration:none;}
+
+/* booking */
+.bk{display:flex;flex-direction:column;gap:8px;flex:1;justify-content:center;}
+.bk__slot{border:2px solid var(--ink);background:var(--sun);padding:8px 10px;font-size:.72rem;font-weight:700;}
+.bk__slot span{display:block;font-family:var(--mono);font-size:.58rem;font-weight:400;letter-spacing:.06em;text-transform:uppercase;margin-top:2px;}
+.bk__sms{align-self:flex-start;background:#D8F5F1;border:2px solid var(--ink);border-radius:12px 12px 12px 2px;padding:7px 9px;font-size:.66rem;line-height:1.35;}
+
+/* onboarding checklist */
+.ob{display:flex;flex-direction:column;gap:7px;flex:1;justify-content:center;}
+.ob__r{display:flex;gap:8px;align-items:center;font-size:.7rem;}
+.ob__r i{font-style:normal;width:17px;height:17px;background:var(--aqua);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:.6rem;flex-shrink:0;}
+
+/* invoice */
+.inv{flex:1;border:2px solid var(--ink);background:#F7F6F2;padding:11px 12px;display:flex;flex-direction:column;gap:10px;}
+.inv__n{font-size:.9rem;font-weight:700;}
+.inv__n span{font-family:var(--mono);font-size:.6rem;font-weight:400;color:var(--ink-2);display:block;margin-top:3px;letter-spacing:.05em;}
+.inv__st{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;}
+.inv__st i{font-style:normal;font-family:var(--mono);font-size:.56rem;letter-spacing:.05em;border:2px solid var(--ink);padding:4px 8px;background:var(--white);}
+.inv__st i.done{background:var(--aqua);}
+
+/* run log */
+.log{display:flex;flex-direction:column;gap:7px;flex:1;justify-content:center;}
+.log__r{display:flex;gap:9px;align-items:center;font-family:var(--mono);font-size:.66rem;}
+.log__r b{font-weight:400;color:var(--ink-2);}
+.log__r span{flex:1;}
+.log__r i{font-style:normal;width:16px;height:16px;border:2px solid var(--ink);background:var(--aqua);display:flex;align-items:center;justify-content:center;font-size:.55rem;flex-shrink:0;}
+.log__r i.warn{background:var(--sun);}
+
+/* map band */
+.map{background:var(--aqua);}
+.map__grid{display:grid;grid-template-columns:1fr 1.15fr;gap:44px;align-items:start;}
+.map__grid h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:15ch;}
+.map ul{border-top:var(--bw) solid var(--ink);}
+.map li{border-bottom:var(--bw) solid var(--ink);padding:14px 4px;font-size:1rem;}
+.map li b{font-weight:700;}
+.map__note{margin-top:22px;font-size:1rem;}
+
+/* own */
+.own{background:var(--ink);color:var(--paper);}
+.own h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:18ch;margin-bottom:26px;}
+.own p{font-size:1.05rem;color:#C0BCB1;max-width:62ch;margin-bottom:16px;}
+.own p:last-child{margin-bottom:0;}
+.own b{color:var(--paper);font-weight:600;}
+
+/* faq */
+.faq{border-top:var(--bw) solid var(--ink);}
+.faq details{border-bottom:var(--bw) solid var(--ink);background:var(--white);}
+.faq summary{list-style:none;cursor:pointer;padding:18px 46px 18px 18px;position:relative;font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 84;font-size:1.06rem;letter-spacing:-.025em;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:'+';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:1.2rem;}
+.faq details[open] summary{background:var(--sun);}
+.faq details[open] summary::after{content:'\2013';}
+.faq summary:hover{background:var(--sun);}
+.faq p{padding:4px 18px 20px;font-size:.99rem;color:var(--ink-2);max-width:74ch;}
+
+
+/* spec boxes */
+.spec{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.spec__b{border:var(--bw) solid var(--ink);background:var(--white);padding:20px 18px 18px;display:flex;flex-direction:column;gap:10px;min-height:132px;}
+.spec__b--sun{background:var(--sun);}
+.spec__b--aqua{background:var(--aqua);}
+.spec__v{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 82;font-size:2.2rem;letter-spacing:-.05em;line-height:1;}
+.spec__v--sm{font-size:1.42rem;letter-spacing:-.04em;}
+.spec__v--xs{font-size:1.08rem;letter-spacing:-.03em;line-height:1.1;}
+.spec__l{font-size:.87rem;line-height:1.4;color:var(--ink-2);margin-top:auto;}
+.spec__b--sun .spec__l,.spec__b--aqua .spec__l{color:var(--ink);}
+/* need-from-you */
+.part{background:var(--sun);}
+.part__grid{display:grid;grid-template-columns:1fr 1.2fr;gap:44px;align-items:start;}
+.part__grid h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:15ch;}
+.part__grid > div > p{font-size:1rem;margin-top:20px;max-width:46ch;}
+.part ol{border-top:var(--bw) solid var(--ink);}
+.part li{border-bottom:var(--bw) solid var(--ink);padding:14px 4px;display:grid;grid-template-columns:1fr 96px;gap:16px;align-items:baseline;font-size:1rem;}
+.part li span{font-family:var(--mono);font-size:.73rem;text-transform:uppercase;letter-spacing:.05em;text-align:right;}
+/* built-on panel */
+.built{border:var(--bw) solid var(--ink);background:var(--aqua);padding:24px 22px 22px;margin-top:16px;}
+.built h3{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.12rem;letter-spacing:-.03em;margin-bottom:10px;}
+.built p{font-size:.98rem;max-width:92ch;}
+
+/* talk */
+.talk__grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;}
+.talk__grid h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:16ch;}
+.talk p{font-size:1.03rem;color:var(--ink-2);margin-bottom:16px;max-width:46ch;}
+.mail{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:clamp(1.25rem,2.8vw,1.9rem);letter-spacing:-.035em;text-decoration:none;background:var(--sun);border:var(--bw) solid var(--ink);padding:9px 16px;display:inline-block;margin-top:8px;}
+.mail:hover{background:var(--ink);color:var(--sun);}
+
+/* footer */
+.band{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:20px 34px;font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;}
+.band a{color:var(--ink-2);text-decoration:none;}
+.band a:hover{color:var(--ink);background:var(--sun);}
+.band__set{display:flex;gap:16px;flex-wrap:wrap;}
+
+@media(max-width:1000px){
+  .wall{grid-template-columns:repeat(2,1fr);}
+  .menu{grid-template-columns:repeat(2,1fr);}
+  .menu__i{border-right:var(--bw) solid var(--ink);border-bottom:var(--bw) solid var(--ink);}
+  .menu__i:nth-child(3n){border-right:var(--bw) solid var(--ink);}
+  .menu__i:nth-child(2n){border-right:none;}
+  .menu__i:last-child{border-bottom:none;}
+  .map__grid,.talk__grid{grid-template-columns:1fr;gap:26px;}
+}
+@media(max-width:640px){
+  .path,.open,.sec,.band{padding-left:20px;padding-right:20px;}
+  .open{padding-top:46px;padding-bottom:44px;}
+  .sec{padding-top:46px;padding-bottom:44px;}
+  .wall{grid-template-columns:1fr;}
+  .frag--w{grid-column:span 1;}
+  .menu{grid-template-columns:1fr;}
+  .menu__i{border-right:none;}
+}
+
+@media(max-width:1000px){.spec{grid-template-columns:repeat(2,1fr);}.part__grid{grid-template-columns:1fr;gap:26px;}}
+@media(max-width:640px){.spec{grid-template-columns:1fr 1fr;}.spec__v{font-size:1.8rem;}}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<nav class="path" aria-label="Breadcrumb and services">
+  <span class="path__here">
+    <a href="index.html" class="mark">SCALEME</a>
+    <span aria-hidden="true">/</span>
+    <b>Automation</b>
+  </span>
+  <span class="path__rest">
+    <a href="scaleme-web-design.html">Web design</a>
+    <a href="scaleme-marketing.html">Marketing</a>
+    <a href="scaleme-affiliate.html">Affiliate</a>
+    <a href="mailto:hello@scaleme.ca">hello@scaleme.ca</a>
+  </span>
+</nav>
+
+<main id="main">
+
+<section class="open">
+  <div class="in">
+    <h1 class="d">Your admin can run without you.</h1>
+    <p>Enquiries answered, appointments booked, clients onboarded, invoices chased, all while you are doing something else. Every workflow is mapped in writing so your team can change it later.</p>
+  </div>
+</section>
+
+
+<!-- EXAMPLES -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">What each one looks like.</h2>
+    <p class="sec__sub">One example for each of the services we offer, drawn for this page.</p>
+    <div class="wall">
+
+      <div class="frag frag--w">
+        <h3 class="frag__t">Lead capture</h3>
+        <div class="flow">
+          <i>Form</i><u></u><i>Reply</i><u></u><i>CRM</i><u></u><i>Notify</i>
+        </div>
+        <p class="frag__cap">People who enquire usually contact three businesses in the same sitting, so the one that replies first tends to win the job. This replies in seconds while you are still on site.</p>
+      </div>
+
+      <div class="frag">
+        <h3 class="frag__t">Booking and reminders</h3>
+        <div class="bk">
+          <div class="bk__slot">Thursday, 10:00<span>Confirmed</span></div>
+          <div class="bk__sms">Reminder: we are with you tomorrow at 10. Reply R to move it.</div>
+        </div>
+        <p class="frag__cap">A reminder the day before is the cheapest way to cut no shows, and every empty slot is a paid hour you cannot get back.</p>
+      </div>
+
+      <div class="frag">
+        <h3 class="frag__t">Client onboarding</h3>
+        <div class="ob">
+          <div class="ob__r"><i>✓</i>Contract sent</div>
+          <div class="ob__r"><i>✓</i>Deposit invoice raised</div>
+          <div class="ob__r"><i>✓</i>Shared folder created</div>
+          <div class="ob__r"><i>✓</i>Intake form sent</div>
+          <div class="ob__r"><i>✓</i>Kickoff email scheduled</div>
+        </div>
+        <p class="frag__cap">Onboarding is where things get forgotten in a busy week, and a missed deposit or contract costs far more than the ten minutes it took to skip.</p>
+      </div>
+
+      <div class="frag frag--w">
+        <h3 class="frag__t">Invoicing and chasing</h3>
+        <div class="inv">
+          <div class="inv__n">Invoice 1042 · $2,400<span>Due 15 August</span></div>
+          <div class="inv__st"><i class="done">Sent 1 Aug</i><i class="done">Reminder 8 Aug</i><i>Reminder 15 Aug</i><i>Flagged to call 22 Aug</i></div>
+        </div>
+        <p class="frag__cap">Most late payments are not disputes, they are people who forgot. Reminders that keep going out without you having to feel awkward about it collect the majority of them.</p>
+      </div>
+
+      <div class="frag frag--w">
+        <h3 class="frag__t">Monitoring</h3>
+        <div class="log">
+          <div class="log__r"><b>08:14</b><span>Enquiry routed to Sam</span><i>✓</i></div>
+          <div class="log__r"><b>09:00</b><span>Reminders sent for tomorrow</span><i>✓</i></div>
+          <div class="log__r"><b>13:10</b><span>Invoice failed, retried</span><i class="warn">!</i></div>
+          <div class="log__r"><b>13:11</b><span>Invoice sent</span><i>✓</i></div>
+        </div>
+        <p class="frag__cap">An automation that quietly stops working is worse than never having built it, because you carry on assuming it ran. This one tells you the same day.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="sec map">
+  <div class="in map__grid">
+    <h2 class="d">Every automation comes with a map.</h2>
+    <div>
+      <ul>
+        <li><b>What sets it off.</b> The exact trigger, written down in plain terms.</li>
+        <li><b>What it touches.</b> Every tool, account, and field it reads from or writes to.</li>
+        <li><b>Where it can fail.</b> The steps most likely to break, and what happens when they do.</li>
+        <li><b>How to stop it.</b> A named switch, so anyone on your team can turn it off without calling us.</li>
+      </ul>
+      <p class="map__note">An automation nobody understands becomes a liability the first time it misbehaves. The map is what keeps it an asset.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STANDARDS -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">What we hold ourselves to.</h2>
+    <p class="sec__sub">How much time an automation saves depends on your business, so we will not put a number on it. These are the standards the build itself is held to.</p>
+    <div class="spec">
+      <div class="spec__b spec__b--aqua"><span class="spec__v d">100%</span><span class="spec__l">Of workflows run end to end with a real record before handover</span></div>
+      <div class="spec__b"><span class="spec__v d">3</span><span class="spec__l">Retries on a failed step before anyone is alerted</span></div>
+      <div class="spec__b"><span class="spec__v d">15 min</span><span class="spec__l">How often runs are checked once it is live</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">Same day</span><span class="spec__l">You hear about a failure the day it happens</span></div>
+      <div class="spec__b"><span class="spec__v d">1</span><span class="spec__l">Written map per workflow, handed over with it</span></div>
+      <div class="spec__b spec__b--sun"><span class="spec__v d">0</span><span class="spec__l">Customer records stored on any system of ours</span></div>
+      <div class="spec__b"><span class="spec__v d">30 days</span><span class="spec__l">Free fixes on anything we built</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">1 click</span><span class="spec__l">To remove our access from every account</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">Export</span><span class="spec__l">Every workflow leaves in a portable form</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">Your card</span><span class="spec__l">Platform billing direct, never marked up</span></div>
+      <div class="spec__b spec__b--aqua"><span class="spec__v spec__v--sm d">Named</span><span class="spec__l">Off switch on every workflow, usable by your team</span></div>
+      <div class="spec__b"><span class="spec__v d">2 wks</span><span class="spec__l">Typical build, from the first call to live</span></div>
+    </div>
+    <div class="built">
+      <h3>What we build on</h3>
+      <p>Zapier, Make, or n8n for the workflows themselves, connected to whatever you already run: HubSpot, Pipedrive, Airtable, Google Workspace, Microsoft 365, Xero, QuickBooks, Stripe, Calendly, Slack. All of them are tools you can hire anyone to work on, so nothing here depends on us being around.</p>
+    </div>
+  </div>
+</section>
+
+<!-- YOUR PART -->
+<section class="sec part">
+  <div class="in part__grid">
+    <h2 class="d">What we need from you.</h2>
+    <div>
+      <ol>
+        <li>One call walking through how the job runs today<span>45 min</span></li>
+        <li>Us added as a user on the tools involved<span>Access</span></li>
+        <li>The rules: who gets what, and when reminders go out<span>Decision</span></li>
+        <li>One test run with you watching, before it goes live<span>30 min</span></li>
+      </ol>
+      <p>How long the build takes depends on how many tools are in the chain. Your side of it stays about the same either way.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OWNERSHIP -->
+<section class="sec own">
+  <div class="in">
+    <h2 class="d">It keeps running if we disappear.</h2>
+    <p>Every account sits in <b>your</b> name and under your billing. We get added as a user and you can remove us in one click, on the automation platform, the CRM, and anything else we connect.</p>
+    <p>We build on tools you can hire anyone to work on, so there is no private system that only we know how to operate. Workflows are exportable and the map is written for somebody who has never met us.</p>
+    <p>If you want to bring this in house or hand it to another team, everything transfers as it stands.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">Cost, tools, and what happens when something breaks.</h2>
+    <div class="faq">
+
+      <details>
+        <summary>What does it cost to run each month?</summary>
+        <p>The automation platform charges by volume, usually somewhere between twenty and eighty dollars a month for a business at this scale. That goes on your own card directly, so it never passes through us and never gets marked up. We will tell you the expected figure before we build anything.</p>
+      </details>
+
+      <details>
+        <summary>Do we have to change the tools we already use?</summary>
+        <p>Almost never. We build around your existing CRM, calendar, accounting, and email, because moving a team onto new software is a far bigger project than automating what they already do. If something genuinely cannot connect, we will say so before you commit.</p>
+      </details>
+
+      <details>
+        <summary>What happens when one breaks?</summary>
+        <p>Things do break, usually when a tool changes something at their end. Anything we built is fixed at no charge for the first thirty days. After that, monitoring catches the failure and tells you the same day, and a monthly plan covers the fix.</p>
+      </details>
+
+      <details>
+        <summary>Do you work with companies outside Canada?</summary>
+        <p>Yes. Nothing on this page needs anyone in the room, and we work across time zones as a matter of course. Calls get scheduled around your working day.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">What you can book.</h2>
+    <p class="sec__sub">Four of these follow a job through your business, from the first enquiry to the money arriving. We build on the tools you already pay for, and not everything is worth automating, so we will say when something is not.</p>
+    <div class="menu">
+
+      <article class="menu__i">
+        <h3>Lead capture</h3>
+        <p>An enquiry lands, the customer gets an immediate reply, you get a notification, and the record files itself with the right owner attached.</p>
+        <span class="menu__price">From $500<small>1 to 2 weeks</small></span>
+      </article>
+
+      <article class="menu__i">
+        <h3>Booking and reminders</h3>
+        <p>Appointments booked straight into your calendar, with confirmations, reminders, and a follow-up when somebody does not show.</p>
+        <span class="menu__price">From $450<small>1 to 2 weeks</small></span>
+      </article>
+
+      <article class="menu__i">
+        <h3>Client onboarding</h3>
+        <p>Contract, invoice, intake form, shared folder, and kickoff email, all triggered from one action so nothing gets skipped.</p>
+        <span class="menu__price">From $600<small>2 weeks</small></span>
+      </article>
+
+      <article class="menu__i">
+        <h3>Invoicing and chasing</h3>
+        <p>Invoices raised when the work completes, then reminders that keep going out on their own until the money arrives.</p>
+        <span class="menu__price">From $450<small>1 to 2 weeks</small></span>
+      </article>
+
+      <article class="menu__i">
+        <h3>Monitoring and monthly builds</h3>
+        <p>Everything we built watched for failures and fixed when it breaks, plus one new workflow built each month.</p>
+        <span class="menu__price">From $200<small>per month</small></span>
+      </article>
+
+      <article class="menu__i menu__ask">
+        <h3>Something else entirely?</h3>
+        <p>Send us the jobs that eat your week and the tools you use for them. If it is repetitive and it lives in software, it can usually be automated.</p>
+        <span class="menu__price"><a href="mailto:hello@scaleme.ca">hello@scaleme.ca</a></span>
+      </article>
+
+      <details>
+        <summary>Is our customer data safe?</summary>
+        <p>Nothing is stored on any system of ours. Records move between accounts you already own, and we are added as a user on those. When you remove our access, we hold nothing. If you handle health or financial data, tell us early so we can build around the rules that apply to you.</p>
+      </details>
+
+      <details>
+        <summary>What if we use something unusual?</summary>
+        <p>If it has an API or a connector, it can usually be linked. If it genuinely cannot be, there is often a workaround through a shared spreadsheet or an email trigger, and sometimes there is not. We will tell you which of those it is before you pay for anything.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- TALK -->
+<section class="sec">
+  <div class="in talk__grid">
+    <h2 class="d">Tell us what you keep doing twice.</h2>
+    <div>
+      <p>Send us the jobs that eat your week and the tools you use for them. We will come back with what we would automate first, what we would leave alone, and roughly what each would cost.</p>
+      <p>You get a reply within two working days, whether or not there is a job in it for us.</p>
+      <a href="mailto:hello@scaleme.ca" class="mail">hello@scaleme.ca</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="band">
+  <a href="index.html" class="mark">SCALEME</a>
+  <span class="band__set">
+    <a href="scaleme-web-design.html">Web design</a>
+    <a href="scaleme-marketing.html">Marketing</a>
+    <a href="scaleme-automation.html">Automation</a>
+    <a href="scaleme-affiliate.html">Affiliate</a>
+  </span>
+  <span>Working remotely, worldwide</span>
+</footer>
+
+</body>
+</html>
