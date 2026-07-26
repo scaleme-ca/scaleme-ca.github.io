@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Affiliate programs | ScaleMe</title>
+<meta name="description" content="Affiliate and referral programs set up, recruited for, and run. Tracking tested before anyone is invited. Prices from $450.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --paper:#EDE9DE;--white:#FFFFFF;--ink:#111110;--ink-2:#4E4C44;
+  --pink:#FF2E88;--aqua:#00B3A6;--sun:#FFC400;--bw:3px;
+  --disp:'Bricolage Grotesque','Archivo','Helvetica Neue',sans-serif;
+  --body:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+}
+
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;}
+ul,ol{list-style:none;}
+:focus-visible{outline:var(--bw) solid var(--ink);outline-offset:3px;}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}html{scroll-behavior:auto;}}
+
+.d{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84,'opsz' 48;letter-spacing:-.025em;line-height:1.03;}
+.skip{position:absolute;left:-9999px;}
+.skip:focus{left:12px;top:12px;z-index:99;background:var(--ink);color:var(--paper);padding:12px 18px;font-family:var(--mono);}
+.in{max-width:1140px;margin:0 auto;}
+
+.path{border-bottom:var(--bw) solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:20px;padding:13px 34px;flex-wrap:wrap;font-family:var(--mono);font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;}
+.path__here{display:flex;align-items:center;gap:11px;}
+.path__here b{font-weight:500;background:var(--ink);color:var(--paper);padding:4px 9px;}
+.mark{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1rem;letter-spacing:-.045em;text-transform:none;text-decoration:none;}
+.path__rest{display:flex;gap:18px;flex-wrap:wrap;}
+.path__rest a{color:var(--ink-2);text-decoration:none;}
+.path__rest a:hover{color:var(--ink);background:var(--sun);}
+
+.open{background:var(--pink);border-bottom:var(--bw) solid var(--ink);padding:70px 34px 62px;}
+.open h1{font-size:clamp(2.1rem,5vw,4rem);max-width:16ch;}
+.open p{font-size:1.12rem;max-width:54ch;margin-top:22px;font-weight:500;}
+
+.sec{border-bottom:var(--bw) solid var(--ink);padding:64px 34px 60px;}
+.sec > .in > h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:24ch;margin-bottom:12px;}
+.sec__sub{font-size:1.03rem;color:var(--ink-2);max-width:62ch;margin-bottom:36px;}
+
+.menu{display:grid;grid-template-columns:repeat(3,1fr);border:var(--bw) solid var(--ink);}
+.menu__i{border-right:var(--bw) solid var(--ink);border-bottom:var(--bw) solid var(--ink);background:var(--white);padding:24px 20px 22px;display:flex;flex-direction:column;gap:9px;transition:background .1s;}
+.menu__i:nth-child(3n){border-right:none;}
+.menu__i:nth-last-child(-n+3){border-bottom:none;}
+.menu__i:hover{background:var(--sun);}
+.menu__i h3{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.15rem;letter-spacing:-.03em;}
+.menu__i p{font-size:.92rem;color:var(--ink-2);flex:1;}
+.menu__i:hover p{color:var(--ink);}
+.menu__price{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.32rem;letter-spacing:-.03em;border-top:2px solid var(--ink);padding-top:11px;}
+.menu__price small{display:block;font-family:var(--mono);font-size:.68rem;font-weight:400;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);margin-top:4px;}
+.menu__i:hover .menu__price small{color:var(--ink);}
+.menu__ask{background:var(--aqua);}
+.menu__ask:hover{background:var(--aqua);}
+.menu__ask p{color:var(--ink);}
+.menu__ask a{font-family:var(--mono);font-size:.8rem;text-decoration:underline;text-underline-offset:3px;}
+
+.wall{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.frag{border:var(--bw) solid var(--ink);background:var(--white);padding:16px 15px 14px;min-height:196px;display:flex;flex-direction:column;gap:11px;overflow:hidden;}
+.frag--w{grid-column:span 2;}
+.frag__t{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.02rem;letter-spacing:-.03em;padding-bottom:10px;border-bottom:2px solid var(--ink);}
+.frag__cap{margin-top:auto;font-size:.85rem;line-height:1.45;color:var(--ink-2);}
+
+/* tracking test */
+.trk{display:flex;flex-direction:column;gap:9px;flex:1;justify-content:center;}
+.trk__url{font-family:var(--mono);font-size:.63rem;border:2px solid var(--ink);background:#F7F6F2;padding:7px 8px;word-break:break-all;line-height:1.4;}
+.trk__url b{font-weight:500;background:var(--sun);}
+.trk__steps{display:flex;align-items:center;}
+.trk__steps i{font-style:normal;flex:1;text-align:center;font-family:var(--mono);font-size:.58rem;letter-spacing:.04em;text-transform:uppercase;border:2px solid var(--ink);background:var(--aqua);padding:8px 3px;}
+.trk__steps u{flex:0 0 11px;height:2px;background:var(--ink);text-decoration:none;}
+
+/* partner kit */
+.kit{display:flex;gap:7px;flex:1;align-items:stretch;}
+.kit i{flex:1;border:2px solid var(--ink);display:flex;align-items:flex-end;padding:6px;font-style:normal;font-size:.5rem;font-weight:700;line-height:1.15;}
+.kit1{background:#141416;color:#F2F2F0;}
+.kit2{background:var(--sun);color:var(--ink);}
+.kit3{background:#D8F5F1;color:var(--ink);}
+
+/* outreach list */
+.out{display:flex;flex-direction:column;gap:6px;flex:1;justify-content:center;}
+.out__r{display:flex;gap:8px;align-items:center;font-size:.68rem;}
+.out__r span{flex:1;}
+.out__r em{font-style:normal;font-family:var(--mono);font-size:.53rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border:1.5px solid var(--ink);flex-shrink:0;}
+.out__r em.live{background:var(--aqua);}
+.out__r em.rep{background:var(--sun);}
+.out__r em.sent{background:var(--paper);}
+
+/* payout table */
+.pay{flex:1;display:flex;flex-direction:column;}
+.pay__h,.pay__r{display:grid;grid-template-columns:1fr 52px 68px 62px;gap:8px;padding:7px 4px;font-size:.66rem;align-items:center;}
+.pay__h{font-family:var(--mono);font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);border-bottom:2px solid var(--ink);}
+.pay__r{border-bottom:1px dotted #CFCBBF;}
+.pay__r b{font-family:var(--mono);font-weight:500;}
+.pay__r em{font-style:normal;font-family:var(--mono);font-size:.53rem;letter-spacing:.05em;text-transform:uppercase;padding:2px 5px;border:1.5px solid var(--ink);background:var(--aqua);text-align:center;}
+.pay__r em.hold{background:var(--sun);}
+
+/* audit */
+.aud{display:flex;flex-direction:column;gap:7px;flex:1;justify-content:center;}
+.aud__r{display:flex;gap:7px;align-items:center;font-size:.68rem;line-height:1.3;}
+.aud__r em{font-style:normal;font-family:var(--mono);font-size:.54rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border:1.5px solid var(--ink);flex-shrink:0;}
+.aud__r em.hi{background:var(--pink);}
+.aud__r em.md{background:var(--sun);}
+.aud__r em.lo{background:var(--aqua);}
+
+.map{background:var(--aqua);}
+.map__grid{display:grid;grid-template-columns:1fr 1.15fr;gap:44px;align-items:start;}
+.map__grid h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:16ch;}
+.map ul{border-top:var(--bw) solid var(--ink);}
+.map li{border-bottom:var(--bw) solid var(--ink);padding:14px 4px;font-size:1rem;}
+.map li b{font-weight:700;}
+.map__note{margin-top:22px;font-size:1rem;}
+
+.own{background:var(--ink);color:var(--paper);}
+.own h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:18ch;margin-bottom:26px;}
+.own p{font-size:1.05rem;color:#C0BCB1;max-width:62ch;margin-bottom:16px;}
+.own p:last-child{margin-bottom:0;}
+.own b{color:var(--paper);font-weight:600;}
+
+.faq{border-top:var(--bw) solid var(--ink);}
+.faq details{border-bottom:var(--bw) solid var(--ink);background:var(--white);}
+.faq summary{list-style:none;cursor:pointer;padding:18px 46px 18px 18px;position:relative;font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 84;font-size:1.06rem;letter-spacing:-.025em;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:'+';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:1.2rem;}
+.faq details[open] summary{background:var(--sun);}
+.faq details[open] summary::after{content:'\2013';}
+.faq summary:hover{background:var(--sun);}
+.faq p{padding:4px 18px 20px;font-size:.99rem;color:var(--ink-2);max-width:74ch;}
+
+
+.spec{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.spec__b{border:var(--bw) solid var(--ink);background:var(--white);padding:20px 18px 18px;display:flex;flex-direction:column;gap:10px;min-height:132px;}
+.spec__b--sun{background:var(--sun);}
+.spec__b--aqua{background:var(--aqua);}
+.spec__v{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 82;font-size:2.2rem;letter-spacing:-.05em;line-height:1;}
+.spec__v--sm{font-size:1.42rem;letter-spacing:-.04em;}
+.spec__v--xs{font-size:1.08rem;letter-spacing:-.03em;line-height:1.1;}
+.spec__l{font-size:.87rem;line-height:1.4;color:var(--ink-2);margin-top:auto;}
+.spec__b--sun .spec__l,.spec__b--aqua .spec__l{color:var(--ink);}
+.part{background:var(--sun);}
+.part__grid{display:grid;grid-template-columns:1fr 1.2fr;gap:44px;align-items:start;}
+.part__grid h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:15ch;}
+.part__grid > div > p{font-size:1rem;margin-top:20px;max-width:46ch;}
+.part ol{border-top:var(--bw) solid var(--ink);}
+.part li{border-bottom:var(--bw) solid var(--ink);padding:14px 4px;display:grid;grid-template-columns:1fr 96px;gap:16px;align-items:baseline;font-size:1rem;}
+.part li span{font-family:var(--mono);font-size:.73rem;text-transform:uppercase;letter-spacing:.05em;text-align:right;}
+.built{border:var(--bw) solid var(--ink);background:var(--aqua);padding:24px 22px 22px;margin-top:16px;}
+.built h3{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.12rem;letter-spacing:-.03em;margin-bottom:10px;}
+.built p{font-size:.98rem;max-width:92ch;}
+
+.talk__grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;}
+.talk__grid h2{font-size:clamp(1.6rem,3.1vw,2.4rem);max-width:16ch;}
+.talk p{font-size:1.03rem;color:var(--ink-2);margin-bottom:16px;max-width:46ch;}
+.mail{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:clamp(1.25rem,2.8vw,1.9rem);letter-spacing:-.035em;text-decoration:none;background:var(--sun);border:var(--bw) solid var(--ink);padding:9px 16px;display:inline-block;margin-top:8px;}
+.mail:hover{background:var(--ink);color:var(--sun);}
+
+.band{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:20px 34px;font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;}
+.band a{color:var(--ink-2);text-decoration:none;}
+.band a:hover{color:var(--ink);background:var(--sun);}
+.band__set{display:flex;gap:16px;flex-wrap:wrap;}
+
+@media(max-width:1000px){
+  .wall{grid-template-columns:repeat(2,1fr);}
+  .menu{grid-template-columns:repeat(2,1fr);}
+  .menu__i{border-right:var(--bw) solid var(--ink);border-bottom:var(--bw) solid var(--ink);}
+  .menu__i:nth-child(3n){border-right:var(--bw) solid var(--ink);}
+  .menu__i:nth-child(2n){border-right:none;}
+  .menu__i:last-child{border-bottom:none;}
+  .map__grid,.talk__grid{grid-template-columns:1fr;gap:26px;}
+}
+@media(max-width:640px){
+  .path,.open,.sec,.band{padding-left:20px;padding-right:20px;}
+  .open{padding-top:46px;padding-bottom:44px;}
+  .sec{padding-top:46px;padding-bottom:44px;}
+  .wall{grid-template-columns:1fr;}
+  .frag--w{grid-column:span 1;}
+  .menu{grid-template-columns:1fr;}
+  .menu__i{border-right:none;}
+  .pay__h,.pay__r{grid-template-columns:1fr 44px 58px 54px;font-size:.6rem;}
+}
+
+@media(max-width:1000px){.spec{grid-template-columns:repeat(2,1fr);}.part__grid{grid-template-columns:1fr;gap:26px;}}
+@media(max-width:640px){.spec{grid-template-columns:1fr 1fr;}.spec__v{font-size:1.8rem;}}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<nav class="path" aria-label="Breadcrumb and services">
+  <span class="path__here">
+    <a href="index.html" class="mark">SCALEME</a>
+    <span aria-hidden="true">/</span>
+    <b>Affiliate</b>
+  </span>
+  <span class="path__rest">
+    <a href="scaleme-web-design.html">Web design</a>
+    <a href="scaleme-marketing.html">Marketing</a>
+    <a href="scaleme-automation.html">Automation</a>
+    <a href="mailto:hello@scaleme.ca">hello@scaleme.ca</a>
+  </span>
+</nav>
+
+<main id="main">
+
+<section class="open">
+  <div class="in">
+    <h1 class="d">Other people selling for you, paid only when it works.</h1>
+    <p>Affiliate and referral programs set up, recruited for, and run month to month. The tracking gets tested with a real transaction before a single partner is invited.</p>
+  </div>
+</section>
+
+
+<!-- EXAMPLES -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">What each one looks like.</h2>
+    <p class="sec__sub">One example for each of the services we offer, drawn for this page.</p>
+    <div class="wall">
+
+      <div class="frag frag--w">
+        <h3 class="frag__t">Program setup</h3>
+        <div class="trk">
+          <div class="trk__url">yoursite.com/pricing?<b>ref=partner_014</b></div>
+          <div class="trk__steps"><i>Click</i><u></u><i>Signup</i><u></u><i>Payment</i><u></u><i>Credited</i></div>
+        </div>
+        <p class="frag__cap">A real transaction is pushed through the whole chain and checked at every step before the program opens. Attribution that is wrong on launch day is the thing that loses you both money and partners.</p>
+      </div>
+
+      <div class="frag">
+        <h3 class="frag__t">Partner kit</h3>
+        <div class="kit">
+          <i class="kit1">Banner set</i>
+          <i class="kit2">Swipe emails</i>
+          <i class="kit3">Link builder</i>
+        </div>
+        <p class="frag__cap">Partners who have to write their own copy usually never get round to it. A kit means they can post something the same day they sign up.</p>
+      </div>
+
+      <div class="frag">
+        <h3 class="frag__t">Partner recruitment</h3>
+        <div class="out">
+          <div class="out__r"><span>Newsletter, 9k readers</span><em class="live">Live</em></div>
+          <div class="out__r"><span>Review site</span><em class="live">Live</em></div>
+          <div class="out__r"><span>Course creator</span><em class="rep">Replied</em></div>
+          <div class="out__r"><span>Consultant</span><em class="sent">Sent</em></div>
+        </div>
+        <p class="frag__cap">Programs stall because nobody does outreach after launch week. This is the part that keeps producing new partners in month six.</p>
+      </div>
+
+      <div class="frag frag--w">
+        <h3 class="frag__t">Running the program</h3>
+        <div class="pay">
+          <div class="pay__h"><span>Partner</span><span>Sales</span><span>Owed</span><span>Status</span></div>
+          <div class="pay__r"><span>Partner 014</span><b>12</b><b>$480</b><em>Paid</em></div>
+          <div class="pay__r"><span>Partner 007</span><b>8</b><b>$320</b><em>Paid</em></div>
+          <div class="pay__r"><span>Partner 031</span><b>3</b><b>$120</b><em class="hold">Review</em></div>
+        </div>
+        <p class="frag__cap">Late or wrong payments are the fastest way to lose your best partners. Anything that looks like a self referral gets held and checked before money moves.</p>
+      </div>
+
+      <div class="frag frag--w">
+        <h3 class="frag__t">Program audit</h3>
+        <div class="aud">
+          <div class="aud__r"><em class="hi">High</em>Mobile checkout drops the referral tag</div>
+          <div class="aud__r"><em class="hi">High</em>Cookie window undefined in the terms</div>
+          <div class="aud__r"><em class="md">Med</em>No disclosure requirement in partner terms</div>
+          <div class="aud__r"><em class="lo">Low</em>Eleven partners inactive since March</div>
+        </div>
+        <p class="frag__cap">Most underperforming programs are not a recruitment problem. They are leaking sales somewhere in the tracking, and the partners have quietly stopped bothering.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRACKING BAND -->
+<section class="sec map">
+  <div class="in map__grid">
+    <h2 class="d">Settled in writing before anyone is invited.</h2>
+    <div>
+      <ul>
+        <li><b>What counts as a sale.</b> Defined before a partner can dispute it, including refunds and cancellations.</li>
+        <li><b>How long a referral lasts.</b> The cookie window agreed and written into the terms.</li>
+        <li><b>What partners must disclose.</b> Paid promotion rules written in, and live partner content checked against them.</li>
+        <li><b>How the numbers get checked.</b> Platform figures reconciled against your own records every month.</li>
+      </ul>
+      <p class="map__note">Almost every argument in an affiliate program is about one of these four, and all of them are cheap to settle at the start.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STANDARDS -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">What we hold ourselves to.</h2>
+    <p class="sec__sub">What a program earns depends on your product and your partners, so we will not put a number on it. These are the standards the program itself is held to.</p>
+    <div class="spec">
+      <div class="spec__b spec__b--aqua"><span class="spec__v d">1</span><span class="spec__l">Real transaction pushed through before any partner is invited</span></div>
+      <div class="spec__b"><span class="spec__v d">2 wks</span><span class="spec__l">Setup, from the first call to the first invite</span></div>
+      <div class="spec__b"><span class="spec__v d">100%</span><span class="spec__l">Of payouts reconciled against your own records</span></div>
+      <div class="spec__b spec__b--sun"><span class="spec__v spec__v--sm d">Every one</span><span class="spec__l">Payout checked for self referrals before money moves</span></div>
+      <div class="spec__b"><span class="spec__v d">48h</span><span class="spec__l">Partner questions answered during the week</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">Monthly</span><span class="spec__l">Payout run on a fixed date partners can rely on</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--xs d">Server to<br>server</span><span class="spec__l">Conversion tracking, not left to the browser alone</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">In writing</span><span class="spec__l">Cookie window, refunds, and what counts as a sale</span></div>
+      <div class="spec__b spec__b--aqua"><span class="spec__v spec__v--sm d">Written in</span><span class="spec__l">Paid promotion disclosure required of every partner</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">Export</span><span class="spec__l">Partner list and full history, any time you ask</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">Your card</span><span class="spec__l">Platform billing direct, never marked up</span></div>
+      <div class="spec__b"><span class="spec__v spec__v--sm d">1 click</span><span class="spec__l">To remove our access from the program</span></div>
+    </div>
+    <div class="built">
+      <h3>What we build on</h3>
+      <p>The platform gets picked for your product and your volume, and the account is opened in your name. Whatever we use has to do three things: track conversions server to server, give every partner their own link and dashboard, and let you export your partner list and history whenever you want. Anything that fails one of those is not worth building on.</p>
+    </div>
+  </div>
+</section>
+
+<!-- YOUR PART -->
+<section class="sec part">
+  <div class="in part__grid">
+    <h2 class="d">What we need from you.</h2>
+    <div>
+      <ol>
+        <li>One call about what you sell and what your margins allow<span>45 min</span></li>
+        <li>The commission rate, from options we bring with the maths<span>Decision</span></li>
+        <li>Sign off on the partner terms before anyone sees them<span>20 min</span></li>
+        <li>One test purchase on your live checkout<span>15 min</span></li>
+      </ol>
+      <p>The commission decision is the only one that really matters, and we will not let you set it without showing you what it does to the margin on a sale.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OWNERSHIP -->
+<section class="sec own">
+  <div class="in">
+    <h2 class="d">The program and the partners are yours.</h2>
+    <p>The platform account is in <b>your</b> name and under your billing. We are added as a manager and you can remove us in one click. Commission is paid by you to your partners directly.</p>
+    <p>Partner relationships, contact details, and performance history are yours and exportable at any time. Nothing sits in a system you cannot get into.</p>
+    <p>If you take the program in house or hand it to another team, the terms, the kit, and the tracking documentation go with it.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">Tracking, cost, and how long it takes.</h2>
+    <div class="faq">
+
+      <details>
+        <summary>How does a sale actually get tracked?</summary>
+        <p>Each partner gets a link carrying their own tag. When somebody clicks it, that tag is stored on their device for an agreed window, and when they buy, the platform is told what happened by a message sent server to server. That last part matters, because tracking that relies only on the browser now misses a meaningful share of sales.</p>
+      </details>
+
+      <details>
+        <summary>What does the platform cost to run?</summary>
+        <p>Depends on the platform and your volume, and it usually lands somewhere between thirty and a few hundred dollars a month. Some ecommerce and subscription tools include it. That cost goes on your own account directly, and we will tell you the expected figure before anything gets built.</p>
+      </details>
+
+      <details>
+        <summary>How long before a program produces revenue?</summary>
+        <p>Setup takes two to three weeks. First sales usually arrive within a month of the first partners going live, since a partner with an audience can send traffic immediately. Building it into a channel worth managing takes about six months of steady recruitment.</p>
+      </details>
+
+      <details>
+        <summary>Do you work with companies outside Canada?</summary>
+        <p>Yes. Nothing here needs anyone in the room, and we work across time zones as a matter of course. Payout rules and disclosure requirements differ by country, so we check what applies where your partners actually are.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="sec">
+  <div class="in">
+    <h2 class="d">What you can book.</h2>
+    <p class="sec__sub">Take the setup on its own and run it yourself, or hand the whole thing over. Commission paid to partners is yours to pay directly and never passes through us.</p>
+    <div class="menu">
+
+      <article class="menu__i">
+        <h3>Program setup</h3>
+        <p>Platform chosen and configured, tracking built and tested, commission structure and partner terms written. Ready for the first invite.</p>
+        <span class="menu__price">From $900<small>2 to 3 weeks</small></span>
+      </article>
+
+      <article class="menu__i">
+        <h3>Partner kit</h3>
+        <p>What a partner needs on day one: links, banners, swipe copy, product images, and a short guide to promoting you well.</p>
+        <span class="menu__price">From $450<small>1 week</small></span>
+      </article>
+
+      <article class="menu__i">
+        <h3>Partner recruitment</h3>
+        <p>Sourcing, outreach, and onboarding, month by month, with the pipeline and reply rates reported back to you.</p>
+        <span class="menu__price">From $600<small>per month</small></span>
+      </article>
+
+      <article class="menu__i">
+        <h3>Running the program</h3>
+        <p>Monthly payouts, partner questions answered, self-referral and fraud checks, and revenue reported by partner.</p>
+        <span class="menu__price">From $700<small>per month</small></span>
+      </article>
+
+      <article class="menu__i">
+        <h3>Program audit</h3>
+        <p>For a program that already exists and is not producing. We check what is tracking, what is leaking, and which partners went quiet.</p>
+        <span class="menu__price">From $500<small>1 to 2 weeks</small></span>
+      </article>
+
+      <article class="menu__i menu__ask">
+        <h3>Not sure it suits you?</h3>
+        <p>Affiliate programs work best where the thing you sell repeats and the buying happens online. Tell us what you sell and we will say plainly whether it is worth building.</p>
+        <span class="menu__price"><a href="mailto:hello@scaleme.ca">hello@scaleme.ca</a></span>
+      </article>
+
+      <details>
+        <summary>What commission should we pay?</summary>
+        <p>It depends entirely on your margin and whether the sale repeats. Subscription products can afford to pay more because the customer keeps paying, and one off physical products usually cannot. We bring you two or three options with the maths on each, and you pick.</p>
+      </details>
+
+      <details>
+        <summary>What stops a partner sending fake sales?</summary>
+        <p>Anything that looks like a self referral, a repeat from the same card, or a signup that never activates gets held before the payout run instead of after it. The terms let you claw back commission on refunded or fraudulent orders, which is much easier to enforce when it was written down before they joined.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- TALK -->
+<section class="sec">
+  <div class="in talk__grid">
+    <h2 class="d">Tell us what you sell and who already talks about you.</h2>
+    <div>
+      <p>We will tell you whether an affiliate program suits what you sell, what the commission would need to be for it to pay, and what it would cost to set up.</p>
+      <p>You get a reply within two working days, whether or not there is a job in it for us.</p>
+      <a href="mailto:hello@scaleme.ca" class="mail">hello@scaleme.ca</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="band">
+  <a href="index.html" class="mark">SCALEME</a>
+  <span class="band__set">
+    <a href="scaleme-web-design.html">Web design</a>
+    <a href="scaleme-marketing.html">Marketing</a>
+    <a href="scaleme-automation.html">Automation</a>
+    <a href="scaleme-affiliate.html">Affiliate</a>
+  </span>
+  <span>Working remotely, worldwide</span>
+</footer>
+
+</body>
+</html>
