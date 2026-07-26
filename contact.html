@@ -41,16 +41,8 @@ a{color:inherit;} ul{list-style:none;}
 .btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink);}
 .btn--sun{background:var(--sun);}
 .btn--pink{background:var(--pink);color:var(--white);}
-.navbtn{padding:9px 16px;font-size:.83rem;box-shadow:4px 4px 0 var(--ink);}
-.navbtn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);}
-
-.nav{position:sticky;top:0;z-index:200;background:var(--paper);border-bottom:var(--bw) solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 34px;flex-wrap:wrap;}
 .mark{font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.14rem;letter-spacing:-.045em;text-decoration:none;display:inline-flex;align-items:center;gap:9px;}
 .mark i{width:14px;height:14px;background:var(--pink);border:2px solid var(--ink);display:block;}
-.nav__links{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
-.nav__links a:not(.btn){font-family:var(--mono);font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px;}
-.nav__links a:not(.btn):hover{color:var(--ink);border-bottom-color:var(--ink);}
-
 .open{background:var(--pink);border-bottom:var(--bw) solid var(--ink);padding:66px 34px 58px;}
 .open h1{font-size:clamp(2.1rem,5vw,3.8rem);max-width:16ch;}
 .open p{font-size:1.12rem;max-width:52ch;margin-top:20px;font-weight:500;}
@@ -143,6 +135,16 @@ a{color:inherit;} ul{list-style:none;}
 .form__status{font-family:var(--mono);font-size:.72rem;line-height:1.5;letter-spacing:.03em;border:2px solid var(--ink);padding:11px 13px;}
 .form__status--ok{background:var(--aqua);}
 .form__status--bad{background:var(--sun);}
+
+/* ===== footer quote button + shared page CTA ===== */
+.band .band__q{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 20px;background:var(--pink);color:var(--white);border:var(--bw) solid var(--ink);font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:.95rem;letter-spacing:-.015em;text-transform:none;text-decoration:none;transition:background .1s,color .1s;}
+.band .band__q:hover{background:var(--sun);color:var(--ink);}
+.cta{display:inline-block;margin-top:8px;font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:clamp(1.25rem,2.8vw,1.9rem);letter-spacing:-.035em;color:var(--ink);text-decoration:none;background:var(--sun);border:var(--bw) solid var(--ink);padding:9px 16px;transition:background .1s,color .1s;}
+.cta:hover{background:var(--ink);color:var(--sun);}
+
+/* footer wordmark: identical on every page */
+.band .mark{display:inline-flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.14rem;letter-spacing:-.045em;text-transform:none;text-decoration:none;color:var(--ink);}
+.band .mark i{width:14px;height:14px;background:var(--pink);border:2px solid var(--ink);display:block;flex:none;}
 </style>
 </head>
 <body>
@@ -222,9 +224,8 @@ a{color:inherit;} ul{list-style:none;}
     <a href="marketing.html">Marketing</a>
     <a href="automation.html">Automation</a>
     <a href="affiliate.html">Affiliate</a>
-    <a href="contact.html">Get a quote</a>
   </span>
-  <span>Working remotely, worldwide</span>
+  <a href="contact.html" class="band__q">Get a quote</a>
 </footer>
 
 

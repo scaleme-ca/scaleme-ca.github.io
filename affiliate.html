@@ -251,6 +251,16 @@ ul,ol{list-style:none;}
 @media(max-width:400px){
   .spec{grid-template-columns:minmax(0,1fr);}
 }
+
+/* ===== footer quote button + shared page CTA ===== */
+.band .band__q{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 20px;background:var(--pink);color:var(--white);border:var(--bw) solid var(--ink);font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:.95rem;letter-spacing:-.015em;text-transform:none;text-decoration:none;transition:background .1s,color .1s;}
+.band .band__q:hover{background:var(--sun);color:var(--ink);}
+.cta{display:inline-block;margin-top:8px;font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:clamp(1.25rem,2.8vw,1.9rem);letter-spacing:-.035em;color:var(--ink);text-decoration:none;background:var(--sun);border:var(--bw) solid var(--ink);padding:9px 16px;transition:background .1s,color .1s;}
+.cta:hover{background:var(--ink);color:var(--sun);}
+
+/* footer wordmark: identical on every page */
+.band .mark{display:inline-flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:1.14rem;letter-spacing:-.045em;text-transform:none;text-decoration:none;color:var(--ink);}
+.band .mark i{width:14px;height:14px;background:var(--pink);border:2px solid var(--ink);display:block;flex:none;}
 </style>
 </head>
 <body>
@@ -480,7 +490,7 @@ ul,ol{list-style:none;}
       <article class="menu__i menu__ask">
         <h3>Not sure it suits you?</h3>
         <p>Affiliate programs work best where the thing you sell repeats and the buying happens online. Tell us what you sell and we will say plainly whether it is worth building.</p>
-        <span class="menu__price"><a href="mailto:hello@scaleme.ca">hello@scaleme.ca</a></span>
+        <span class="menu__price"><a href="contact.html">Get a quote</a></span>
       </article>
 
       <details>
@@ -504,7 +514,7 @@ ul,ol{list-style:none;}
     <div>
       <p>We will tell you whether an affiliate program suits what you sell, what the commission would need to be for it to pay, and what it would cost to set up.</p>
       <p>You get a reply within two working days, whether or not there is a job in it for us.</p>
-      <a href="mailto:hello@scaleme.ca" class="mail">hello@scaleme.ca</a>
+      <a href="contact.html" class="cta">Get a quote</a>
     </div>
   </div>
 </section>
@@ -518,9 +528,8 @@ ul,ol{list-style:none;}
     <a href="marketing.html">Marketing</a>
     <a href="automation.html">Automation</a>
     <a href="affiliate.html">Affiliate</a>
-    <a href="contact.html">Get a quote</a>
   </span>
-  <span>Working remotely, worldwide</span>
+  <a href="contact.html" class="band__q">Get a quote</a>
 </footer>
 
 
