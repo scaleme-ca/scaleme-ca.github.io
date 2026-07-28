@@ -32,10 +32,14 @@
 <meta name="twitter:title" content="Marketing: brand, content, ads, email and SEO | ScaleMe">
 <meta name="twitter:description" content="Brand identity, articles, video, social, email, ad creative, SEO, and reviews. Every one produces something you can open, read, or measure.">
 <meta name="twitter:image" content="https://www.scaleme.ca/img/og-marketing.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/dm-sans-var.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;font-display:swap;src:url(/fonts/bricolage-grotesque-var.woff2) format('woff2-variations');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:100 1000;font-display:swap;src:url(/fonts/dm-sans-var.woff2) format('woff2-variations');}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/dm-mono-400.woff2) format('woff2');}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/dm-mono-500.woff2) format('woff2');}
+
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 
 :root{
@@ -156,7 +160,7 @@ ul,ol{list-style:none;}
 .ad1{flex:1.3;background:#141416;color:#F2F2F0;}
 .ad1 .ad__b{background:#C6F24A;color:#141416;}
 .ad2{flex:1;background:#FFE7D1;color:#7A3B12;}
-.ad2 .ad__b{background:#D96E1F;color:#FFFBF3;}
+.ad2 .ad__b{background:#B25610;color:#FFFBF3;}
 .ad3{flex:.8;background:var(--sun);color:var(--ink);}
 .ad3 .ad__b{background:var(--ink);color:var(--sun);}
 
@@ -268,7 +272,7 @@ ul,ol{list-style:none;}
 .nav__links a{display:flex;align-items:center;padding:0 18px;border-left:var(--bw) solid var(--ink);font-family:var(--mono);font-size:.73rem;font-weight:500;text-transform:uppercase;letter-spacing:.07em;text-decoration:none;color:var(--ink);white-space:nowrap;transition:background .1s,color .1s;}
 .nav__links a:hover{background:var(--ink);color:var(--paper);}
 .nav__links a[aria-current="page"]{background:var(--sun);}
-.nav__q{display:flex;align-items:center;padding:0 18px;border-left:var(--bw) solid var(--ink);background:var(--pink);color:var(--white);font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:.95rem;letter-spacing:-.015em;text-decoration:none;white-space:nowrap;box-shadow:none;transition:background .1s,color .1s;}
+.nav__q{display:flex;align-items:center;padding:0 18px;border-left:var(--bw) solid var(--ink);background:var(--pink);color:var(--ink);font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:.95rem;letter-spacing:-.015em;text-decoration:none;white-space:nowrap;box-shadow:none;transition:background .1s,color .1s;}
 .nav__q:hover{background:var(--sun);color:var(--ink);}
 .nav__toggle{display:none;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:58px;min-height:58px;padding:0;background:var(--paper);border:0;border-left:var(--bw) solid var(--ink);cursor:pointer;}
 .nav__toggle span{display:block;width:24px;height:3px;background:var(--ink);transition:transform .15s ease,opacity .15s ease;}
@@ -313,7 +317,7 @@ ul,ol{list-style:none;}
 }
 
 /* ===== footer quote button + shared page CTA ===== */
-.band .band__q{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 20px;background:var(--pink);color:var(--white);border:var(--bw) solid var(--ink);font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:.95rem;letter-spacing:-.015em;text-transform:none;text-decoration:none;transition:background .1s,color .1s;}
+.band .band__q{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 20px;background:var(--pink);color:var(--ink);border:var(--bw) solid var(--ink);font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:.95rem;letter-spacing:-.015em;text-transform:none;text-decoration:none;transition:background .1s,color .1s;}
 .band .band__q:hover{background:var(--sun);color:var(--ink);}
 .cta{display:inline-block;margin-top:8px;font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:clamp(1.25rem,2.8vw,1.9rem);letter-spacing:-.035em;color:var(--ink);text-decoration:none;background:var(--sun);border:var(--bw) solid var(--ink);padding:9px 16px;transition:background .1s,color .1s;}
 .cta:hover{background:var(--ink);color:var(--sun);}

@@ -32,10 +32,14 @@
 <meta name="twitter:title" content="Marketing, web design, automation, affiliates | ScaleMe">
 <meta name="twitter:description" content="A marketing agency working with companies growing past word of mouth. Websites, marketing, automation, and affiliate programs.">
 <meta name="twitter:image" content="https://www.scaleme.ca/img/og-home.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/dm-sans-var.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;font-display:swap;src:url(/fonts/bricolage-grotesque-var.woff2) format('woff2-variations');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:100 1000;font-display:swap;src:url(/fonts/dm-sans-var.woff2) format('woff2-variations');}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/dm-mono-400.woff2) format('woff2');}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/dm-mono-500.woff2) format('woff2');}
+
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 
 :root{
@@ -70,7 +74,7 @@ ul{list-style:none;}
 .btn:hover{transform:translate(-3px,-3px);box-shadow:var(--sh-lg);}
 .btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink);}
 .btn--sun{background:var(--sun);}
-.btn--pink{background:var(--pink);color:var(--white);}
+.btn--pink{background:var(--pink);color:var(--ink);}
 
 /* nav */
 .nav{position:sticky;top:0;z-index:200;background:var(--paper);border-bottom:var(--bw) solid var(--ink);display:flex;align-items:stretch;min-height:58px;}
@@ -79,7 +83,7 @@ ul{list-style:none;}
 .nav__links{display:flex;align-items:stretch;margin-left:auto;}
 .nav__links a{display:flex;align-items:center;padding:0 20px;border-left:var(--bw) solid var(--ink);font-family:var(--mono);font-size:.73rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;transition:background .1s,color .1s;}
 .nav__links a:hover{background:var(--ink);color:var(--paper);}
-.nav__q{background:var(--pink);color:var(--white);font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:.95rem;text-transform:none;letter-spacing:-.015em;}
+.nav__q{background:var(--pink);color:var(--ink);font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:.95rem;text-transform:none;letter-spacing:-.015em;}
 .nav__q:hover{background:var(--sun);color:var(--ink);}
 
 
@@ -114,7 +118,7 @@ ul{list-style:none;}
 .take__t{font-family:var(--mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;border:2px solid var(--ink);padding:5px 9px;justify-self:end;white-space:nowrap;}
 .take__t--a{background:var(--aqua);}
 .take__t--b{background:var(--sun);}
-.take__t--c{background:var(--pink);color:var(--white);}
+.take__t--c{background:var(--pink);color:var(--ink);}
 .take__t--d{background:var(--white);}
 
 /* contact form */
@@ -166,7 +170,7 @@ ul{list-style:none;}
 .nav__links a{display:flex;align-items:center;padding:0 18px;border-left:var(--bw) solid var(--ink);font-family:var(--mono);font-size:.73rem;font-weight:500;text-transform:uppercase;letter-spacing:.07em;text-decoration:none;color:var(--ink);white-space:nowrap;transition:background .1s,color .1s;}
 .nav__links a:hover{background:var(--ink);color:var(--paper);}
 .nav__links a[aria-current="page"]{background:var(--sun);}
-.nav__q{display:flex;align-items:center;padding:0 18px;border-left:var(--bw) solid var(--ink);background:var(--pink);color:var(--white);font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:.95rem;letter-spacing:-.015em;text-decoration:none;white-space:nowrap;box-shadow:none;transition:background .1s,color .1s;}
+.nav__q{display:flex;align-items:center;padding:0 18px;border-left:var(--bw) solid var(--ink);background:var(--pink);color:var(--ink);font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:.95rem;letter-spacing:-.015em;text-decoration:none;white-space:nowrap;box-shadow:none;transition:background .1s,color .1s;}
 .nav__q:hover{background:var(--sun);color:var(--ink);}
 .nav__toggle{display:none;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:58px;min-height:58px;padding:0;background:var(--paper);border:0;border-left:var(--bw) solid var(--ink);cursor:pointer;}
 .nav__toggle span{display:block;width:24px;height:3px;background:var(--ink);transition:transform .15s ease,opacity .15s ease;}
@@ -211,7 +215,7 @@ ul{list-style:none;}
 }
 
 /* ===== footer quote button + shared page CTA ===== */
-.band .band__q{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 20px;background:var(--pink);color:var(--white);border:var(--bw) solid var(--ink);font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:.95rem;letter-spacing:-.015em;text-transform:none;text-decoration:none;transition:background .1s,color .1s;}
+.band .band__q{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 20px;background:var(--pink);color:var(--ink);border:var(--bw) solid var(--ink);font-family:var(--disp);font-weight:700;font-variation-settings:'wdth' 86;font-size:.95rem;letter-spacing:-.015em;text-transform:none;text-decoration:none;transition:background .1s,color .1s;}
 .band .band__q:hover{background:var(--sun);color:var(--ink);}
 .cta{display:inline-block;margin-top:8px;font-family:var(--disp);font-weight:800;font-variation-settings:'wdth' 84;font-size:clamp(1.25rem,2.8vw,1.9rem);letter-spacing:-.035em;color:var(--ink);text-decoration:none;background:var(--sun);border:var(--bw) solid var(--ink);padding:9px 16px;transition:background .1s,color .1s;}
 .cta:hover{background:var(--ink);color:var(--sun);}
@@ -240,7 +244,7 @@ ul{list-style:none;}
 /* ===== first-call chips are links to the service pages ===== */
 a.take__t{text-decoration:none;color:var(--ink);box-shadow:3px 3px 0 var(--ink);
   transition:background .1s,color .1s,transform .09s ease,box-shadow .09s ease;}
-a.take__t--c{color:var(--white);}
+a.take__t--c{color:var(--ink);}
 a.take__t:hover,a.take__t:focus-visible{background:var(--ink);color:var(--paper);
   transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);}
 @media(max-width:900px){
